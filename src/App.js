@@ -15,12 +15,12 @@ function App() {
   return (
     <Router>
       <Header/>
-    <Route path="/" component={Home} />
-    <Route path="/Games" component={Games} />
-    <Route path="/Login" component={Login} />
-    <Route path="/Signup" component={Signup} />
-    <Route path="/game" component={GamePage} />
-    <Route path="/Dashboard" component={Dashboard} /> 
+    <Route path="/Qnar" component={Home} />
+    <Route path="/#" component={Games} />
+    <Route path="/#" component={Login} />
+    <Route path="/#" component={Signup} />
+    <Route path="/#" component={GamePage} />
+    <Route path="/#" component={Dashboard} /> 
       <Footer/>
     </Router>
   );
