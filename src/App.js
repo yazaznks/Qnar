@@ -15,7 +15,7 @@ function App() {
   return (
     <Router>
       <Header/>
-    <Route path="/Qnar" component={Home} />
+    <Route path="/" component={Home} />
     <Route path="/#" component={Games} />
     <Route path="/#" component={Login} />
     <Route path="/#" component={Signup} />
