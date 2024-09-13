@@ -1,5 +1,5 @@
-import logo from './logo.svg';
-import { Link, Route, Router } from "wouter";
+//import logo from './logo.svg';
+import { Route, Router } from "wouter";
 
 import './App.css';
 import Header from "./pages/Header"

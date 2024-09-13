@@ -38,9 +38,9 @@ function Header() {
     setAnchorElLang(event.currentTarget);
   };
 
-  const handleCloseLangMenu = () => {
-    setAnchorElLang(null);
-  };
+  // const handleCloseLangMenu = () => {
+  //   setAnchorElLang(null);
+  // };
 
   const handleLogout = () => {
     localStorage.removeItem('access_token');

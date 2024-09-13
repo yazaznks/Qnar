@@ -10,7 +10,7 @@ const GamePage = () => {
     const [Questions, SetQuestions] = useState([{}]);
     const [settings, setSettings] = useState({});
     const [gameTitle, setGameTitle] = useState(''); // New state for the title
-    const [description, setDescription] = useState(''); // New state for the description
+    // const [description, setDescription] = useState(''); // New state for the description
     const validateGameContent = () => {
         // Check if the game title is not empty
         if (!settings.title || !settings.title.trim()) {

@@ -1,25 +1,25 @@
 
-import ReactDOM from "react-dom";
+// import ReactDOM from "react-dom";
 import "./Styles.css";
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Button, Typography, RadioGroup, FormControlLabel, Radio, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
-import { Wheel } from 'react-custom-roulette';
-import axios from 'axios';
+// import { Wheel } from 'react-custom-roulette';
+// import axios from 'axios';
 import timer from '../Assets/timer.png';
 import sound from '../Assets/sound.png';
 import heartE from '../Assets/heart.png';
 import heartF from '../Assets/heartF.png';
 import arrow from '../Assets/arrow.png'
-import { blue } from '@mui/material/colors';
+// import { blue } from '@mui/material/colors';
 import background from '../Assets/show.jpg'
 
 
   
   // List of hardcoded questions with answers
-const GamePreview =({ Questions,settings, onNext}) =>{
+const GamePreview =({ Questions,settings}) =>{
 
   const [isSpinning, setIsSpinning] = useState(false);
-  const [prizeNumber, setPrizeNumber] = useState(null);
+  // const [prizeNumber, setPrizeNumber] = useState(null);
   const [selectedQuestion, setSelectedQuestion] = useState(null);
   const [selectedAnswer, setSelectedAnswer] = useState('');
   const [questions, setQuestions] = useState(Questions);
@@ -32,9 +32,9 @@ const GamePreview =({ Questions,settings, onNext}) =>{
   const [angle, setAngle] = useState(0); // RADIANS
   const [top, setTop] = useState(null); // INDEX
   const [offset, setOffset] = useState(0); // RADIANS
-  const [net, setNet] = useState(null); // RADIANS
-  const [result, setResult] = useState(null); // INDEX
-  const [spinning, setSpinning] = useState(false);
+  // const [net, setNet] = useState(null); // RADIANS
+  // const [result, setResult] = useState(null); // INDEX
+  // const [spinning, setSpinning] = useState(false);
   const [lives, setLives] = useState(5);
   const [time, setTime] = useState(10); // Initial time
   const [isTimerActive, setTimerActive] = useState(false); // Timer is active
