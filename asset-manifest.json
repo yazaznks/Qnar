@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/Qnar/static/css/main.623603a1.css",
+    "main.js": "/Qnar/static/js/main.f65362de.js",
+    "static/js/453.114dea8c.chunk.js": "/Qnar/static/js/453.114dea8c.chunk.js",
+    "static/media/boy.png": "/Qnar/static/media/boy.5af81e1c0a0f08f38d70.png",
+    "static/media/girl.png": "/Qnar/static/media/girl.8d4d85d16ee4984f6b75.png",
+    "static/media/sample.mp4": "/Qnar/static/media/sample.316d8699332b43dc1954.mp4",
+    "static/media/HowToBG.png": "/Qnar/static/media/HowToBG.f560da69211405b06d7b.png",
+    "static/media/back.png": "/Qnar/static/media/back.76699ded053aee9fc118.png",
+    "static/media/Knar.png": "/Qnar/static/media/Knar.a925a8702c1e14a36123.png",
+    "static/media/story.png": "/Qnar/static/media/story.59e448e5db4fc84522a2.png",
+    "static/media/Logo2.png": "/Qnar/static/media/Logo2.fe8244427be8a1386018.png",
+    "static/media/show2.jpg": "/Qnar/static/media/show2.5e87b7f895225a490a1f.jpg",
+    "static/media/dots.png": "/Qnar/static/media/dots.5cbd014419fd05b2e7d9.png",
+    "static/media/show.jpg": "/Qnar/static/media/show.259a6da48a7415184191.jpg",
+    "static/media/backBubble.png": "/Qnar/static/media/backBubble.b4cc44eb08a031a14719.png",
+    "static/media/videoBG.png": "/Qnar/static/media/videoBG.f2bb42197b5510193736.png",
+    "static/media/logo.svg": "/Qnar/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/Qnar/index.html",
+    "main.623603a1.css.map": "/Qnar/static/css/main.623603a1.css.map",
+    "main.f65362de.js.map": "/Qnar/static/js/main.f65362de.js.map",
+    "453.114dea8c.chunk.js.map": "/Qnar/static/js/453.114dea8c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.623603a1.css",
+    "static/js/main.f65362de.js"
+  ]
+}
