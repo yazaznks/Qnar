@@ -123,9 +123,9 @@ function pageLanding() {
       }}>
         <Typography style={{color: '#3B5D44'}} variant="h4" gutterBottom>
         Don’t Miss Out!          </Typography>
-          <Typography style={{color: '#3B5D44'}} variant="body1">
+          <Typography style={{color: '#3B5D44'}} variant="h6">
           Join our community to receive exclusive updates and early access to our groundbreaking educational gaming platform.          </Typography><br></br>
-          <Typography style={{color: '#3B5D44'}}>Enter your email</Typography>
+          <Typography  variant="h6" style={{color: '#3B5D44'}}>Enter your email</Typography>
           <TextField style={{background: '#ffffff'}}></TextField>
           <Button variant="contained" sx={{ backgroundColor: '#4B7857', color: '#fff',  }}>
                   Submit
@@ -275,7 +275,7 @@ function pageLanding() {
           elevation={3}
           sx={{
             padding: '20px',      
-            maxWidth: '80%',   
+            maxWidth: '60%',   
             display: 'flex',
             flexDirection: 'row',  
             backgroundColor: '#F9F9ED',
@@ -285,8 +285,8 @@ function pageLanding() {
         >
             <Box
           sx={{
-            flex: 1,
-            padding: '20px',
+            flex: 0.4,
+            padding: 'px',
             textAlign: 'center',
             color: '#3B5D44'
           }}
@@ -297,7 +297,7 @@ function pageLanding() {
         style={{
         
           width: 'auto',
-          height: '30vh', // Adjust height as needed
+          height: '35vh', // Adjust height as needed
           zIndex: 1, // Ensure it is behind other content
         }}
       />
@@ -306,7 +306,7 @@ function pageLanding() {
           sx={{
             flex: 1,
             padding: '20px',
-            textAlign: 'center',
+            textAlign: 'left',
             color: '#3B5D44'
           }}
         >
