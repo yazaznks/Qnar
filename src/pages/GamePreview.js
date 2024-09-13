@@ -32,9 +32,9 @@ const GamePreview =({ Questions,settings}) =>{
   const [angle, setAngle] = useState(0); // RADIANS
   const [top, setTop] = useState(null); // INDEX
   const [offset, setOffset] = useState(0); // RADIANS
-  // const [net, setNet] = useState(null); // RADIANS
-  // const [result, setResult] = useState(null); // INDEX
-  // const [spinning, setSpinning] = useState(false);
+  const [net, setNet] = useState(null); // RADIANS
+  const [result, setResult] = useState(null); // INDEX
+  const [spinning, setSpinning] = useState(false);
   const [lives, setLives] = useState(5);
   const [time, setTime] = useState(10); // Initial time
   const [isTimerActive, setTimerActive] = useState(false); // Timer is active
