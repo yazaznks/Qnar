@@ -17,10 +17,35 @@
   -webkit-border-radius: 100%; 
   -moz-border-radius: 100%;
 padding: 20%;
-margin-top: 65%;
-margin-left: 20%;
+  margin-top: 65%; /* Center vertically */
+  margin-left: 20%; /* Center horizontally */
  }
  .video-circle {
  border-radius: 50%;
  object-fit: cover;
  }
+
+  .responsive-img {
+    width: 100%;
+    height: auto;
+  }
+
+  @media (max-width: 700px) {
+    .responsive-img {
+      content: url('../Assets/mobileDots.png'); 
+      height: 80vh;
+      /* Switch to mobileDots when screen width is below 600px */
+    }
+  }
+
+  @media (max-width: 1200px) { 
+    .rc{
+      margin-top: 65%; /* Center vertically */
+      margin-left: 15%; }
+  }
+  @media (max-width: 900px) {
+    .rc{
+      margin-top: 44%; /* Center vertically */
+      margin-left: 7%;
+    }
+  }

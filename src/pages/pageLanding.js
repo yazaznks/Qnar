@@ -4,121 +4,131 @@ import {Box, Typography, TextField, Button, Paper } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 import { useLocation } from 'wouter';
 import videoSrc from '../Assets/sample.mp4'
-import back from '../Assets/back.png';
-import boy from '../Assets/boy.png'; // Path to the first image
+import back from '../Assets/backgroundM.png';
+import VideoBGMobile from '../Assets/videoBGMobile.png'; // Path to the first image
 import girl from '../Assets/girl.png'; // Path to the second image
-import dots from '../Assets/dots.png'; // Path to the second image
+import mobileDots from '../Assets/mobileDots.png'; // Path to the second image
 import HowBG from '../Assets/HowToBG.png'
 import VideoBG from '../Assets/videoBG.png'
 import story from '../Assets/story.png'
 import backBubble from '../Assets/backBubble.png'
 import knar from '../Assets/Knar.png'
+import phone from '../Assets/phone.png'
+import email from '../Assets/email.png'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { HolidayVillage } from '@mui/icons-material';
+import { HolidayVillage,  } from '@mui/icons-material';
+
+import UseMediaQuery from '@mui/material/useMediaQuery';
+
+
+
+
 function pageLanding() {
+  const IsMobile = UseMediaQuery('(max-width:700px)');
+  
+  const Is900 = UseMediaQuery('(max-width:900px)');
   return (
-    <Box
-        sx={{
-          overflow: 'hidden',
-          display: 'flex',
-          flexDirection:'column',  
-          height: '450vh',
-        }}
-      >
-        <Box sx={{
-        
-        position: 'relative',
-        flex: 1,
-        display: 'flex',
-          
+    <Box sx={{overflow: 'hidden',display: 'flex',flexDirection:'column'}}>
+
+        <Box sx={{position: 'relative',flex: 1, display: 'flex', alignContent:'center', alignItems: 'center',
+          '@media (max-width: 700px)': { // 'sm' breakpoint
+            height:'10vh',
+            flex:0.5
+            
+          },
         }}>
-        <img
-        src={back}
-        alt="Background"
-        style={{
-          position: 'absolute',
-          right: 0,
-          top: '40%',
-          transform: 'translateY(-50%)', // Center the image vertically
-          width: '40%',
-          height: '80vh', // Adjust height as needed
-          zIndex: 1, // Ensure it is behind other content
-        }}
-      />
-        <img
-          src={boy}
-          alt="First decorative"
-          style={{
-            position: 'absolute',
-            width: '20vw', // Adjust the width as needed
-            height: 'auto',
-            top: '120px',
-            right: '40px',
-            zIndex: 2, 
-          }}
-        />
-        <img
-          src={girl}
-          alt="Second decorative"
-          style={{
-            position: 'absolute',
-            width: '17vw', // Adjust the width as needed
-            height: 'auto',
-            top: '120px', // Adjust to position below the first image
-            right: '400px',
-            zIndex: 2, 
-          }}
-        />
-      
+        <img className="responsive-img" src={back} alt="Background"  />
+       
         <Paper
-          elevation={3}
-          sx={{
-            padding: '20px',
-            width: '400px',
-            maxWidth: '100%',
-            position: 'absolute',
-            alignItems: 'center',
-          justifyContent: 'center',
-          display: 'flex',
-          flexDirection: 'column',
-            left: '20%',
-            top: '40%',
-            transform: 'translateY(-50%)',
-            backgroundColor: 'rgba(207, 231, 213, 0.7)',
-            color: '#3B5D44',
-          }}
-        >
-          <Typography variant="h4" gutterBottom>
-          Inspiring Educators Exceptional Learners
-          </Typography>
-          <Typography variant="body1">
-          Engage Students Like Never Before with Fun and Educational Games Tailored to Your Curriculum
-          </Typography><br></br>
-          <Button variant="contained" sx={{ backgroundColor: '#4B7857', color: '#fff',  }}>
-                  Join us now!    <ArrowForwardIcon/>
-                </Button>
-        </Paper>
-        <img
-          src={dots}
-          alt="Second decorative"
-          style={{
-            position: 'absolute',
-            width: 'auto', // Adjust the width as needed
-            height: 'auto',
-            top: '60px', // Adjust to position below the first image
-            left: '10px',
-            zIndex: 2, 
-          }}
-        />
+  elevation={3}
+  sx={{
+    padding: '5vh',
+    width: '30vw',
+    maxWidth: '100%',
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    top: '10%',
+    left: '30%',
+    zIndex: 2,
+    backgroundColor: 'rgba(207, 231, 213, 0.8)',
+    color: '#3B5D44',
+    textAlign: 'center',
+    // Responsive width with manually defined breakpoints
+    '@media (max-width: 960px)': { // 'md' breakpoint
+      width: '30vw',
+      height: '40vh',
+      left: '30%',
+    },
+    '@media (max-width: 700px)': { // 'sm' breakpoint
+      width: '80%',
+      height: '50vh',
+      left:'3%'
+    },
+  }}
+>
+  <Typography
+    variant="h3"
+    gutterBottom
+    sx={{
+      // Responsive font size
+      '@media (max-width: 1100px)': { // 'md' breakpoint
+        fontSize: '2rem',
+      },
+      '@media (max-width: 900px)': { // 'md' breakpoint
+        fontSize: '1.6rem',
+      },
+      '@media (max-width: 700px)': { // 'sm' breakpoint
+        fontSize: '3rem',
+      },
+    }}
+  >
+    Inspiring Educators Exceptional Learners
+  </Typography>
+  <Typography
+    variant="h6"
+    sx={{
+      // Responsive font size
+      '@media (max-width: 960px)': { // 'md' breakpoint
+        fontSize: '1rem',
+      },
+      '@media (max-width: 700px)': { // 'sm' breakpoint
+        fontSize: '1.4rem',
+      },
+    }}
+  >
+    Engage Students Like Never Before with Fun and Educational Games Tailored to Your Curriculum
+  </Typography>
+  <br />
+  <Button
+    variant="contained"
+    sx={{
+      backgroundColor: '#4B7857',
+      color: '#fff',
+      // Responsive button size
+      '@media (max-width: 960px)': { // 'md' breakpoint
+        fontSize: '0.875rem',
+      },
+      '@media (max-width: 600px)': { // 'sm' breakpoint
+        fontSize: '0.75rem',
+      },
+    }}
+  >
+    Join us now! <ArrowForwardIcon />
+  </Button>
+</Paper>
+      
       </Box>
       <Box  sx={{
         backgroundColor:'#E6F8EB',
-        flex: 0.7,
+        flex: 1,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-   
+        padding:'10px',
         zIndex: 3
       }}>
         <Typography style={{color: '#3B5D44'}} variant="h4" gutterBottom>
@@ -146,10 +156,22 @@ function pageLanding() {
           backgroundSize: 'cover', // Cover the entire area
           backgroundPosition: 'center', // Center the image
           backgroundRepeat: 'no-repeat', // Prevent repeating the image
+          
         }}
       >
   
-
+  <Typography
+        variant="h2"
+        gutterBottom
+        sx={{
+          textAlign: 'center',
+          color: '#3B5D44',
+          margin: '20px 0', // Adjust margin as needed
+          display: Is900 ? 'block' : 'none', // Hide on larger screens
+        }}
+      >
+        How to Play!
+      </Typography>
         {/* Video Frame */}
         <Box
           sx={{
@@ -163,19 +185,22 @@ function pageLanding() {
             height: '60vw',
             maxWidth: '500px',
             maxHeight: '500px',
-            backgroundImage: `url(${VideoBG})`,
+            backgroundImage: `url(${Is900? VideoBGMobile : VideoBG})`,
           backgroundSize: 'cover', // Cover the entire area
           backgroundPosition: 'center', // Center the image
           backgroundRepeat: 'no-repeat', // Prevent repeating the image
           overflow: 'hidden', 
+          className:"responsive-HowTo"
         }}
         >
-            <div class="rc">
+            <div className="rc">
           <video
             src={videoSrc}
             controls
-            class="video-circle"
+            autoPlay
+            className="video-circle"
             width="420" height="400"
+
           /></div>
         </Box>
 
@@ -185,12 +210,22 @@ function pageLanding() {
             flex: 1,
             padding: '20px',
             textAlign: 'center',
-            color: '#3B5D44'
+            color: '#3B5D44',
+            
           }}
         >
-          <Typography variant="h2" gutterBottom>
-            How to Play!
-          </Typography>
+           <Typography
+        variant="h2"
+        gutterBottom
+        sx={{
+          textAlign: 'center',
+          color: '#3B5D44',
+          margin: '20px 0', // Adjust margin as needed
+          display: Is900 ? 'none' : 'block', // Hide on larger screens
+        }}
+      >
+        How to Play!
+      </Typography>
           <Typography variant="h6" paragraph>
           Create your game by choosing a template, adding questions and content, and setting the difficulty. Assign the game to your students and enjoy watching them learn interactively. Review their performance to improve your teaching.          </Typography>
           
@@ -277,27 +312,29 @@ function pageLanding() {
             padding: '20px',      
             maxWidth: '60%',   
             display: 'flex',
-            flexDirection: 'row',  
+            flexDirection: { sm: 'column', md: 'row' }, 
             backgroundColor: '#F9F9ED',
             color: '#3B5D44',
             marginTop: '5vh'
           }}
         >
+          <Typography variant="h2" sx={{display: Is900 ? 'block' : 'none',textAlign:'center'}} gutterBottom>
+          What is Qnar?          </Typography>
             <Box
           sx={{
-            flex: 0.4,
-            padding: 'px',
+            flex: 0.5,
+            padding: '10px',
             textAlign: 'center',
             color: '#3B5D44'
           }}
         >
+          
             <img
         src={knar}
         alt="Background"
         style={{
-        
           width: 'auto',
-          height: '35vh', // Adjust height as needed
+          height: '40vh', // Adjust height as needed
           zIndex: 1, // Ensure it is behind other content
         }}
       />
@@ -306,11 +343,11 @@ function pageLanding() {
           sx={{
             flex: 1,
             padding: '20px',
-            textAlign: 'left',
+            textAlign: Is900?'center' : 'left',
             color: '#3B5D44'
           }}
         >
-          <Typography variant="h2" gutterBottom>
+          <Typography variant="h2" sx={{display: Is900 ? 'none' : 'block',}} gutterBottom>
           What is Qnar?          </Typography>
           <Typography variant="h6">
           <span style={{ color: '#EB8576' }}>Qnar</span>, or "Knar," is the fruit borne by the Sidra tree, revered in the <span style={{ color: '#EB8576' }}>Quran</span>.
@@ -320,8 +357,101 @@ function pageLanding() {
                </Box>
         </Paper>
         </Box>
-    
+        <Box  sx={{
+      
+      flex: 1,
+      display: 'flex',
+      flexDirection: { sm: 'row', md: 'column' }, 
+      alignItems: 'center',
+      justifyContent: 'center',
+      // backgroundImage: `url(${backBubble})`,
+      //   backgroundSize: 'cover', // Cover the entire area
+      //   backgroundPosition: 'center', // Center the image
+      //   backgroundRepeat: 'no-repeat', // Prevent repeating the image
+        color: '#F5FFF8',
+        padding: "10px"
+        
+    }}>
       </Box>
+      <Box sx={{flex: 1,display: 'flex',alignItems: 'center', justifyContent: 'center',}}><Typography variant='h2'>Contact Us</Typography></Box>
+      <Box sx={{flex: 1,display: 'flex', flexDirection: 'row',alignItems: 'center', justifyContent: 'center'}}><img src={phone}alt="Background"/><img src={email}alt="Background"/></Box>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'row', // Column on small screens, row on larger
+        justifyContent: 'space-between',
+        padding: '2rem',
+        gap: '2rem',
+        height: '80vh',
+      }}
+    >
+      {/* Left Box: Contact Form */}
+      <Box
+        sx={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          padding: '2rem',
+          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+          borderRadius: '10px',
+          backgroundColor: '#f9f9f9',
+        }}
+      >
+        <Typography variant="h4" gutterBottom>
+          Contact Us
+        </Typography>
+
+        <TextField
+          label="Name"
+          variant="outlined"
+          fullWidth
+          margin="normal"
+        />
+        <TextField
+          label="Email"
+          variant="outlined"
+          fullWidth
+          margin="normal"
+        />
+        <TextField
+          label="Message"
+          variant="outlined"
+          fullWidth
+          multiline
+          rows={4}
+          margin="normal"
+        />
+
+        <Button
+          variant="contained"
+          sx={{ backgroundColor: '#4B7857', color: '#fff', marginTop: '1rem' }}
+        >
+          Submit
+        </Button>
+      </Box>
+
+      {/* Right Box: Map */}
+      <Box
+        sx={{
+          flex: 1,
+          height: '100%',
+          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+          borderRadius: '10px',
+          overflow: 'hidden',
+          position: 'relative',
+        }}
+      >
+<iframe
+    title="Map"
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1516.29725708653!2d51.43723384478978!3d25.32492686717924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e45dc1b48888243%3A0xc99991c5589f3b25!2sQatar%20Science%20and%20Technology%20Park!5e0!3m2!1sen!2sjo!4v1726347410248!5m2!1sen!2sjo"
+    width="100%"
+    height="100%"
+    style={{ border: 0 }} // Properly passing the style object here
+    allowFullScreen=""
+    loading="lazy"
+  ></iframe>  </Box>
+    </Box></Box>
   )
 }
 
