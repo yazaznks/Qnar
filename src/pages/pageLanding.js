@@ -96,8 +96,10 @@ function pageLanding() {
         fontSize: '3rem',
       },
       '@media (max-width: 500px)': { // 'sm' breakpoint
-        fontSize: '2rem',
+        fontSize: '1.6rem',
+        fontWeight: 'bold'
       },
+
     }}
   >
     Inspiring Educators Exceptional Learners
@@ -148,7 +150,8 @@ function pageLanding() {
         alignItems: 'center',
         justifyContent: 'center',
         padding:'10px',
-        zIndex: 3
+        zIndex: 3,
+        textAlign: 'center',
       }}>
         <Typography style={{color: '#3B5D44'}} variant="h4" gutterBottom>
         Don’t Miss Out!          </Typography>
@@ -170,11 +173,12 @@ function pageLanding() {
           alignItems: 'center',
           justifyContent: 'center',
           padding: '20px',
-          backgroundColor: '#f9f9f9',
-          backgroundImage: `url(${HowBG})`,
+          
+          background: `linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url(${HowBG})`,
           backgroundSize: 'cover', // Cover the entire area
           backgroundPosition: 'center', // Center the image
-          backgroundRepeat: 'no-repeat', // Prevent repeating the image
+          backgroundRepeat: 'no-repeat',
+          
           
         }}
       >
@@ -217,7 +221,7 @@ function pageLanding() {
            <div className="circle-container">
       <img src={(Is900? VideoBGMobile : VideoBG)} alt="Background" className="background-image" />
       <div className="circle-video-wrapper">
-        <video src={videoSrc} autoPlay muted loop className="circle-video" />
+        <video src={videoSrc} controls autoPlay  muted loop className="circle-video" />
       </div>
     </div>
         </Box>
@@ -258,6 +262,7 @@ function pageLanding() {
           justifyContent: 'center',
           padding: '20px',
           backgroundColor: '#F4DADA',
+          textAlign: 'center'
         }}
       >
         <Box
@@ -310,6 +315,7 @@ function pageLanding() {
           backgroundPosition: 'center', // Center the image
           backgroundRepeat: 'no-repeat', // Prevent repeating the image
           color: '#3B5D44',
+          textAlign: 'center'
           
       }}>
         <Typography variant="h2" gutterBottom>
@@ -326,12 +332,13 @@ function pageLanding() {
           elevation={3}
           sx={{
             padding: '20px',      
-            maxWidth: '60%',   
+            maxWidth: Is900? '80%':'60%',   
             display: 'flex',
             flexDirection: { xs: 'column', lg: 'row' }, 
             backgroundColor: '#F9F9ED',
             color: '#3B5D44',
-            marginTop: '5vh'
+            marginTop: '5vh',
+            marginBottom: '5vh'
           }}
         >
           <Typography variant="h2" sx={{display: Is1200 ? 'block' : 'none',textAlign:'center'}} gutterBottom>

@@ -27,7 +27,11 @@ function Header() {
   }, []);
 
   const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
+    if(anchorElNav == null){
+      setAnchorElNav(event.currentTarget);}
+    else{
+      setAnchorElNav(null);
+    }
   };
 
   const handleCloseNavMenu = () => {
@@ -110,6 +114,7 @@ function Header() {
                 aria-haspopup="true"
                 onClick={handleOpenNavMenu}
                 color="inherit"
+                sx={{ position: 'relative', zIndex: 1400 }}
               >
                 <MenuIcon sx={{ color: '#3B5D44' }} />
               </IconButton>
@@ -143,7 +148,8 @@ function Header() {
           </Box>
 
           <Menu
-            id="menu-appbar"
+           
+           
             anchorEl={anchorElNav}
             anchorOrigin={{
               vertical: 'top',
@@ -156,29 +162,48 @@ function Header() {
             keepMounted
             open={Boolean(anchorElNav)}
             onClose={handleCloseNavMenu}
-            PaperProps={{
-              elevation: 0,
-              sx: {
-                width: '50vw',   // Full width for the menu (optional, you can reduce width if needed)
-                height: '100vh',  // Full height of the viewport
-                position: 'fixed',
-                right: 0,        // Align to the right
-                top: 0,          // Align to the top
-                zIndex: 1300,    // Ensure the menu is on top
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                bgcolor: 'background.paper',
-                '& .MuiMenuItem-root': {
-                  borderBottom: '1px solid #3B5D44', // Line under each item
-                  padding: '16px 20px', // Adjust padding for spacing
+            slotProps={{
+              paper: {
+                sx: {
+                  width: '40vw',       // Adjust width for menu with margin
+                  height: '100vh', 
+                  minHeight: '100vh',    // Full height of the viewport
+                  position: 'fixed',
+                  marginTop: '7vh',  
+                  marginLeft: '10vw'  ,           // Align to the top
+                  zIndex: 1300,         // Ensure the menu is on top
+                  display: 'flex',
+                  flexDirection: 'column',
+                  
+                  bgcolor: 'background.paper',
+                  '& .MuiMenuItem-root': {
+                    borderBottom: '1px solid #3B5D44', // Line under each item
+                    padding: '16px 20px', // Adjust padding for spacing
+                  },
                 },
-            }}}
+              },
+            }}
           >
             <MenuItem sx={{ color: '#3B5D44' }} onClick={() => setLocation('/')}>Home</MenuItem>
             <MenuItem sx={{ color: '#3B5D44' }} onClick={() => setLocation('/about')}>About Us</MenuItem>
             <MenuItem sx={{ color: '#3B5D44' }} onClick={() => setLocation('/features')}>Features</MenuItem>
             <MenuItem sx={{ color: '#3B5D44' }} onClick={() => setLocation('/pricing')}>Pricing</MenuItem>
+            <MenuItem>
+                <IconButton size="large" aria-label="language"  aria-controls="menu-appbar" aria-haspopup="true" onClick={handleOpenLangMenu} 
+      style={{ backgroundColor: '#fff', borderRadius: '50%' }} > <LanguageIcon /></IconButton>
+              
+                <FormControl >
+                  <Select
+                    defaultValue="English"
+                    displayEmpty
+               
+                    sx={{ color: '#3B5D44' }}
+                  >
+                    <MuiMenuItem sx={{ color: '#3B5D44' }} value="English">English</MuiMenuItem>
+                    <MuiMenuItem sx={{ color: '#3B5D44' }} value="Arabic">Arabic</MuiMenuItem>
+                  </Select>
+                </FormControl>
+            </MenuItem>
           </Menu>
         </Toolbar>
       </Container>
