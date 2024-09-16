@@ -33,11 +33,11 @@
 }
 .circle-video-wrapper {
   position: absolute;
-  top: 42%;
+  top: 41%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 74%; /* Responsive width: 50% of the viewport width */
-  height: 78%; /* Responsive height: 50% of the viewport width */
+  height: 80%; /* Responsive height: 50% of the viewport width */
   max-width: 100vw; /* Maximum width of the circle */
   max-height: 100vw; /* Maximum height of the circle */
   overflow: hidden;
