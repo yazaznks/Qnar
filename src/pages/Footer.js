@@ -1,75 +1,111 @@
 import React from 'react';
-import { Box, Typography, Link, Grid, IconButton } from '@mui/material';
+import { Box, Typography, Link, Grid, Button, TextField } from '@mui/material';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
-
+import logo from '../Assets/logoF.png'
 function Footer() {
   return (
-    <Box
-      sx={{
-        backgroundColor: '#3B5D44',
-        color: '#fff',
-        padding: '20px 0',
-        marginTop: '40px',
-        width: '100%',
-        bottom:0
-      }}
-    >
-      <Grid container spacing={3} sx={{ justifyContent: 'center', textAlign: 'center' }}>
-        {/* Section 1: Quick Links */}
-        <Grid item xs={12} sm={4}>
-          <Typography variant="h6" sx={{ marginBottom: '10px' }}>
-            Quick Links
-          </Typography>
-          <Link href="/" color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>
-            Home
-          </Link>
-          <Link href="#" color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>
-            About Us
-          </Link>
-          <Link href="#" color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>
-            Features
-          </Link>
-          <Link href="/Games" color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>
-            Games
-          </Link>
-        </Grid>
+    <Box 
+    component="footer"
+    sx={{
+      padding: '2rem',
+      color: '#3B5D44',
+      backgroundColor: '#f9f9f9',
+      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    }}
+  >
+    <Grid container spacing={4} justifyContent="space-between"
+    sx={{flexDirection: { xs: 'column', sm: 'row' }}}>
+      
+      {/* Left Section - Logo */}
+      <Grid item xs={12} sm={4} sx={{
+            display: { xs: 'none', md: 'block' }, // Hide on small screens
+            textAlign: 'center'
+          }}>
+        <Box sx={{ textAlign: 'center' }}>
+          {/* Insert your logo here */}
+          <img src={logo} alt="Logo" style={{ width: '120px' }} />
+      
+        </Box>
+      </Grid>
 
-        {/* Section 2: Contact Us */}
-        <Grid item xs={12} sm={4}>
-          <Typography variant="h6" sx={{ marginBottom: '10px' }}>
-            Contact Us
-          </Typography>
-          <Typography variant="body2">Office address</Typography>
-          <Typography variant="body2">Doha, Qatar</Typography>
-          <Typography variant="body2">Email: contact@Qnar.com</Typography>
-          <Typography variant="body2">Phone: +123 456 7890</Typography>
-        </Grid>
-
-        {/* Section 3: Follow Us */}
-        <Grid item xs={12} sm={4}>
-          <Typography variant="h6" sx={{ marginBottom: '10px' }}>
-            Follow Us
-          </Typography>
-          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-            <IconButton href="#" sx={{ color: '#fff' }}>
-              <FacebookIcon />
-            </IconButton>
-            <IconButton href="#" sx={{ color: '#fff' }}>
-              <TwitterIcon />
-            </IconButton>
-            <IconButton href="#" sx={{ color: '#fff' }}>
-              <InstagramIcon />
-            </IconButton>
-          </Box>
+      {/* Middle Section - Site Map */}
+      <Grid item xs={12} sm={4}>
+        <Typography variant="h6" sx={{ marginBottom: '10px', fontWeight: 'bold' }}>
+          Site map
+        </Typography>
+        <Grid container spacing={1}>
+          <Grid item xs={6}>
+            <Link href="/" color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>
+              Home
+            </Link>
+            <Link href="#" color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>
+              Privacy policy
+            </Link>
+            <Link href="#" color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>
+              Price plans
+            </Link>
+            <Link href="#" color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>
+              School plans
+            </Link>
+            <Link href="#" color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>
+              Community
+            </Link>
+          </Grid>
+          <Grid item xs={6}>
+            <Link href="#" color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>
+              Game templates
+            </Link>
+            <Link href="#" color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>
+              About us
+            </Link>
+            <Link href="#" color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>
+              How to play
+            </Link>
+            <Link href="#" color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>
+              Contact us
+            </Link>
+            <Link href="#" color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>
+              Terms & conditions
+            </Link>
+          </Grid>
         </Grid>
       </Grid>
 
-      <Box sx={{ textAlign: 'center', marginTop: '20px' }}>
-        <Typography variant="body2">&copy; 2024 Qnar. All rights reserved.</Typography>
-      </Box>
-    </Box>
+      {/* Right Section - Feedback and Languages */}
+      <Grid item xs={12} sm={4}>
+        <Typography variant="h6" sx={{ marginBottom: '10px', fontWeight: 'bold' }}>
+          Share your feedback
+        </Typography>
+        <TextField
+          placeholder="Type here"
+          variant="outlined"
+          fullWidth
+          sx={{ marginBottom: '10px' }}
+        />
+        <Button
+          variant="contained"
+          sx={{ backgroundColor: '#4B7857', color: '#fff', display: 'block', marginBottom: '10px' }}
+        >
+          Submit
+        </Button>
+
+        <Typography variant="h6" sx={{ marginBottom: '10px', fontWeight: 'bold' }}>
+          Languages
+        </Typography>
+        <Box>
+          <Link href="#" color="inherit" sx={{ marginRight: '15px' }}>
+            English
+          </Link>
+          <Link href="#" color="inherit">
+            Arabic
+          </Link>
+        </Box>
+      </Grid>
+
+    </Grid>
+  </Box>
   );
 }
 

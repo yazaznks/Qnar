@@ -15,6 +15,8 @@ import backBubble from '../Assets/backBubble.png'
 import knar from '../Assets/Knar.png'
 import phone from '../Assets/phone.png'
 import email from '../Assets/email.png'
+import location from '../Assets/location.png'
+
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { HolidayVillage,  } from '@mui/icons-material';
 
@@ -27,6 +29,7 @@ function pageLanding() {
   const IsMobile = UseMediaQuery('(max-width:700px)');
   
   const Is900 = UseMediaQuery('(max-width:900px)');
+  const Is1200 = UseMediaQuery('(max-width:1200px)');
   return (
     <Box sx={{overflow: 'hidden',display: 'flex',flexDirection:'column'}}>
 
@@ -59,14 +62,19 @@ function pageLanding() {
     // Responsive width with manually defined breakpoints
     '@media (max-width: 960px)': { // 'md' breakpoint
       width: '30vw',
+      
       height: '40vh',
       left: '30%',
     },
     '@media (max-width: 700px)': { // 'sm' breakpoint
+      top: '50%', /* Position from the top */
+  left: '50%', /* Position from the left */
+  transform: 'translate(-50%, -50%)',
       width: '80%',
       height: '50vh',
-      left:'3%'
+      
     },
+
   }}
 >
   <Typography
@@ -83,11 +91,15 @@ function pageLanding() {
       '@media (max-width: 700px)': { // 'sm' breakpoint
         fontSize: '3rem',
       },
+      '@media (max-width: 500px)': { // 'sm' breakpoint
+        fontSize: '2rem',
+      },
     }}
   >
     Inspiring Educators Exceptional Learners
   </Typography>
   <Typography
+  
     variant="h6"
     sx={{
       // Responsive font size
@@ -96,6 +108,9 @@ function pageLanding() {
       },
       '@media (max-width: 700px)': { // 'sm' breakpoint
         fontSize: '1.4rem',
+      },
+      '@media (max-width: 500px)': { // 'sm' breakpoint
+        fontSize: '1.2rem',
       },
     }}
   >
@@ -176,32 +191,31 @@ function pageLanding() {
         <Box
           sx={{
             flex: 1,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            marginLeft:'-1.5vw',
-            paddingRight:'5vw',
-            width: '100%', // Adjust width as needed
-            height: '60vw',
-            maxWidth: '500px',
-            maxHeight: '500px',
-            backgroundImage: `url(${Is900? VideoBGMobile : VideoBG})`,
-          backgroundSize: 'cover', // Cover the entire area
-          backgroundPosition: 'center', // Center the image
-          backgroundRepeat: 'no-repeat', // Prevent repeating the image
-          overflow: 'hidden', 
-          className:"responsive-HowTo"
+            
+            
+          //   justifyContent: 'center',
+          //   alignItems: 'center',
+          //   marginLeft:'-1.5vw',
+          //   marginBottom:'20vh',
+          //   padding:'5vw',
+          //   width: 'auto', // Adjust width as needed
+          //   height: 'auto',
+          //   maxWidth: '32vw',
+          //   maxHeight: '60vh',
+          //   backgroundImage: `url(${Is900? VideoBGMobile : VideoBG})`,
+          // backgroundSize: 'contain', // Cover the entire area
+          // backgroundPosition: 'center', // Center the image
+          // backgroundRepeat: 'no-repeat', // Prevent repeating the image
+          // overflow: 'hidden', 
+          // className:"responsive-HowTo"
         }}
         >
-            <div className="rc">
-          <video
-            src={videoSrc}
-            controls
-            autoPlay
-            className="video-circle"
-            width="420" height="400"
-
-          /></div>
+           <div className="circle-container">
+      <img src={(Is900? VideoBGMobile : VideoBG)} alt="Background" className="background-image" />
+      <div className="circle-video-wrapper">
+        <video src={videoSrc} autoPlay muted loop className="circle-video" />
+      </div>
+    </div>
         </Box>
 
         {/* Text Content */}
@@ -271,10 +285,8 @@ function pageLanding() {
           <img
         src={story}
         alt="Background"
+        className="story"
         style={{
-        
-          width: 'auto',
-          height: '60vh', // Adjust height as needed
           zIndex: 1, // Ensure it is behind other content
         }}
       />
@@ -312,13 +324,13 @@ function pageLanding() {
             padding: '20px',      
             maxWidth: '60%',   
             display: 'flex',
-            flexDirection: { sm: 'column', md: 'row' }, 
+            flexDirection: { xs: 'column', lg: 'row' }, 
             backgroundColor: '#F9F9ED',
             color: '#3B5D44',
             marginTop: '5vh'
           }}
         >
-          <Typography variant="h2" sx={{display: Is900 ? 'block' : 'none',textAlign:'center'}} gutterBottom>
+          <Typography variant="h2" sx={{display: Is1200 ? 'block' : 'none',textAlign:'center'}} gutterBottom>
           What is Qnar?          </Typography>
             <Box
           sx={{
@@ -332,9 +344,9 @@ function pageLanding() {
             <img
         src={knar}
         alt="Background"
+        className="knar"
         style={{
-          width: 'auto',
-          height: '40vh', // Adjust height as needed
+          // Adjust height as needed
           zIndex: 1, // Ensure it is behind other content
         }}
       />
@@ -347,7 +359,7 @@ function pageLanding() {
             color: '#3B5D44'
           }}
         >
-          <Typography variant="h2" sx={{display: Is900 ? 'none' : 'block',}} gutterBottom>
+          <Typography variant="h2" sx={{display: Is1200 ? 'none' : 'block',}} gutterBottom>
           What is Qnar?          </Typography>
           <Typography variant="h6">
           <span style={{ color: '#EB8576' }}>Qnar</span>, or "Knar," is the fruit borne by the Sidra tree, revered in the <span style={{ color: '#EB8576' }}>Quran</span>.
@@ -373,16 +385,16 @@ function pageLanding() {
         
     }}>
       </Box>
-      <Box sx={{flex: 1,display: 'flex',alignItems: 'center', justifyContent: 'center',}}><Typography variant='h2'>Contact Us</Typography></Box>
-      <Box sx={{flex: 1,display: 'flex', flexDirection: 'row',alignItems: 'center', justifyContent: 'center'}}><img src={phone}alt="Background"/><img src={email}alt="Background"/></Box>
+      <Box sx={{flex: 1,display: 'flex',alignItems: 'center', justifyContent: 'center',}}><Typography style={{color:'#3B5D44'}} variant='h2'>Contact Us</Typography></Box>
+      <Box sx={{flex: 1,display: 'flex', flexDirection: 'row',alignItems: 'center', justifyContent: 'center'}}><img className="contactIMG" src={phone}alt="Background"/><img className="contactIMG" src={email}alt="Background"/><img className="contactIMG" src={location}alt="Background"/></Box>
     <Box
       sx={{
         display: 'flex',
-        flexDirection: 'row', // Column on small screens, row on larger
+        flexDirection: {xs:'column', md:'row'}, // Column on small screens, row on larger
         justifyContent: 'space-between',
         padding: '2rem',
         gap: '2rem',
-        height: '80vh',
+        
       }}
     >
       {/* Left Box: Contact Form */}
@@ -398,8 +410,8 @@ function pageLanding() {
           backgroundColor: '#f9f9f9',
         }}
       >
-        <Typography variant="h4" gutterBottom>
-          Contact Us
+        <Typography variant="h4" gutterBottom style={{color:'#3B5D44'}}>Get in touch with us
+     
         </Typography>
 
         <TextField
@@ -439,7 +451,8 @@ function pageLanding() {
           boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
           borderRadius: '10px',
           overflow: 'hidden',
-          position: 'relative',
+         
+          height: '80vh',
         }}
       >
 <iframe

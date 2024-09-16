@@ -1,51 +1,89 @@
-
 .background-section {
   width: 100%;
   height: 100%; /* Adjusts the height to 33% of the viewport height */
-
   background-size: cover; /* Ensures the image covers the area */
   background-position: center center; /* Positions the image at the top center */
   background-repeat: no-repeat; /* Prevents the image from repeating */
 }
+.responsive-img {
+  content: url('../Assets/mobileDots.png'); 
+  height: 80vh; /* Adjust this if needed for larger screens */
+}
+.responsive-img {
+  width: 100%;
+  height: auto;
+}
 
-.rc{
-  width: 700px;
-  height: 700px;
-  border-radius: 100%;
-  -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
-  -webkit-transform: rotate(0.000001deg); 
-  -webkit-border-radius: 100%; 
-  -moz-border-radius: 100%;
-padding: 20%;
-  margin-top: 65%; /* Center vertically */
-  margin-left: 20%; /* Center horizontally */
- }
- .video-circle {
- border-radius: 50%;
- object-fit: cover;
- }
+.circle-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 600px; /* Maximum width of the container */
+ 
+  margin-right: 30vh;
+}
 
+.background-image {
+  width: 100%;
+  height: auto;
+}
+.contactIMG{
+  margin-top: 5vh;
+  width:30vw;
+}
+.circle-video-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50vw; /* Responsive width: 50% of the viewport width */
+  height: 50vw; /* Responsive height: 50% of the viewport width */
+  max-width: 300px; /* Maximum width of the circle */
+  max-height: 300px; /* Maximum height of the circle */
+  overflow: hidden;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the video covers the circle without distortion */
+}
+.story{ height: 40vh; width: auto;}
+.knar{   height: 30vh; width: auto;}
+
+/* Convert max-width queries to min-width queries */
+/* Styles for screens larger than 500px */
+@media (min-width: 500px) {
+  .story { height: 60vh}
+  .knar{  height: 40vh,}
+}
+/* Styles for screens larger than 700px */
+@media (min-width: 700px) {
   .responsive-img {
-    width: 100%;
-    height: auto;
+    content: url('../Assets/backgroundM.png'); 
+    height: 80vh; /* Adjust this if needed for larger screens */
   }
+}
+/* Styles for screens larger than 900px */
+@media (min-width: 900px) {
 
-  @media (max-width: 700px) {
-    .responsive-img {
-      content: url('../Assets/mobileDots.png'); 
-      height: 80vh;
-      /* Switch to mobileDots when screen width is below 600px */
-    }
-  }
+}
+/* Styles for screens larger than 1100px */
+@media (min-width: 1100px) {
+  /* Add styles specific to screens larger than 1100px if needed */
+}
 
-  @media (max-width: 1200px) { 
-    .rc{
-      margin-top: 65%; /* Center vertically */
-      margin-left: 15%; }
-  }
-  @media (max-width: 900px) {
-    .rc{
-      margin-top: 44%; /* Center vertically */
-      margin-left: 7%;
-    }
-  }
+/* Styles for screens larger than 1400px */
+@media (min-width: 1400px) {
+  /* Add styles specific to screens larger than 1400px if needed */
+}
+
+
+
+
+
+
