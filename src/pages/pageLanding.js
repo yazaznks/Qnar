@@ -72,6 +72,10 @@ function pageLanding() {
   transform: 'translate(-50%, -50%)',
       width: '80%',
       height: '50vh',
+    },
+    '@media (max-width: 500px)': { // 'md' breakpoint
+      width: '60%',
+      height: '35vh',
       
     },
 

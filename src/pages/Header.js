@@ -57,7 +57,7 @@ function Header() {
           <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
             <img
               onClick={() => setLocation('/')}
-              style={{ cursor: 'pointer', marginRight: isMobile ? 'auto' : '20px' }}
+              style={{ cursor: 'pointer', marginRight: isMobile ? 'auto' : '0px' }}
               src={logo}
               width="150px"
               height="auto"
@@ -78,6 +78,27 @@ function Header() {
                 <Button onClick={() => setLocation('/Games')} sx={{ color: location === '/Games' ? '#EB8576' : '#3B5D44' }}>
                   Games
                 </Button>
+                <IconButton
+              size="large"
+              aria-label="language"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenLangMenu}
+              color="inherit"
+            >
+        
+            </IconButton>
+            <FormControl sx={{ minWidth: 120 }}>
+              <Select
+                defaultValue="English"
+                displayEmpty
+                IconComponent={LanguageIcon}
+                sx={{ color: '#3B5D44' }}
+              >
+                <MuiMenuItem sx={{ color: '#3B5D44' }} value="English">English</MuiMenuItem>
+                <MuiMenuItem sx={{ color: '#3B5D44' }} value="Arabic">Arabic</MuiMenuItem>
+              </Select>
+            </FormControl>
               </Box>
             )}
 
@@ -118,39 +139,19 @@ function Header() {
               </>
             )}
 
-            <IconButton
-              size="large"
-              aria-label="language"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenLangMenu}
-              color="inherit"
-            >
-        
-            </IconButton>
-            <FormControl sx={{ minWidth: 120 }}>
-              <Select
-                defaultValue="English"
-                displayEmpty
-                IconComponent={LanguageIcon}
-                sx={{ color: '#3B5D44' }}
-              >
-                <MuiMenuItem sx={{ color: '#3B5D44' }} value="English">English</MuiMenuItem>
-                <MuiMenuItem sx={{ color: '#3B5D44' }} value="Arabic">Arabic</MuiMenuItem>
-              </Select>
-            </FormControl>
+            
           </Box>
 
           <Menu
             id="menu-appbar"
             anchorEl={anchorElNav}
             anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'center',
+              vertical: 'top',
+              horizontal: 'right',
             }}
             transformOrigin={{
               vertical: 'top',
-              horizontal: 'center',
+              horizontal: 'right',
             }}
             keepMounted
             open={Boolean(anchorElNav)}
@@ -158,28 +159,21 @@ function Header() {
             PaperProps={{
               elevation: 0,
               sx: {
-                overflow: 'visible',
-                mt: 1.5,
-                '& .MuiAvatar-root': {
-                  width: 32,
-                  height: 32,
-                  ml: -0.5,
-                  mr: 1,
+                width: '50vw',   // Full width for the menu (optional, you can reduce width if needed)
+                height: '100vh',  // Full height of the viewport
+                position: 'fixed',
+                right: 0,        // Align to the right
+                top: 0,          // Align to the top
+                zIndex: 1300,    // Ensure the menu is on top
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                bgcolor: 'background.paper',
+                '& .MuiMenuItem-root': {
+                  borderBottom: '1px solid #3B5D44', // Line under each item
+                  padding: '16px 20px', // Adjust padding for spacing
                 },
-                '&:before': {
-                  content: '""',
-                  display: 'block',
-                  position: 'absolute',
-                  top: 0,
-                  right: 14,
-                  width: 10,
-                  height: 10,
-                  bgcolor: 'background.paper',
-                  transform: 'translateY(-50%) rotate(45deg)',
-                  zIndex: 0,
-                },
-              },
-            }}
+            }}}
           >
             <MenuItem sx={{ color: '#3B5D44' }} onClick={() => setLocation('/')}>Home</MenuItem>
             <MenuItem sx={{ color: '#3B5D44' }} onClick={() => setLocation('/about')}>About Us</MenuItem>
