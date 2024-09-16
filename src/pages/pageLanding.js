@@ -96,7 +96,7 @@ function pageLanding() {
         fontSize: '3rem',
       },
       '@media (max-width: 500px)': { // 'sm' breakpoint
-        fontSize: '1.6rem',
+        fontSize: '1.5rem',
         fontWeight: 'bold'
       },
 
@@ -159,7 +159,7 @@ function pageLanding() {
           Join our community to receive exclusive updates and early access to our groundbreaking educational gaming platform.          </Typography><br></br>
           <Typography  variant="h6" style={{color: '#3B5D44'}}>Enter your email</Typography>
           <TextField style={{background: '#ffffff'}}></TextField>
-          <Button variant="contained" sx={{ backgroundColor: '#4B7857', color: '#fff',  }}>
+          <Button variant="contained" sx={{ backgroundColor: '#4B7857', color: '#fff', margin:'5px'  }}>
                   Submit
                 </Button>
       </Box>
