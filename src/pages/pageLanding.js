@@ -27,7 +27,8 @@ import UseMediaQuery from '@mui/material/useMediaQuery';
 
 function pageLanding() {
   const IsMobile = UseMediaQuery('(max-width:700px)');
-  
+  const phoneNumber = '+97433477044';
+  const emailAddress = 'contact@qnarweb.com'
   const Is900 = UseMediaQuery('(max-width:900px)');
   const Is1200 = UseMediaQuery('(max-width:1200px)');
   return (
@@ -403,7 +404,10 @@ function pageLanding() {
     }}>
       </Box>
       <Box sx={{flex: 1,display: 'flex',alignItems: 'center', justifyContent: 'center',}}><Typography style={{color:'#3B5D44'}} variant='h2'>Contact Us</Typography></Box>
-      <Box sx={{flex: 1,display: 'flex', flexDirection: 'row',alignItems: 'center', justifyContent: 'center'}}><img className="contactIMG" src={phone}alt="Background"/><img className="contactIMG" src={email}alt="Background"/><img className="contactIMG" src={location}alt="Background"/></Box>
+      <Box sx={{flex: 1,display: 'flex', flexDirection: 'row',alignItems: 'center', justifyContent: 'center'}}>
+      <a href={`tel:${phoneNumber}`}><img className="contactIMG" src={phone}alt="Background"/></a>
+      <a href={`mailto:${emailAddress}`}><img className="contactIMG" src={email}alt="Background"/></a>
+      <img className="contactIMG" src={location}alt="Background"/></Box>
     <Box
       sx={{
         display: 'flex',
