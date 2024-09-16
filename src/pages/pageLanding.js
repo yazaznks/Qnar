@@ -62,7 +62,6 @@ function pageLanding() {
     // Responsive width with manually defined breakpoints
     '@media (max-width: 960px)': { // 'md' breakpoint
       width: '30vw',
-      
       height: '40vh',
       left: '30%',
     },
@@ -76,7 +75,6 @@ function pageLanding() {
     '@media (max-width: 500px)': { // 'md' breakpoint
       width: '60%',
       height: '35vh',
-      
     },
 
   }}
@@ -99,6 +97,10 @@ function pageLanding() {
         fontSize: '1.5rem',
         fontWeight: 'bold'
       },
+      '@media (max-height: 500px)': { // 'md' breakpoint
+        fontSize: '1.2rem',
+        fontWeight: 'bold'
+      },
 
     }}
   >
@@ -117,6 +119,10 @@ function pageLanding() {
       },
       '@media (max-width: 500px)': { // 'sm' breakpoint
         fontSize: '1.2rem',
+      },
+      '@media (max-height: 500px)': { // 'md' breakpoint
+        fontSize: '0.8rem',
+       
       },
     }}
   >
