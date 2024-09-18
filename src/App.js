@@ -1,6 +1,8 @@
 //import logo from './logo.svg';
 import { Route, Router } from "wouter";
-
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import "@fontsource/quicksand";
 import './App.css';
 import Header from "./pages/Header"
 import Footer from "./pages/Footer"
@@ -11,8 +13,20 @@ import Games from "./pages/Games"
 import GamePage from "./pages/GamePage"
 import Dashboard from "./pages/Dashboard"
 
+
+const theme = createTheme({
+
+    // typography: {
+    //   fontFamily: 'sans-serif',  // Set global font family
+    
+    // },
+
+});
+
 function App() {
   return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
     <Router>
       <Header/>
     <Route path="/" component={Home} />
@@ -23,6 +37,7 @@ function App() {
     <Route path="/#" component={Dashboard} /> 
       <Footer/>
     </Router>
+    </ThemeProvider>
   );
 }
 

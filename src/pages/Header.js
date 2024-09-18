@@ -165,11 +165,12 @@ function Header() {
             slotProps={{
               paper: {
                 sx: {
-                  width: '40vw',       // Adjust width for menu with margin
+                  width: '80%',       // Adjust width for menu with margin
                   height: '100vh', 
                   minHeight: '100vh',    // Full height of the viewport
                   position: 'fixed',
-                  marginTop: '7vh',  
+                  top:0,
+                  marginTop:'-3vw',
                   marginLeft: '10vw'  ,           // Align to the top
                   zIndex: 1300,         // Ensure the menu is on top
                   display: 'flex',

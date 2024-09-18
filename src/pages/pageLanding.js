@@ -1,5 +1,5 @@
 import React from 'react'
-
+// quicksand, burger menubar, email send, contact PictureAsPdfSharp, main bg boy and girl
 import {Box, Typography, TextField, Button, Paper } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 import { useLocation } from 'wouter';
@@ -7,6 +7,7 @@ import videoSrc from '../Assets/sample.mp4'
 import back from '../Assets/backgroundM.png';
 import VideoBGMobile from '../Assets/videoBGMobile.png'; // Path to the first image
 import girl from '../Assets/girl.png'; // Path to the second image
+import boy from '../Assets/boy.png'
 import mobileDots from '../Assets/mobileDots.png'; // Path to the second image
 import HowBG from '../Assets/HowToBG.png'
 import VideoBG from '../Assets/videoBG.png'
@@ -18,7 +19,7 @@ import email from '../Assets/email.png'
 import location from '../Assets/location.png'
 
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { HolidayVillage,  } from '@mui/icons-material';
+import { HolidayVillage, PictureAsPdfSharp,  } from '@mui/icons-material';
 
 import UseMediaQuery from '@mui/material/useMediaQuery';
 
@@ -85,6 +86,7 @@ function pageLanding() {
     gutterBottom
     sx={{
       // Responsive font size
+    
       '@media (max-width: 1100px)': { // 'md' breakpoint
         fontSize: '2rem',
       },
