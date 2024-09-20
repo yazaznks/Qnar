@@ -95,7 +95,8 @@ function PageLanding() {
   sx={{
     padding: '5vh',
     width: '30vw',
-    maxWidth: '100%',
+    maxWidth: '80%',
+    maxhHeight: '80%',
     minHeight:'70%',
     position: 'absolute',
     alignItems: 'center',
@@ -133,9 +134,10 @@ function PageLanding() {
     gutterBottom
     sx={{
       // Responsive font size
-    
+      maxWidth: '100%',
       fontWeight: 'bold',
       fontSize: '2vw',
+      overflowWrap: 'break-word',
 '@media (max-width: 700px)': { // 'sm' breakpoint
       fontSize: '4vw',
     },
@@ -149,6 +151,8 @@ function PageLanding() {
     sx={{
       // Responsive font size
       fontSize: '1vw',
+      maxWidth: '100%',
+      overflowWrap: 'break-word',
       '@media (max-width: 700px)': { // 'sm' breakpoint
       fontSize: '3vw',
     },
@@ -160,6 +164,7 @@ function PageLanding() {
   <Button
     variant="contained"
     sx={{
+      
       backgroundColor: '#4B7857',
       color: '#fff',
       // Responsive button size
