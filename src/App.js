@@ -8,7 +8,7 @@ import Header from "./pages/Header"
 import Footer from "./pages/Footer"
 import Login from "./pages/Login"
 import Signup from "./pages/Signup"
-import Home from "./pages/pageLanding"
+import Home from "./pages/PageLanding"
 import Games from "./pages/Games"
 import GamePage from "./pages/GamePage"
 import Dashboard from "./pages/Dashboard"
@@ -16,10 +16,10 @@ import Dashboard from "./pages/Dashboard"
 
 const theme = createTheme({
 
-    // typography: {
-    //   fontFamily: 'sans-serif',  // Set global font family
+    typography: {
+      fontFamily: 'Quicksand',  // Set global font family
     
-    // },
+    },
 
 });
 

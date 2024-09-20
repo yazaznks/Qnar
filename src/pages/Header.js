@@ -8,6 +8,7 @@ import { useTheme } from '@mui/material/styles';
 import { useLocation } from 'wouter';
 import { useMediaQuery } from '@mui/material'; 
 import logo from '../Assets/Logo2.png';
+import CloseIcon from '@mui/icons-material/Close';
 
 function Header() {
   const [location, setLocation] = useLocation();
@@ -116,7 +117,11 @@ function Header() {
                 color="inherit"
                 sx={{ position: 'relative', zIndex: 1400 }}
               >
-                <MenuIcon sx={{ color: '#3B5D44' }} />
+                {anchorElNav ? (
+          <CloseIcon sx={{ color: '#3B5D44' }} />
+        ) : (
+          <MenuIcon sx={{ color: '#3B5D44' }} />
+        )}
               </IconButton>
             )}
           </Box>
@@ -169,17 +174,19 @@ function Header() {
                   height: '100vh', 
                   minHeight: '100vh',    // Full height of the viewport
                   position: 'fixed',
-                  top:0,
-                  marginTop:'-3vw',
+          
+                  marginTop:'-4vw',
                   marginLeft: '10vw'  ,           // Align to the top
                   zIndex: 1300,         // Ensure the menu is on top
                   display: 'flex',
                   flexDirection: 'column',
-                  
+                  justifyContent: 'center',
                   bgcolor: 'background.paper',
                   '& .MuiMenuItem-root': {
+                    
                     borderBottom: '1px solid #3B5D44', // Line under each item
-                    padding: '16px 20px', // Adjust padding for spacing
+                    padding: '16px 20px',
+                   
                   },
                 },
               },

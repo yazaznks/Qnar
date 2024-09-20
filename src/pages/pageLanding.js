@@ -1,5 +1,5 @@
-import React from 'react'
-// quicksand, burger menubar, email send, contact PictureAsPdfSharp, main bg boy and girl
+import React, { useState, useEffect }  from 'react'
+// quicksand, burger menubar, email send, main bg boy and girl
 import {Box, Typography, TextField, Button, Paper } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 import { useLocation } from 'wouter';
@@ -25,13 +25,59 @@ import UseMediaQuery from '@mui/material/useMediaQuery';
 
 
 
-
-function pageLanding() {
+function PageLanding() {
   const IsMobile = UseMediaQuery('(max-width:700px)');
   const phoneNumber = '+97433477044';
   const emailAddress = 'contact@qnarweb.com'
   const Is900 = UseMediaQuery('(max-width:900px)');
   const Is1200 = UseMediaQuery('(max-width:1200px)');
+  const [email, setEmail] = useState('');
+
+  // Initialize IndexedDB
+  const initDB = () => {
+    return new Promise((resolve, reject) => {
+      const request = indexedDB.open('emailDatabase', 1);
+
+      request.onupgradeneeded = (event) => {
+        const db = event.target.result;
+        // Create an object store with a primary key
+        db.createObjectStore('emails', { keyPath: 'id', autoIncrement: true });
+      };
+
+      request.onsuccess = (event) => {
+        resolve(event.target.result);
+      };
+
+      request.onerror = (event) => {
+        reject('Error opening IndexedDB:', event.target.errorCode);
+      };
+    });
+  };
+
+  // Save email to IndexedDB
+  const saveEmail = async (email) => {
+    try {
+      const db = await initDB();
+      const transaction = db.transaction(['emails'], 'readwrite');
+      const store = transaction.objectStore('emails');
+      store.add({ email: email });
+      transaction.oncomplete = () => {
+        console.log('Email saved successfully!');
+      };
+      transaction.onerror = (event) => {
+        console.error('Error saving email:', event.target.errorCode);
+      };
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    saveEmail(email);
+    setEmail(''); // Clear the text field after saving
+  };
+
   return (
     <Box sx={{overflow: 'hidden',display: 'flex',flexDirection:'column'}}>
 
@@ -50,6 +96,7 @@ function pageLanding() {
     padding: '5vh',
     width: '30vw',
     maxWidth: '100%',
+    minHeight:'70%',
     position: 'absolute',
     alignItems: 'center',
     justifyContent: 'center',
@@ -72,11 +119,11 @@ function pageLanding() {
   left: '50%', /* Position from the left */
   transform: 'translate(-50%, -50%)',
       width: '80%',
-      height: '50vh',
+     
     },
     '@media (max-width: 500px)': { // 'md' breakpoint
       width: '60%',
-      height: '35vh',
+     
     },
 
   }}
@@ -87,24 +134,11 @@ function pageLanding() {
     sx={{
       // Responsive font size
     
-      '@media (max-width: 1100px)': { // 'md' breakpoint
-        fontSize: '2rem',
-      },
-      '@media (max-width: 900px)': { // 'md' breakpoint
-        fontSize: '1.6rem',
-      },
-      '@media (max-width: 700px)': { // 'sm' breakpoint
-        fontSize: '3rem',
-      },
-      '@media (max-width: 500px)': { // 'sm' breakpoint
-        fontSize: '1.5rem',
-        fontWeight: 'bold'
-      },
-      '@media (max-height: 500px)': { // 'md' breakpoint
-        fontSize: '1.2rem',
-        fontWeight: 'bold'
-      },
-
+      fontWeight: 'bold',
+      fontSize: '2vw',
+'@media (max-width: 700px)': { // 'sm' breakpoint
+      fontSize: '4vw',
+    },
     }}
   >
     Inspiring Educators Exceptional Learners
@@ -114,19 +148,10 @@ function pageLanding() {
     variant="h6"
     sx={{
       // Responsive font size
-      '@media (max-width: 960px)': { // 'md' breakpoint
-        fontSize: '1rem',
-      },
+      fontSize: '1vw',
       '@media (max-width: 700px)': { // 'sm' breakpoint
-        fontSize: '1.4rem',
-      },
-      '@media (max-width: 500px)': { // 'sm' breakpoint
-        fontSize: '1.2rem',
-      },
-      '@media (max-height: 500px)': { // 'md' breakpoint
-        fontSize: '0.8rem',
-       
-      },
+      fontSize: '3vw',
+    },
     }}
   >
     Engage Students Like Never Before with Fun and Educational Games Tailored to Your Curriculum
@@ -166,11 +191,17 @@ function pageLanding() {
         Don’t Miss Out!          </Typography>
           <Typography style={{color: '#3B5D44'}} variant="h6">
           Join our community to receive exclusive updates and early access to our groundbreaking educational gaming platform.          </Typography><br></br>
-          <Typography  variant="h6" style={{color: '#3B5D44'}}>Enter your email</Typography>
-          <TextField style={{background: '#ffffff'}}></TextField>
+          <Typography  variant="h6" style={{color: '#3B5D44'}} >Enter your email</Typography>
+          <Box sx={{ flex: 1,
+        display: 'flex',
+        flexDirection: 'Row',
+        padding:'10px',
+        
+      }}>
+          <TextField onChange={(e) => setEmail(e.target.value)} style={{background: '#ffffff'}}></TextField>
           <Button variant="contained" sx={{ backgroundColor: '#4B7857', color: '#fff', margin:'5px'  }}>
                   Submit
-                </Button>
+                </Button></Box>
       </Box>
 
        {/* New Section */}
@@ -406,10 +437,10 @@ function pageLanding() {
     }}>
       </Box>
       <Box sx={{flex: 1,display: 'flex',alignItems: 'center', justifyContent: 'center',}}><Typography style={{color:'#3B5D44'}} variant='h2'>Contact Us</Typography></Box>
-      <Box sx={{flex: 1,display: 'flex', flexDirection: 'row',alignItems: 'center', justifyContent: 'center'}}>
-      <a href={`tel:${phoneNumber}`}><img className="contactIMG" src={phone}alt="Background"/></a>
-      <a href={`mailto:${emailAddress}`}><img className="contactIMG" src={email}alt="Background"/></a>
-      <img className="contactIMG" src={location}alt="Background"/></Box>
+      <Box sx={{flex: 1,display: 'flex',  flexDirection: 'row',alignItems: 'center', justifyContent: 'center'}}>
+      <a style={{marginRight:'5vw'}} href={`tel:${phoneNumber}`}><img className="contactIMG" src={phone}alt="Background"/></a>
+      <a style={{marginRight:'5vw'}} href={`mailto:${emailAddress}`}>< img  className="contactIMG" src={email}alt="Background"/></a>
+      <a ><img className="contactIMG" src={location}alt="Background"/></a></Box>
     <Box
       sx={{
         display: 'flex',
@@ -491,4 +522,4 @@ function pageLanding() {
   )
 }
 
-export default pageLanding
+export default PageLanding
