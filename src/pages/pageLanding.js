@@ -15,7 +15,7 @@ import story from '../Assets/story.png'
 import backBubble from '../Assets/backBubble.png'
 import knar from '../Assets/Knar.png'
 import phone from '../Assets/phone.png'
-import email from '../Assets/email.png'
+import emailPic from '../Assets/email.png'
 import location from '../Assets/location.png'
 
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -73,7 +73,7 @@ function PageLanding() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+
     saveEmail(email);
     setEmail(''); // Clear the text field after saving
   };
@@ -199,7 +199,7 @@ function PageLanding() {
         
       }}>
           <TextField onChange={(e) => setEmail(e.target.value)} style={{background: '#ffffff'}}></TextField>
-          <Button variant="contained" sx={{ backgroundColor: '#4B7857', color: '#fff', margin:'5px'  }}>
+          <Button onClick={() => handleSubmit()} variant="contained" sx={{ backgroundColor: '#4B7857', color: '#fff', margin:'5px'  }}>
                   Submit
                 </Button></Box>
       </Box>
@@ -439,7 +439,7 @@ function PageLanding() {
       <Box sx={{flex: 1,display: 'flex',alignItems: 'center', justifyContent: 'center',}}><Typography style={{color:'#3B5D44'}} variant='h2'>Contact Us</Typography></Box>
       <Box sx={{flex: 1,display: 'flex',  flexDirection: 'row',alignItems: 'center', justifyContent: 'center'}}>
       <a style={{marginRight:'5vw'}} href={`tel:${phoneNumber}`}><img className="contactIMG" src={phone}alt="Background"/></a>
-      <a style={{marginRight:'5vw'}} href={`mailto:${emailAddress}`}>< img  className="contactIMG" src={email}alt="Background"/></a>
+      <a style={{marginRight:'5vw'}} href={`mailto:${emailAddress}`}>< img  className="contactIMG" src={emailPic}alt="Background"/></a>
       <a ><img className="contactIMG" src={location}alt="Background"/></a></Box>
     <Box
       sx={{

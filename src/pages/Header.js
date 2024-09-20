@@ -9,7 +9,7 @@ import { useLocation } from 'wouter';
 import { useMediaQuery } from '@mui/material'; 
 import logo from '../Assets/Logo2.png';
 import CloseIcon from '@mui/icons-material/Close';
-
+import Globe from '../Assets/globe.png';
 function Header() {
   const [location, setLocation] = useLocation();
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -59,7 +59,7 @@ function Header() {
     <AppBar position="static" style={{ background: '#fff', height: 'auto', fontWeight: 'bold' }}>
       <Container>
         <Toolbar disableGutters>
-          <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1, fontWeight:'bold' }}>
             <img
               onClick={() => setLocation('/')}
               style={{ cursor: 'pointer', marginRight: isMobile ? 'auto' : '0px' }}
@@ -71,16 +71,16 @@ function Header() {
 
             {!isMobile && (
               <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
-                <Button onClick={() => setLocation('/')} sx={{ color: location === '/' ? '#EB8576' : '#3B5D44' }}>
+                <Button onClick={() => setLocation('/')} sx={{  color: location === '/' ? '#EB8576' : '#3B5D44' , fontWeight:'bold'}}>
                   Home
                 </Button>
-                <Button onClick={() => setLocation('/about')} sx={{ color: location === '/about' ? '#EB8576' : '#3B5D44' }}>
+                <Button onClick={() => setLocation('/about')} sx={{ color: location === '/about' ? '#EB8576' : '#3B5D44' , fontWeight:'bold' }}>
                   About Us
                 </Button>
-                <Button onClick={() => setLocation('/features')} sx={{ color: location === '/features' ? '#EB8576' : '#3B5D44' }}>
+                <Button onClick={() => setLocation('/features')} sx={{ color: location === '/features' ? '#EB8576' : '#3B5D44' , fontWeight:'bold' }}>
                   Features
                 </Button>
-                <Button onClick={() => setLocation('/Games')} sx={{ color: location === '/Games' ? '#EB8576' : '#3B5D44' }}>
+                <Button onClick={() => setLocation('/Games')} sx={{ color: location === '/Games' ? '#EB8576' : '#3B5D44' , fontWeight:'bold' }}>
                   Games
                 </Button>
                 <IconButton
@@ -97,13 +97,28 @@ function Header() {
               <Select
                 defaultValue="English"
                 displayEmpty
-                IconComponent={LanguageIcon}
-                sx={{ color: '#3B5D44' }}
+                
+                sx={{ color: '#3B5D44', height:'5vh', fontWeight:'bold', bordercolor:'#3B5D44' }}
+                renderValue={(selected) => (
+                  <Box display="flex" alignItems="center">
+                    <Box
+                      component="img"
+                      src={Globe}
+                      alt="Custom"
+                      width={24}
+                      height={24}
+                      marginRight={1}
+                    />
+                    {selected}
+                  </Box>)}
               >
+                 
                 <MuiMenuItem sx={{ color: '#3B5D44' }} value="English">English</MuiMenuItem>
                 <MuiMenuItem sx={{ color: '#3B5D44' }} value="Arabic">Arabic</MuiMenuItem>
               </Select>
+             
             </FormControl>
+            
               </Box>
             )}
 
