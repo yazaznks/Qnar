@@ -4,7 +4,16 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import logo from '../Assets/logoF.png'
+import { useTranslation } from 'react-i18next';
 function Footer() {
+  const {t, i18n} = useTranslation();
+
+  const handleChange = (event) => {
+    const selectedLanguage = event.target.value;
+    i18n.changeLanguage(selectedLanguage);
+    localStorage.setItem('i18nextLng', selectedLanguage); // Persist in localStorage
+  };
+
   return (
     <Box 
     component="footer"
@@ -33,41 +42,41 @@ function Footer() {
       {/* Middle Section - Site Map */}
       <Grid item xs={12} sm={4}>
         <Typography variant="h6" sx={{ marginBottom: '10px', fontWeight: 'bold' }}>
-          Site map
+        {t('site')} Site map
         </Typography>
         <Grid container spacing={1}>
           <Grid item xs={6}>
             <Link href="/" color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>
-              Home
+            {t('Home')}
             </Link>
             <Link href="#" color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>
-              Privacy policy
+            {t('policy')}
             </Link>
             <Link href="#" color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>
-              Price plans
+            {t('price')}
             </Link>
             <Link href="#" color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>
-              School plans
+            {t('plans')}
             </Link>
             <Link href="#" color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>
-              Community
+            {t('communityW')}
             </Link>
           </Grid>
           <Grid item xs={6}>
             <Link href="#" color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>
-              Game templates
+            {t('Games')}
             </Link>
             <Link href="#" color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>
-              About us
+            {t('AboutUs')}
             </Link>
             <Link href="#" color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>
-              How to play
+            {t('Features')}
             </Link>
             <Link href="#" color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>
-              Contact us
+            {t('contact')}
             </Link>
             <Link href="#" color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>
-              Terms & conditions
+            {t('Terms')}
             </Link>
           </Grid>
         </Grid>
@@ -76,10 +85,10 @@ function Footer() {
       {/* Right Section - Feedback and Languages */}
       <Grid item xs={12} sm={4}>
         <Typography variant="h6" sx={{ marginBottom: '10px', fontWeight: 'bold' }}>
-          Share your feedback
+        {t('feedback')}
         </Typography>
         <TextField
-          placeholder="Type here"
+          placeholder={t('message')}
           variant="outlined"
           fullWidth
           sx={{ marginBottom: '10px' }}
@@ -88,18 +97,18 @@ function Footer() {
           variant="contained"
           sx={{ backgroundColor: '#4B7857', color: '#fff', display: 'block', marginBottom: '10px' }}
         >
-          Submit
+          {t('submit')}
         </Button>
 
         <Typography variant="h6" sx={{ marginBottom: '10px', fontWeight: 'bold' }}>
-          Languages
+        {t('Language')}
         </Typography>
         <Box>
           <Link href="#" color="inherit" sx={{ marginRight: '15px' }}>
-            English
+          {t('Eng')}
           </Link>
           <Link href="#" color="inherit">
-            Arabic
+          {t('Arab')}
           </Link>
         </Box>
       </Grid>

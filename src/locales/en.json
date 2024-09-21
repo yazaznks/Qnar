@@ -1,0 +1,55 @@
+{
+"_comment": "//////////////////////////////////   This is the header   ////////////////////////////////////////////////////",
+
+    "Home": "Home",
+    "AboutUs": "About Us",
+    "Features": "Features",
+    "Games": "Games",
+    "logOut": "Log Out",
+    "Login": "Log in",
+    "signup": "Sign ip",
+
+"_comment_": "//////////////////////////////////   This is the footer  ////////////////////////////////////////////////////",
+
+    "site": "Site map",
+    "policy": "Privacy policy",
+    "price": "Price plans",
+    "plans": "School plans",
+    "communityW": "Community",
+    "Terms": "Terms & conditions",
+    "feedback": "Share your feedback",
+    "Language": "Languages",
+    "Eng": "English",
+    "Arab": "Arabic",
+
+"Comment2": "/////////////////////////////// This is for Page Langing ////////////////////////",
+
+    "TitleTop": "Inspiring Educators Exceptional Learners",
+    "HeaderTop": "Engage Students Like Never Before with Fun and Educational Games Tailored to Your Curriculum",
+    "buttonJoin": "Join us now!",
+    "MissOut": "Don’t Miss Out!",
+    "community": "our community to receive exclusive updates and early access to our groundbreaking educational gaming platform.",
+    "Email": "Enter your email",
+    "Submit": "Submit",
+    "HowTo": "How to Play!",
+    "Explain": "Create your game by choosing a template, adding questions and content, and setting the difficulty. Assign the game to your students and enjoy watching them learn interactively. Review their performance to improve your teaching.",
+    "story": "Our story",
+    "storyH": "From PowerPoint slide to gaming website",
+    "storyD": "Qnar was born from the pressing need for an educational gaming platform that resonates with Arab students' cultural identity. Samah, the founder of Qnar, a science teacher at a primary school with a deep-rooted belief in the transformative power of technology in education. Her vision is to harness these tools to enrich the Arab and Islamic identity while enhancing the learning experience.",
+    "mission": "Our Mission",
+    "missionH": "Educational Games Driving Positive Change",
+    "missionD": "We believe that educational games are a powerful tool for improving learning and promoting Arab and Islamic values. Through our platform, we strive to empower teachers to design interactive and innovative educational games that enrich the learning experience for students and help them succeed.",
+    "Qnar": "What is Qnar?",
+    "Q": "Qnar ",
+    "Q2": "Quran",
+    "Q3": "Qatar ",
+    "QnarE": "or \"Knar\" is the fruit borne by the Sidra tree, revered in the",
+    "QnarE2": "This tree thrives in the challenging climate of",
+    "QnarE3": "symbolizing resilience and abundance. Renowned for its numerous benefits to human health, the name Qnar was chosen to reflect the enriching knowledge and understanding that our platform offers, nurturing mental and life skills.",
+    "getInTouch": "Get in touch with us",
+    "contact": "Contact us",
+    "name": "name",
+    "message": "Type here"
+
+
+}

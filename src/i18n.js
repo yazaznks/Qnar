@@ -14,8 +14,7 @@ i18n
         translation: arTranslation,
       },
     },
-    lng: 'en', // default language
-    fallbackLng: 'en',
+    lng: localStorage.getItem('i18nextLng') || 'en', // Default language    fallbackLng: 'en',
     interpolation: {
       escapeValue: false, // react already safes from xss
     },

@@ -20,7 +20,7 @@ import location from '../Assets/location.png'
 import emailjs from 'emailjs-com';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { HolidayVillage, PictureAsPdfSharp,  } from '@mui/icons-material';
-
+import { useTranslation } from 'react-i18next';
 import UseMediaQuery from '@mui/material/useMediaQuery';
 
 
@@ -32,8 +32,14 @@ function PageLanding() {
   const Is900 = UseMediaQuery('(max-width:900px)');
   const Is1200 = UseMediaQuery('(max-width:1200px)');
   const [email, setEmail] = useState('');
+  const {t, i18n} = useTranslation();
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
   // const { t, i18n } = useTranslation();
-
+/////////////////////////////////////////////save email datalocalstorage //////////////////////////////////////////////////////////////////////////////////
   // Initialize IndexedDB
   const initDB = () => {
     return new Promise((resolve, reject) => {
@@ -79,6 +85,36 @@ function PageLanding() {
     setEmail(''); // Clear the text field after saving
   };
 
+  
+
+/////////////////////////////////////////// send email start////////////////////////////////////////////////////////////////////////////////////
+  const handleChangeEmail = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const sendEmailEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.send(
+      'service_4xwd306', 
+      'template_xofsc8o', 
+      formData, 
+      'mUqAWzZcVbrWiKca5'
+    )
+    .then((result) => {
+        console.log('Email successfully sent!', result.text);
+    }, (error) => {
+        console.log('Failed to send email:', error.text);
+    });
+  setFormData({
+    name: '',
+    email: '',
+    message: '',
+  });}
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   return (
     <Box sx={{overflow: 'hidden',display: 'flex',flexDirection:'column'}}>
 
@@ -143,7 +179,7 @@ function PageLanding() {
     },
     }}
   >
-    Inspiring Educators Exceptional Learners
+    {t('TitleTop')}
   </Typography>
   <Typography
   
@@ -158,10 +194,10 @@ function PageLanding() {
     },
     }}
   >
-    Engage Students Like Never Before with Fun and Educational Games Tailored to Your Curriculum
+    {t('HeaderTop')}
   </Typography>
   <br />
-  <Button
+  <Button onClick={() => console.log(i18n.language)}
     variant="contained"
     sx={{
       
@@ -176,7 +212,7 @@ function PageLanding() {
       },
     }}
   >
-    Join us now! <ArrowForwardIcon />
+    {t('buttonJoin')}  <ArrowForwardIcon />
   </Button>
 </Paper>
       
@@ -193,26 +229,28 @@ function PageLanding() {
         textAlign: 'center',
       }}>
         <Typography style={{color: '#3B5D44'}} variant="h4" gutterBottom>
-        Don’t Miss Out!          </Typography>
+        {t('MissOut')}          </Typography>
           <Typography style={{color: '#3B5D44'}} variant="h6">
-          Join our community to receive exclusive updates and early access to our groundbreaking educational gaming platform.          </Typography><br></br>
-          <Typography  variant="h6" style={{color: '#3B5D44'}} >Enter your email</Typography>
+          {t('community')}           </Typography><br></br>
+          <Typography variant="h6" style={{color: '#3B5D44'}} >{t('Email')}</Typography>
           <Box sx={{ flex: 1,
         display: 'flex',
         flexDirection: 'Row',
         padding:'10px',
         
       }}>
-          <TextField onChange={(e) => setEmail(e.target.value)} style={{background: '#ffffff'}}></TextField>
+          <TextField  placeholder={t('Email')} onChange={(e) => setEmail(e.target.value)} style={{background: '#ffffff'}}></TextField>
           <Button onClick={() => handleSubmit()} variant="contained" sx={{ backgroundColor: '#4B7857', color: '#fff', margin:'5px'  }}>
-                  Submit
+          {t('Submit')}
                 </Button></Box>
       </Box>
 
        {/* New Section */}
        <Box
+        dir="ltr"
         sx={{
             flex:0.8,
+            
           display: 'flex',
           flexDirection: { xs: 'column', md: 'row' },
           alignItems: 'center',
@@ -238,29 +276,13 @@ function PageLanding() {
           display: Is900 ? 'block' : 'none', // Hide on larger screens
         }}
       >
-        How to Play!
+        {t('HowTo')}
       </Typography>
         {/* Video Frame */}
         <Box
           sx={{
             flex: 1,
-            
-            
-          //   justifyContent: 'center',
-          //   alignItems: 'center',
-          //   marginLeft:'-1.5vw',
-          //   marginBottom:'20vh',
-          //   padding:'5vw',
-          //   width: 'auto', // Adjust width as needed
-          //   height: 'auto',
-          //   maxWidth: '32vw',
-          //   maxHeight: '60vh',
-          //   backgroundImage: `url(${Is900? VideoBGMobile : VideoBG})`,
-          // backgroundSize: 'contain', // Cover the entire area
-          // backgroundPosition: 'center', // Center the image
-          // backgroundRepeat: 'no-repeat', // Prevent repeating the image
-          // overflow: 'hidden', 
-          // className:"responsive-HowTo"
+
         }}
         >
            <div className="circle-container">
@@ -273,6 +295,7 @@ function PageLanding() {
 
         {/* Text Content */}
         <Box
+        dir="rtl"
           sx={{
             flex: 1,
             padding: '20px',
@@ -291,14 +314,16 @@ function PageLanding() {
           display: Is900 ? 'none' : 'block', // Hide on larger screens
         }}
       >
-        How to Play!
+        {t('HowTo')}
       </Typography>
           <Typography variant="h6" paragraph>
-          Create your game by choosing a template, adding questions and content, and setting the difficulty. Assign the game to your students and enjoy watching them learn interactively. Review their performance to improve your teaching.          </Typography>
+          {t('Explain')}          </Typography>
           
         </Box>
       </Box>
+      {/*////////////////////// new section //////////////////////*/}
       <Box
+      dir="ltr"
         sx={{
             flex:0.8,
           display: 'flex',
@@ -311,6 +336,7 @@ function PageLanding() {
         }}
       >
         <Box
+        dir="rtl"
           sx={{
             flex: 1,
             padding: '20px',
@@ -319,14 +345,14 @@ function PageLanding() {
           }}
         >
           <Typography variant="h2" gutterBottom>
-          Our story
+          {t('story')}
           </Typography>
           <Typography style={{color:'#C36759'}} variant="h4" gutterBottom>
-          From PowerPoint slide to gaming website
+          {t('storyH')}
           </Typography>
           
           <Typography variant="h6" paragraph>
-          Qnar was born from the pressing need for an educational gaming platform that resonates with Arab students' cultural identity. Samah, the founder of Qnar, a science teacher at a primary school with a deep-rooted belief in the transformative power of technology in education. Her vision is to harness these tools to enrich the Arab and Islamic identity while enhancing the learning experience.           </Typography>
+          {t('storyD')}           </Typography>
           
         </Box><Box
           sx={{
@@ -364,14 +390,14 @@ function PageLanding() {
           
       }}>
         <Typography variant="h2" gutterBottom>
-          Our Mission
+        {t('mission')}
           </Typography>
           <Typography style={{color:'#C36759'}} variant="h4" gutterBottom>
-          Educational Games Driving Positive Change
+          {t('missionH')}
           </Typography>
           
           <Typography variant="h6" style={{ paddingLeft: '5vw', paddingRight: '5vw'}} paragraph>
-          We believe that educational games are a powerful tool for improving learning and promoting Arab and Islamic values. Through our platform, we strive to empower teachers to design interactive and innovative educational games that enrich the learning experience for students and help them succeed.
+          {t('missionD')}
           </Typography>
           <Paper
           elevation={3}
@@ -387,7 +413,7 @@ function PageLanding() {
           }}
         >
           <Typography variant="h2" sx={{display: Is1200 ? 'block' : 'none',textAlign:'center'}} gutterBottom>
-          What is Qnar?          </Typography>
+          {t('Qnar')}          </Typography>
             <Box
           sx={{
             flex: 0.5,
@@ -411,16 +437,16 @@ function PageLanding() {
           sx={{
             flex: 1,
             padding: '20px',
-            textAlign: Is900?'center' : 'left',
+            textAlign: Is900?'center' : (i18n.language == 'ar'? 'right': 'left'),
             color: '#3B5D44'
           }}
         >
           <Typography variant="h2" sx={{display: Is1200 ? 'none' : 'block',}} gutterBottom>
-          What is Qnar?          </Typography>
+          {t('Qnar')}      </Typography>
           <Typography variant="h6">
-          <span style={{ color: '#EB8576' }}>Qnar</span>, or "Knar," is the fruit borne by the Sidra tree, revered in the <span style={{ color: '#EB8576' }}>Quran</span>.
-           This tree thrives in the challenging climate of <span style={{ color: '#EB8576' }}>Qatar</span>,
-            symbolizing resilience and abundance. Renowned for its numerous benefits to human health, the name Qnar was chosen to reflect the enriching knowledge and understanding that our platform offers, nurturing mental and life skills.          </Typography>
+          <span style={{ color: '#EB8576' }}>{t('Q')}</span>{t('QnarE')}  <span style={{ color: '#EB8576' }}>{t('Q2')}</span>
+          {t('QnarE2')} <span style={{ color: '#EB8576' }}>{t('Q3')}</span>
+          {t('QnarE3')}          </Typography>
         
                </Box>
         </Paper>
@@ -441,11 +467,11 @@ function PageLanding() {
         
     }}>
       </Box>
-      <Box sx={{flex: 1,display: 'flex',alignItems: 'center', justifyContent: 'center',}}><Typography style={{color:'#3B5D44'}} variant='h2'>Contact Us</Typography></Box>
+      <Box sx={{flex: 1,display: 'flex',alignItems: 'center', justifyContent: 'center',}}><Typography style={{color:'#3B5D44'}} variant='h2'>{t('contact')}</Typography></Box>
       <Box sx={{flex: 1,display: 'flex',  flexDirection: 'row',alignItems: 'center', justifyContent: 'center'}}>
       <a style={{marginRight:'5vw'}} href={`tel:${phoneNumber}`}><img className="contactIMG" src={phone}alt="Background"/></a>
       <a style={{marginRight:'5vw'}} href={`mailto:${emailAddress}`}>< img  className="contactIMG" src={emailPic}alt="Background"/></a>
-      <a ><img className="contactIMG" src={location}alt="Background"/></a></Box>
+      <a style={{marginRight:'5vw'}}><img className="contactIMG" src={location}alt="Background"/></a></Box>
     <Box
       sx={{
         display: 'flex',
@@ -469,37 +495,70 @@ function PageLanding() {
           backgroundColor: '#f9f9f9',
         }}
       >
-        <Typography variant="h4" gutterBottom style={{color:'#3B5D44'}}>Get in touch with us
+        <Typography variant="h4" gutterBottom style={{color:'#3B5D44'}}>{t('getInTouch')} 
      
         </Typography>
 
+        <form onSubmit={sendEmailEmail}>
         <TextField
-          label="Name"
+          label={t('name')} 
           variant="outlined"
           fullWidth
           margin="normal"
+          name="name" // Add this to associate the input with formData.name
+          InputProps={{
+            sx: { 
+              "&::placeholder": { textAlign: 'right' }, // Align placeholder text to the right
+              textAlign: 'right', // Align actual text input to the right
+            },
+          }}
+        value={formData.name}
+        onChange={handleChangeEmail}
+        required
         />
         <TextField
-          label="Email"
+          label={t('Email')} 
           variant="outlined"
           fullWidth
           margin="normal"
-        />
+          InputProps={{
+            sx: { 
+              "&::placeholder": { textAlign: 'right' }, // Align placeholder text to the right
+              textAlign: 'right', // Align actual text input to the right
+            },
+          }}
+          name="email" // Add this to associate the input with formData.email
+          value={formData.email}
+          onChange={handleChangeEmail}
+          required
+       />
         <TextField
-          label="Message"
+          label={t('message')} 
           variant="outlined"
           fullWidth
+          InputProps={{
+            sx: { 
+              "&::placeholder": { textAlign: 'right' }, // Align placeholder text to the right
+              textAlign: 'right', // Align actual text input to the right
+            },
+          }}
           multiline
           rows={4}
           margin="normal"
-        />
+          name="message" // Add this to associate the input with formData.message
+          value={formData.message}
+          onChange={handleChangeEmail}
+       />
 
         <Button
           variant="contained"
           sx={{ backgroundColor: '#4B7857', color: '#fff', marginTop: '1rem' }}
+           type="submit"
         >
-          Submit
+          {t('Submit')}  
         </Button>
+
+    </form>
       </Box>
 
       {/* Right Box: Map */}

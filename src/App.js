@@ -1,5 +1,7 @@
 //import logo from './logo.svg';
 import { Route, Router } from "wouter";
+import React, { useState, useEffect } from 'react';
+
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import "@fontsource/quicksand";
@@ -12,19 +14,25 @@ import Home from "./pages/PageLanding"
 import Games from "./pages/Games"
 import GamePage from "./pages/GamePage"
 import Dashboard from "./pages/Dashboard"
-// import { I18nextProvider } from 'react-i18next';
-// import i18n from './i18n';  // Import i18n setup
+import { useTranslation } from 'react-i18next';
 
-const theme = createTheme({
+
+function App() {
+  const { i18n } = useTranslation();
+  useEffect(() => {
+    document.body.dir = i18n.language === 'ar' ? 'rtl' : 'ltr';
+
+  }, [i18n.language]);
+  const theme = createTheme({
 
     typography: {
+      direction: i18n.language === 'ar' ? 'rtl' : 'ltr', // RTL for Arabic
       fontFamily: 'Quicksand',  // Set global font family
     
     },
 
 });
 
-function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />

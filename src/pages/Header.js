@@ -10,7 +10,7 @@ import { useMediaQuery } from '@mui/material';
 import logo from '../Assets/Logo2.png';
 import CloseIcon from '@mui/icons-material/Close';
 import Globe from '../Assets/globe.png';
-// import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 function Header() {
   const [location, setLocation] = useLocation();
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -19,12 +19,13 @@ function Header() {
   const [username, setUsername] = useState('');
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-  // const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
-  // const changeLanguage = (lng) => {
-  //   i18n.changeLanguage(lng);
-  //   localStorage.setItem('i18nextLng', lng); // Persist in localStorage
-  // };
+  const handleChange = (event) => {
+    const selectedLanguage = event.target.value;
+    i18n.changeLanguage(selectedLanguage);
+    localStorage.setItem('i18nextLng', selectedLanguage); // Persist in localStorage
+  };
   useEffect(() => {
     // Example of getting auth status from localStorage (or any other method)
     const token = localStorage.getItem('access_token');
@@ -78,16 +79,16 @@ function Header() {
             {!isMobile && (
               <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
                 <Button onClick={() => setLocation('/')} sx={{  color: location === '/' ? '#EB8576' : '#3B5D44' , fontWeight:'bold'}}>
-                  Home
+                {t('Home')}
                 </Button>
                 <Button onClick={() => setLocation('/about')} sx={{ color: location === '/about' ? '#EB8576' : '#3B5D44' , fontWeight:'bold' }}>
-                  About Us
+                {t('AboutUs')}
                 </Button>
                 <Button onClick={() => setLocation('/features')} sx={{ color: location === '/features' ? '#EB8576' : '#3B5D44' , fontWeight:'bold' }}>
-                  Features
+                {t('Features')} 
                 </Button>
                 <Button onClick={() => setLocation('/Games')} sx={{ color: location === '/Games' ? '#EB8576' : '#3B5D44' , fontWeight:'bold' }}>
-                  Games
+                {t('Games')}
                 </Button>
                 <IconButton
               size="large"
@@ -103,7 +104,8 @@ function Header() {
               <Select
                 defaultValue="English"
                 displayEmpty
-                //</FormControl>value={selectedValue} onChange={handleChange}
+                value={i18n.language}
+                onChange={handleChange}
                 sx={{ color: '#3B5D44', height:'5vh', fontWeight:'bold', bordercolor:'#3B5D44' }}
                 renderValue={(selected) => (
                   <Box display="flex" alignItems="center">
@@ -115,12 +117,11 @@ function Header() {
                       height={24}
                       marginRight={1}
                     />
-                    {selected}
+                     {selected === 'ar' ? 'العربية' : 'English'}
                   </Box>)}
-              >
-                 
+              >             
                 <MuiMenuItem sx={{ color: '#3B5D44' }} value="en">English</MuiMenuItem>
-                <MuiMenuItem sx={{ color: '#3B5D44' }} value="ar">Arabic</MuiMenuItem>
+                <MuiMenuItem sx={{ color: '#3B5D44' }} value="ar">العربية</MuiMenuItem>
               </Select>
              
             </FormControl>
@@ -154,7 +155,7 @@ function Header() {
                   Welcome, {username}
                 </Typography>
                 <Button onClick={handleLogout} variant="contained" sx={{ backgroundColor: '#3B5D44', color: '#fff', marginRight: '10px' }}>
-                  Logout
+                {t('LogOut')}
                 </Button>
               </>
             )}
@@ -162,20 +163,16 @@ function Header() {
             {!isMobile && !isLoggedIn && (
               <>
                 <Button onClick={() => setLocation('/login')} variant="contained" sx={{ backgroundColor: '#4B7857', color: '#fff', marginRight: '10px' }}>
-                  Log in
+                {t('Login')}
                 </Button>
                 <Button onClick={() => setLocation('/signup')} variant="outlined" sx={{ borderColor: '#4B7857', color: '#4B7857' }}>
-                  Sign up
+                {t('signup')}
                 </Button>
               </>
-            )}
-
-            
+            )}  
           </Box>
 
           <Menu
-           
-           
             anchorEl={anchorElNav}
             anchorOrigin={{
               vertical: 'top',
@@ -195,7 +192,6 @@ function Header() {
                   height: '100vh', 
                   minHeight: '100vh',    // Full height of the viewport
                   position: 'fixed',
-          
                   marginTop:'-4vw',
                   marginLeft: '10vw'  ,           // Align to the top
                   zIndex: 1300,         // Ensure the menu is on top
@@ -213,10 +209,10 @@ function Header() {
               },
             }}
           >
-            <MenuItem sx={{ color: '#3B5D44' }} onClick={() => setLocation('/')}>Home</MenuItem>
-            <MenuItem sx={{ color: '#3B5D44' }} onClick={() => setLocation('/about')}>About Us</MenuItem>
-            <MenuItem sx={{ color: '#3B5D44' }} onClick={() => setLocation('/features')}>Features</MenuItem>
-            <MenuItem sx={{ color: '#3B5D44' }} onClick={() => setLocation('/pricing')}>Pricing</MenuItem>
+            <MenuItem sx={{ color: '#3B5D44' }} onClick={() => setLocation('/')}>{t('Home')}</MenuItem>
+            <MenuItem sx={{ color: '#3B5D44' }} onClick={() => setLocation('/about')}>{t('AboutUs')}</MenuItem>
+            <MenuItem sx={{ color: '#3B5D44' }} onClick={() => setLocation('/features')}>{t('Features')}</MenuItem>
+            <MenuItem sx={{ color: '#3B5D44' }} onClick={() => setLocation('/pricing')}>{t('Games')}</MenuItem>
             <MenuItem>
                 <IconButton size="large" aria-label="language"  aria-controls="menu-appbar" aria-haspopup="true" onClick={handleOpenLangMenu} 
       style={{ backgroundColor: '#fff', borderRadius: '50%' }} > <LanguageIcon /></IconButton>
@@ -225,11 +221,24 @@ function Header() {
                   <Select
                     defaultValue="English"
                     displayEmpty
-               
+                    value={i18n.language}
+                    onChange={handleChange}
                     sx={{ color: '#3B5D44' }}
+                    renderValue={(selected) => (
+                      <Box display="flex" alignItems="center">
+                        <Box
+                          component="img"
+                          src={Globe}
+                          alt="Custom"
+                          width={24}
+                          height={24}
+                          marginRight={1}
+                        />
+                         {selected === 'ar' ? 'العربية' : 'English'}
+                      </Box>)}
                   >
-                    <MuiMenuItem sx={{ color: '#3B5D44' }} value="English">English</MuiMenuItem>
-                    <MuiMenuItem sx={{ color: '#3B5D44' }} value="Arabic">Arabic</MuiMenuItem>
+                    <MuiMenuItem sx={{ color: '#3B5D44' }} value="en">English</MuiMenuItem>
+                    <MuiMenuItem sx={{ color: '#3B5D44' }} value="ar">العربية</MuiMenuItem>
                   </Select>
                 </FormControl>
             </MenuItem>
