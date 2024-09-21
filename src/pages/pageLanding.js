@@ -17,7 +17,7 @@ import knar from '../Assets/Knar.png'
 import phone from '../Assets/phone.png'
 import emailPic from '../Assets/email.png'
 import location from '../Assets/location.png'
-
+import emailjs from 'emailjs-com';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { HolidayVillage, PictureAsPdfSharp,  } from '@mui/icons-material';
 
@@ -93,7 +93,7 @@ function PageLanding() {
         <Paper
   elevation={3}
   sx={{
-    padding: '5vh',
+  padding: '5vh',
     width: '30vw',
     maxWidth: '80%',
     maxhHeight: '80%',
@@ -139,7 +139,7 @@ function PageLanding() {
       fontSize: '2vw',
       overflowWrap: 'break-word',
 '@media (max-width: 700px)': { // 'sm' breakpoint
-      fontSize: '4vw',
+      fontSize: '5vw',
     },
     }}
   >
@@ -154,7 +154,7 @@ function PageLanding() {
       maxWidth: '100%',
       overflowWrap: 'break-word',
       '@media (max-width: 700px)': { // 'sm' breakpoint
-      fontSize: '3vw',
+      fontSize: '4vw',
     },
     }}
   >
