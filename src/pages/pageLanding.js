@@ -84,8 +84,7 @@ function PageLanding() {
 
         <Box sx={{position: 'relative',flex: 1, display: 'flex', alignContent:'center', alignItems: 'center',
           '@media (max-width: 700px)': { // 'sm' breakpoint
-            height:'10vh',
-            flex:0.5
+     
             
           },
         }}>
@@ -98,7 +97,7 @@ function PageLanding() {
     width: '30vw',
     maxWidth: '80%',
     maxhHeight: '80%',
-    minHeight:'70%',
+    minHeight:'80%',
     position: 'absolute',
     alignItems: 'center',
     justifyContent: 'center',
@@ -124,7 +123,7 @@ function PageLanding() {
      
     },
     '@media (max-width: 500px)': { // 'md' breakpoint
-      width: '60%',
+      width: '80%',
      
     },
 
