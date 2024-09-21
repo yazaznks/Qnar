@@ -10,6 +10,7 @@ import { useMediaQuery } from '@mui/material';
 import logo from '../Assets/Logo2.png';
 import CloseIcon from '@mui/icons-material/Close';
 import Globe from '../Assets/globe.png';
+// import { useTranslation } from 'react-i18next';
 function Header() {
   const [location, setLocation] = useLocation();
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -18,7 +19,12 @@ function Header() {
   const [username, setUsername] = useState('');
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  // const { i18n } = useTranslation();
 
+  // const changeLanguage = (lng) => {
+  //   i18n.changeLanguage(lng);
+  //   localStorage.setItem('i18nextLng', lng); // Persist in localStorage
+  // };
   useEffect(() => {
     // Example of getting auth status from localStorage (or any other method)
     const token = localStorage.getItem('access_token');
@@ -97,7 +103,7 @@ function Header() {
               <Select
                 defaultValue="English"
                 displayEmpty
-                
+                //</FormControl>value={selectedValue} onChange={handleChange}
                 sx={{ color: '#3B5D44', height:'5vh', fontWeight:'bold', bordercolor:'#3B5D44' }}
                 renderValue={(selected) => (
                   <Box display="flex" alignItems="center">
@@ -113,8 +119,8 @@ function Header() {
                   </Box>)}
               >
                  
-                <MuiMenuItem sx={{ color: '#3B5D44' }} value="English">English</MuiMenuItem>
-                <MuiMenuItem sx={{ color: '#3B5D44' }} value="Arabic">Arabic</MuiMenuItem>
+                <MuiMenuItem sx={{ color: '#3B5D44' }} value="en">English</MuiMenuItem>
+                <MuiMenuItem sx={{ color: '#3B5D44' }} value="ar">Arabic</MuiMenuItem>
               </Select>
              
             </FormControl>

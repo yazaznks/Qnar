@@ -32,6 +32,7 @@ function PageLanding() {
   const Is900 = UseMediaQuery('(max-width:900px)');
   const Is1200 = UseMediaQuery('(max-width:1200px)');
   const [email, setEmail] = useState('');
+  // const { t, i18n } = useTranslation();
 
   // Initialize IndexedDB
   const initDB = () => {
@@ -112,7 +113,7 @@ function PageLanding() {
     // Responsive width with manually defined breakpoints
     '@media (max-width: 960px)': { // 'md' breakpoint
       width: '30vw',
-      height: '40vh',
+      
       left: '30%',
     },
     '@media (max-width: 700px)': { // 'sm' breakpoint

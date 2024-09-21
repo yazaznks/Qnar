@@ -12,7 +12,8 @@ import Home from "./pages/PageLanding"
 import Games from "./pages/Games"
 import GamePage from "./pages/GamePage"
 import Dashboard from "./pages/Dashboard"
-
+// import { I18nextProvider } from 'react-i18next';
+// import i18n from './i18n';  // Import i18n setup
 
 const theme = createTheme({
 
@@ -27,6 +28,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+{/* <I18nextProvider i18n={i18n}></I18nextProvider> */}
     <Router>
       <Header/>
     <Route path="/" component={Home} />
