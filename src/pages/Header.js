@@ -22,9 +22,11 @@ function Header() {
   const { t, i18n } = useTranslation();
 
   const handleChange = (event) => {
+    setAnchorElNav(null);
     const selectedLanguage = event.target.value;
     i18n.changeLanguage(selectedLanguage);
     localStorage.setItem('i18nextLng', selectedLanguage); // Persist in localStorage
+    
   };
   useEffect(() => {
     // Example of getting auth status from localStorage (or any other method)
@@ -69,13 +71,13 @@ function Header() {
           <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1, fontWeight:'bold' }}>
             <img
               onClick={() => setLocation('/')}
-              style={{ cursor: 'pointer', marginRight: isMobile ? 'auto' : '0px' }}
+              style={{ cursor: 'pointer', }}
               src={logo}
               width="150px"
               height="auto"
               alt="Logo"
             />
-
+{/* marginRight: isMobile ? 'auto' : '0px' */}
             {!isMobile && (
               <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
                 <Button onClick={() => setLocation('/')} sx={{  color: location === '/' ? '#EB8576' : '#3B5D44' , fontWeight:'bold'}}>
@@ -137,7 +139,10 @@ function Header() {
                 aria-haspopup="true"
                 onClick={handleOpenNavMenu}
                 color="inherit"
-                sx={{ position: 'relative', zIndex: 1400 }}
+                
+                sx={{  zIndex: 1400 ,marginLeft: i18n.language === 'en' ? 'auto' : 0,  // Align to the left for English
+                  marginRight: i18n.language === 'ar' ? 'auto' : 0   // Align to the right for Arabic
+                }}
               >
                 {anchorElNav ? (
           <CloseIcon sx={{ color: '#3B5D44' }} />
@@ -165,7 +170,7 @@ function Header() {
                 <Button onClick={() => setLocation('/login')} variant="contained" sx={{ backgroundColor: '#4B7857', color: '#fff', marginRight: '10px' }}>
                 {t('Login')}
                 </Button>
-                <Button onClick={() => setLocation('/signup')} variant="outlined" sx={{ borderColor: '#4B7857', color: '#4B7857' }}>
+                <Button onClick={() => setLocation('/signup')} variant="outlined" sx={{ borderColor: '#4B7857', color: '#4B7857',marginRight: '10px'}}>
                 {t('signup')}
                 </Button>
               </>
@@ -187,13 +192,14 @@ function Header() {
             onClose={handleCloseNavMenu}
             slotProps={{
               paper: {
+       
                 sx: {
                   width: '80%',       // Adjust width for menu with margin
                   height: '100vh', 
                   minHeight: '100vh',    // Full height of the viewport
                   position: 'fixed',
                   marginTop:'-4vw',
-                  marginLeft: '10vw'  ,           // Align to the top
+                  marginLeft: i18n.language=== 'ar' ?'-10vw':'10vw'  ,           // Align to the top
                   zIndex: 1300,         // Ensure the menu is on top
                   display: 'flex',
                   flexDirection: 'column',

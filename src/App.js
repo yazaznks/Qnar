@@ -12,6 +12,7 @@ import Login from "./pages/Login"
 import Signup from "./pages/Signup"
 import Home from "./pages/PageLanding"
 import Games from "./pages/Games"
+import Zoom from "./pages/GameWithZoom"
 import GamePage from "./pages/GamePage"
 import Dashboard from "./pages/Dashboard"
 import { useTranslation } from 'react-i18next';
@@ -26,8 +27,9 @@ function App() {
   const theme = createTheme({
 
     typography: {
+      fontFamily: i18n.language === 'ar' ? 'tajawal': 'Quicksand',
       direction: i18n.language === 'ar' ? 'rtl' : 'ltr', // RTL for Arabic
-      fontFamily: 'Quicksand',  // Set global font family
+        // Set global font family
     
     },
 
@@ -40,10 +42,10 @@ function App() {
     <Router>
       <Header/>
     <Route path="/" component={Home} />
-    <Route path="/#" component={Games} />
-    <Route path="/#" component={Login} />
+    <Route path="/zoom" component={Zoom} />
+    <Route path="/" component={Login} />
     <Route path="/#" component={Signup} />
-    <Route path="/#" component={GamePage} />
+    <Route path="/game" component={GamePage} />
     <Route path="/#" component={Dashboard} /> 
       <Footer/>
     </Router>

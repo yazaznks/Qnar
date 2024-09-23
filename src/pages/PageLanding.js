@@ -1,6 +1,6 @@
 import React, { useState, useEffect }  from 'react'
 // quicksand, burger menubar, email send, main bg boy and girl
-import {Box, Typography, TextField, Button, Paper } from '@mui/material';
+import {Box, Typography, TextField, Button, Paper, InputAdornment,} from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 import { useLocation } from 'wouter';
 import videoSrc from '../Assets/sample.mp4'
@@ -124,7 +124,7 @@ function PageLanding() {
             
           },
         }}>
-        <img className="responsive-img" src={back} alt="Background"  />
+        <img className="responsive-img" src={back} alt="Background" />
        
         <Paper
   elevation={3}
@@ -175,7 +175,7 @@ function PageLanding() {
       fontSize: '2vw',
       overflowWrap: 'break-word',
 '@media (max-width: 700px)': { // 'sm' breakpoint
-      fontSize: '5vw',
+      fontSize: '6vw',
     },
     }}
   >
@@ -190,7 +190,7 @@ function PageLanding() {
       maxWidth: '100%',
       overflowWrap: 'break-word',
       '@media (max-width: 700px)': { // 'sm' breakpoint
-      fontSize: '4vw',
+      fontSize: '5vw',
     },
     }}
   >
@@ -257,7 +257,7 @@ function PageLanding() {
           justifyContent: 'center',
           padding: '20px',
           
-          background: `linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url(${HowBG})`,
+          background: `linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(${HowBG})`,
           backgroundSize: 'cover', // Cover the entire area
           backgroundPosition: 'center', // Center the image
           backgroundRepeat: 'no-repeat',
@@ -501,17 +501,19 @@ function PageLanding() {
 
         <form onSubmit={sendEmailEmail}>
         <TextField
-          label={t('name')} 
+           label={t('name')} 
           variant="outlined"
           fullWidth
           margin="normal"
           name="name" // Add this to associate the input with formData.name
-          InputProps={{
-            sx: { 
-              "&::placeholder": { textAlign: 'right' }, // Align placeholder text to the right
-              textAlign: 'right', // Align actual text input to the right
-            },
-          }}
+        //   InputProps={{
+        //     startAdornment: formData.name === '' ? (
+        //       <InputAdornment position={i18n.language === "ar" ? "end" : "start"}>
+        //         {t('name')}
+        //       </InputAdornment>
+        //     ) : null,
+        // }}
+
         value={formData.name}
         onChange={handleChangeEmail}
         required
@@ -521,12 +523,7 @@ function PageLanding() {
           variant="outlined"
           fullWidth
           margin="normal"
-          InputProps={{
-            sx: { 
-              "&::placeholder": { textAlign: 'right' }, // Align placeholder text to the right
-              textAlign: 'right', // Align actual text input to the right
-            },
-          }}
+     
           name="email" // Add this to associate the input with formData.email
           value={formData.email}
           onChange={handleChangeEmail}
@@ -536,12 +533,7 @@ function PageLanding() {
           label={t('message')} 
           variant="outlined"
           fullWidth
-          InputProps={{
-            sx: { 
-              "&::placeholder": { textAlign: 'right' }, // Align placeholder text to the right
-              textAlign: 'right', // Align actual text input to the right
-            },
-          }}
+          dir='auto'
           multiline
           rows={4}
           margin="normal"

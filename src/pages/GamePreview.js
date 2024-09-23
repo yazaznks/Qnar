@@ -40,28 +40,23 @@ const GamePreview =({ Questions,settings}) =>{
   const [isTimerActive, setTimerActive] = useState(false); // Timer is active
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
-  useEffect(() => {
-    let interval = null;
+  // useEffect(() => {
+  //   let interval = null;
 
-    if (isTimerActive && time > 0) {
-      interval = setInterval(() => {
-        setTime(prevTime => prevTime - 1);
-      }, 1000); // Update every second
-    } else {
-      clearInterval(interval);
-      if (time === 0) {
-        //onTimeUp(); // Call the callback function when time is up
-      }
-    }
+  //   if (isTimerActive && time > 0) {
+  //     interval = setInterval(() => {
+  //       setTime(prevTime => prevTime - 1);
+  //     }, 1000); // Update every second
+  //   } else {
+  //     clearInterval(interval);
+  //     if (time === 0) {
+  //       //onTimeUp(); // Call the callback function when time is up
+  //     }
+  //   }
 
-    return () => clearInterval(interval); // Cleanup interval on unmount
-  }, [isTimerActive, time]);
+  //   return () => clearInterval(interval); // Cleanup interval on unmount
+  // }, [isTimerActive, time]);
 
   const handleReset = () => {
     setTimerActive(false);
@@ -362,97 +357,9 @@ const GamePreview =({ Questions,settings}) =>{
       color: '#3B5D44'
     }}>{time}</div></div>
     {/*//////////////////// start of wheel //////////////////// */}
-    {windowWidth < 900 ? (
-        selectedQuestion ? (
-          // Show only the question with lives
-          <Box className="selected-question-container show">
-             {/*  //////scores / lives and questions on the right */}
-    <Box sx={{ display: 'flex', flexDirection: 'column', width: '50%', textAlign: 'center' }}>
-    <Box sx={{ display: 'flex', flexDirection: 'row',height: '20%',background: `linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4))`, marginBottom: '20px'}}>
-      <Box sx={{width:'40%',display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-        <Typography style={{marginLeft:'5%',fontSize:'24px',color:'#3B5D44'}}>Score: </Typography>
-      <Typography style={{fontSize:'24px',color:'#EB8576'}}>100</Typography>
-      </Box>
-      <Box sx={{width:'60%',display: 'flex', flexDirection: 'row',alignItems: 'center'}}>
-      <Typography style={{fontSize:'24px',color:'#3B5D44'}}>Lives:</Typography>
-      {[...Array(5)].map((_, index) => (
-          <img
-            key={index}
-            src={index >= lives ? heartE : heartF} // Choose image based on remaining lives
-            style={{
-              height: '50%',
-              width: '100%',
-              
-              objectFit: 'contain',
-            }}
-            alt="heart icon"
-          />
-        ))}
-      </Box>
-
-    </Box>
-    <Box sx={{background: `linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4))`, float:'top'}}>
-    
-      {selectedQuestion ? (
-        <>
-          <Typography variant="h5" gutterBottom>
-            {'Q'+selectedQuestion.label+': ' + selectedQuestion.title}
-          </Typography>
-          <RadioGroup
-            value={selectedAnswer}
-            onChange={(e) => setSelectedAnswer(e.target.value)}
-            sx={{ marginTop: '20px', marginLeft:'20px' }}
-          >
-            {selectedQuestion.answers.map((answer, index) => (
-              <FormControlLabel
-                key={index}
-                value={answer.text}
-                control={<Radio />}
-                label={answer.text}
-              />
-            ))}
-          </RadioGroup>
-          <Button
-            onClick={handleAnswerSubmit}
-            variant="contained"
-            color="primary"
-            sx={{ marginTop: '40px', marginBottom: '20px' }}
-          >
-            Submit Answer
-          </Button>
-        </>
-      ) : (
-        <Typography variant="h5" gutterBottom>
-          Spin the wheel to get a question
-        </Typography>
-      )}
-    </Box>
-    </Box>
-    {/* //////////////end of questions side////////////////// */}
-            {/* Render the question and lives UI */}
-          </Box>
-        ) :(<Box className="wheel-container">
-          {questions.length > 0 &&(
-              
-             
-            <div className="App">
-                <div className="wheel-container" style={{ position: 'relative', width: '300px', height: '300px' }}>
-                <span id="selector" style={{ position: 'absolute', top: '50%', left: '-15px', transform: 'translateY(-50%)' }}>
-                     <img src={arrow}/>
-              </span>
-              <canvas
-                id="wheel"
-                width="300"
-                height="300"
-                style={{
-                  WebkitTransition: `-webkit-transform ${easeOut}s ease-out`,
-                }}
-              />
-            </div>
-             </div>
-        )}</Box>) ):(<>
+   
             
-            {questions.length > 0 &&(
+      {questions.length > 0 &&(
               
              
       <div className="App">
@@ -471,7 +378,8 @@ const GamePreview =({ Questions,settings}) =>{
       </div>
        </div>
               //////////////////////// end of wheel ///////////////////////
-      )}</>) }<Box sx={{ display: 'flex', justifyContent: 'center', padding: '20px' }}>
+      )} 
+      <Box sx={{ display: 'flex', justifyContent: 'center', padding: '20px' }}>
       
     </Box>
 

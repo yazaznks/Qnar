@@ -8,8 +8,8 @@ import { useTranslation } from 'react-i18next';
 function Footer() {
   const {t, i18n} = useTranslation();
 
-  const handleChange = (event) => {
-    const selectedLanguage = event.target.value;
+  const handleChange = (events) => {
+    const selectedLanguage = events
     i18n.changeLanguage(selectedLanguage);
     localStorage.setItem('i18nextLng', selectedLanguage); // Persist in localStorage
   };
@@ -91,6 +91,7 @@ function Footer() {
           placeholder={t('message')}
           variant="outlined"
           fullWidth
+          
           sx={{ marginBottom: '10px' }}
         />
         <Button
@@ -104,10 +105,16 @@ function Footer() {
         {t('Language')}
         </Typography>
         <Box>
-          <Link href="#" color="inherit" sx={{ marginRight: '15px' }}>
+          <Link href="#" color="inherit" sx={{ marginRight: '15px' }} onClick={(e) => {
+    e.preventDefault();  // Prevent the default anchor behavior
+    handleChange('en');  // Call the function with a parameter
+  }}>
           {t('Eng')}
           </Link>
-          <Link href="#" color="inherit">
+          <Link href="#" color="inherit" sx={{ marginRight: '15px' }} onClick={(e) => {
+    e.preventDefault();  // Prevent the default anchor behavior
+    handleChange('ar');  // Call the function with a parameter
+  }}>
           {t('Arab')}
           </Link>
         </Box>
