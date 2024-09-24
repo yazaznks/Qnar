@@ -582,6 +582,7 @@ function PageLanding() {
         <DialogContent sx={{ textAlign: 'center' }}>
   {ButtonNo === 3 ? (
     <>
+    <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold', color: '#333' }}> {t('updates')}</Typography>
       <TextField  placeholder={t('Email')} onChange={(e) =>
     setFormData((prevData) => ({...prevData, // Spread previous state
       email: e.target.value, // Update the email field
