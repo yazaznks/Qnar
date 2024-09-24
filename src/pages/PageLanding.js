@@ -1,9 +1,10 @@
 import React, { useState, useEffect }  from 'react'
 // quicksand, burger menubar, email send, main bg boy and girl
-import {Box, Typography, TextField, Button, Paper, InputAdornment,} from '@mui/material';
+import {Box, Typography, TextField, Button, Paper, Dialog, DialogContent, DialogActions, IconButton} from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 import { useLocation } from 'wouter';
-import videoSrc from '../Assets/sample.mp4'
+import videoSrc from '../Assets/sample.mp4';
+import VideoAR from '../Assets/sampleAr.mp4';
 import back from '../Assets/backgroundM.png';
 import VideoBGMobile from '../Assets/videoBGMobile.png'; // Path to the first image
 import girl from '../Assets/girl.png'; // Path to the second image
@@ -22,6 +23,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { HolidayVillage, PictureAsPdfSharp,  } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import UseMediaQuery from '@mui/material/useMediaQuery';
+import { Close as CloseIcon } from '@mui/icons-material';
 
 
 
@@ -33,59 +35,24 @@ function PageLanding() {
   const Is1200 = UseMediaQuery('(max-width:1200px)');
   const [email, setEmail] = useState('');
   const {t, i18n} = useTranslation();
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [ButtonNo, setButtonNo] = useState(0);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: '',
   });
-  // const { t, i18n } = useTranslation();
-/////////////////////////////////////////////save email datalocalstorage //////////////////////////////////////////////////////////////////////////////////
-  // Initialize IndexedDB
-  const initDB = () => {
-    return new Promise((resolve, reject) => {
-      const request = indexedDB.open('emailDatabase', 1);
-
-      request.onupgradeneeded = (event) => {
-        const db = event.target.result;
-        // Create an object store with a primary key
-        db.createObjectStore('emails', { keyPath: 'id', autoIncrement: true });
-      };
-
-      request.onsuccess = (event) => {
-        resolve(event.target.result);
-      };
-
-      request.onerror = (event) => {
-        reject('Error opening IndexedDB:', event.target.errorCode);
-      };
-    });
+  const handleClickOpen = (id) => {
+    setButtonNo(id);
+    // Perform the actions needed based on the id
+    setIsDialogOpen(true);
   };
-
-  // Save email to IndexedDB
-  const saveEmail = async (email) => {
-    try {
-      const db = await initDB();
-      const transaction = db.transaction(['emails'], 'readwrite');
-      const store = transaction.objectStore('emails');
-      store.add({ email: email });
-      transaction.oncomplete = () => {
-        console.log('Email saved successfully!');
-      };
-      transaction.onerror = (event) => {
-        console.error('Error saving email:', event.target.errorCode);
-      };
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
-
-  const handleSubmit = (e) => {
-
-    saveEmail(email);
-    setEmail(''); // Clear the text field after saving
-  };
-
   
+
+  const handleClose = () => {
+    setIsDialogOpen(false);
+  };
+  // const { t, i18n } = useTranslation();
 
 /////////////////////////////////////////// send email start////////////////////////////////////////////////////////////////////////////////////
   const handleChangeEmail = (e) => {
@@ -95,8 +62,8 @@ function PageLanding() {
     });
   };
 
-  const sendEmailEmail = (e) => {
-    e.preventDefault();
+  const sendEmailEmail = () => {
+
 
     emailjs.send(
       'service_4xwd306', 
@@ -106,6 +73,7 @@ function PageLanding() {
     )
     .then((result) => {
         console.log('Email successfully sent!', result.text);
+
     }, (error) => {
         console.log('Failed to send email:', error.text);
     });
@@ -197,8 +165,9 @@ function PageLanding() {
     {t('HeaderTop')}
   </Typography>
   <br />
-  <Button onClick={() => console.log(i18n.language)}
+  <Button onClick={() => handleClickOpen(3)}
     variant="contained"
+    
     sx={{
       
       backgroundColor: '#4B7857',
@@ -239,8 +208,12 @@ function PageLanding() {
         padding:'10px',
         
       }}>
-          <TextField  placeholder={t('Email')} onChange={(e) => setEmail(e.target.value)} style={{background: '#ffffff'}}></TextField>
-          <Button onClick={() => handleSubmit()} variant="contained" sx={{ backgroundColor: '#4B7857', color: '#fff', margin:'5px'  }}>
+          <TextField  placeholder={t('Email')} onChange={(e) =>
+    setFormData((prevData) => ({...prevData, // Spread previous state
+      email: e.target.value, // Update the email field
+    }))
+  } style={{background: '#ffffff'}}></TextField>
+          <Button onClick={() => {if (formData.email !== "") {handleClickOpen(0); sendEmailEmail();}}} variant="contained" sx={{ backgroundColor: '#4B7857', color: '#fff', margin:'5px'  }}>
           {t('Submit')}
                 </Button></Box>
       </Box>
@@ -288,7 +261,7 @@ function PageLanding() {
            <div className="circle-container">
       <img src={(Is900? VideoBGMobile : VideoBG)} alt="Background" className="background-image" />
       <div className="circle-video-wrapper">
-        <video src={videoSrc} controls autoPlay  muted loop className="circle-video" />
+        <video src={i18n.language === 'ar'?VideoAR:videoSrc} controls autoPlay  muted loop className="circle-video" />
       </div>
     </div>
         </Box>
@@ -546,6 +519,10 @@ function PageLanding() {
           variant="contained"
           sx={{ backgroundColor: '#4B7857', color: '#fff', marginTop: '1rem' }}
            type="submit"
+           onClick={() => {
+            if (formData.name !== "" && formData.email !== "") {
+              handleClickOpen(1);
+            }}}
         >
           {t('Submit')}  
         </Button>
@@ -574,7 +551,86 @@ function PageLanding() {
     allowFullScreen=""
     loading="lazy"
   ></iframe>  </Box>
-    </Box></Box>
+    </Box>
+    {/* Dialog */}
+    <Dialog
+        open={isDialogOpen}
+        onClose={handleClose}
+        PaperProps={{
+          sx: {
+            padding: '20px',
+            borderRadius: '20px',
+            width: '400px',
+            maxWidth: '90%',
+          }
+        }}
+      >
+        {/* Close button on the top-right corner */}
+        <IconButton
+          aria-label="close"
+          onClick={handleClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: '#aaa',
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+
+        {/* Dialog content */}
+        <DialogContent sx={{ textAlign: 'center' }}>
+  {ButtonNo === 3 ? (
+    <>
+      <TextField  placeholder={t('Email')} onChange={(e) =>
+    setFormData((prevData) => ({...prevData, // Spread previous state
+      email: e.target.value, // Update the email field
+    }))
+  } style={{background: '#ffffff'}}></TextField>
+          <Button onClick={() => {if (formData.email !== "") {handleClickOpen(0); sendEmailEmail();}}} variant="contained" sx={{ backgroundColor: '#4B7857', color: '#fff', margin:'5px'  }}>
+          {t('Submit')}
+                </Button>
+
+    
+    </>
+  ) : (
+    <>
+      <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold', color: '#333' }}>
+        {t('Thanks')}
+      </Typography>
+      {ButtonNo === 0 ? (
+        <Typography variant="body1" sx={{ color: '#666' }}>
+          {t('subscribed')}
+        </Typography>
+      ) : (
+        <Typography variant="body1" sx={{ color: '#666' }}>
+          {t('msg')}
+        </Typography>
+      )}
+    </>
+  )}
+</DialogContent>
+
+        {/* Dialog actions with custom button */}
+        <DialogActions sx={{ justifyContent: 'center', paddingBottom: '20px' }}>
+          <Button
+            variant="contained"
+            onClick={handleClose}
+            sx={{
+              backgroundColor: '#4caf50',
+              color: '#fff',
+              borderRadius: '50px',
+              padding: '10px 30px',
+              '&:hover': {
+                backgroundColor: '#45a049',
+              },
+            }}
+          >
+            {t('close')}
+          </Button>
+        </DialogActions>
+      </Dialog></Box>
   )
 }
 

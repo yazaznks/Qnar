@@ -43,7 +43,7 @@ function App() {
       <Header/>
     <Route path="/" component={Home} />
     <Route path="/zoom" component={Zoom} />
-    <Route path="/" component={Login} />
+    <Route path="/#" component={Login} />
     <Route path="/#" component={Signup} />
     <Route path="/game" component={GamePage} />
     <Route path="/#" component={Dashboard} /> 

@@ -83,13 +83,13 @@ function Header() {
                 <Button onClick={() => setLocation('/')} sx={{  color: location === '/' ? '#EB8576' : '#3B5D44' , fontWeight:'bold'}}>
                 {t('Home')}
                 </Button>
-                <Button onClick={() => setLocation('/about')} sx={{ color: location === '/about' ? '#EB8576' : '#3B5D44' , fontWeight:'bold' }}>
+                <Button onClick={() => setLocation('/#')} sx={{ color: location === '/about' ? '#EB8576' : '#3B5D44' , fontWeight:'bold' }}>
                 {t('AboutUs')}
                 </Button>
-                <Button onClick={() => setLocation('/features')} sx={{ color: location === '/features' ? '#EB8576' : '#3B5D44' , fontWeight:'bold' }}>
+                <Button onClick={() => setLocation('/#')} sx={{ color: location === '/features' ? '#EB8576' : '#3B5D44' , fontWeight:'bold' }}>
                 {t('Features')} 
                 </Button>
-                <Button onClick={() => setLocation('/Games')} sx={{ color: location === '/Games' ? '#EB8576' : '#3B5D44' , fontWeight:'bold' }}>
+                <Button onClick={() => setLocation('/#')} sx={{ color: location === '/Games' ? '#EB8576' : '#3B5D44' , fontWeight:'bold' }}>
                 {t('Games')}
                 </Button>
                 <IconButton
@@ -215,10 +215,10 @@ function Header() {
               },
             }}
           >
-            <MenuItem sx={{ color: '#3B5D44' }} onClick={() => setLocation('/')}>{t('Home')}</MenuItem>
-            <MenuItem sx={{ color: '#3B5D44' }} onClick={() => setLocation('/about')}>{t('AboutUs')}</MenuItem>
-            <MenuItem sx={{ color: '#3B5D44' }} onClick={() => setLocation('/features')}>{t('Features')}</MenuItem>
-            <MenuItem sx={{ color: '#3B5D44' }} onClick={() => setLocation('/pricing')}>{t('Games')}</MenuItem>
+            <MenuItem sx={{ color: '#3B5D44' }} onClick={() => setLocation('/#')}>{t('Home')}</MenuItem>
+            <MenuItem sx={{ color: '#3B5D44' }} onClick={() => setLocation('/#')}>{t('AboutUs')}</MenuItem>
+            <MenuItem sx={{ color: '#3B5D44' }} onClick={() => setLocation('/#')}>{t('Features')}</MenuItem>
+            <MenuItem sx={{ color: '#3B5D44' }} onClick={() => setLocation('/#')}>{t('Games')}</MenuItem>
             <MenuItem>
                 <IconButton size="large" aria-label="language"  aria-controls="menu-appbar" aria-haspopup="true" onClick={handleOpenLangMenu} 
       style={{ backgroundColor: '#fff', borderRadius: '50%' }} > <LanguageIcon /></IconButton>

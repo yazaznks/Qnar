@@ -11,7 +11,7 @@ import heartE from '../Assets/heart.png';
 import heartF from '../Assets/heartF.png';
 import arrow from '../Assets/arrow.png'
 // import { blue } from '@mui/material/colors';
-import background from '../Assets/show.jpg'
+import background from '../Assets/dessert.png'
 
 
   
@@ -41,22 +41,22 @@ const GamePreview =({ Questions,settings}) =>{
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
 
-  // useEffect(() => {
-  //   let interval = null;
+  useEffect(() => {
+    let interval = null;
 
-  //   if (isTimerActive && time > 0) {
-  //     interval = setInterval(() => {
-  //       setTime(prevTime => prevTime - 1);
-  //     }, 1000); // Update every second
-  //   } else {
-  //     clearInterval(interval);
-  //     if (time === 0) {
-  //       //onTimeUp(); // Call the callback function when time is up
-  //     }
-  //   }
+    if (isTimerActive && time > 0) {
+      interval = setInterval(() => {
+        setTime(prevTime => prevTime - 1);
+      }, 1000); // Update every second
+    } else {
+      clearInterval(interval);
+      if (time === 0) {
+        //onTimeUp(); // Call the callback function when time is up
+      }
+    }
 
-  //   return () => clearInterval(interval); // Cleanup interval on unmount
-  // }, [isTimerActive, time]);
+    return () => clearInterval(interval); // Cleanup interval on unmount
+  }, [isTimerActive, time]);
 
   const handleReset = () => {
     setTimerActive(false);
@@ -234,11 +234,12 @@ const GamePreview =({ Questions,settings}) =>{
     setResult(null);
     setSpinning(false);
   };
-  const handleAnswerSubmit = () => {
+  const handleAnswerSubmit = (index) => {
     if (!selectedQuestion) return;
 
-    const correctAnswer = selectedQuestion.answers[selectedQuestion.correctAnswerIndex]?.text;
-    const isCorrectAnswer = selectedAnswer === correctAnswer;
+    const correctAnswerIndex = selectedQuestion.correctAnswerIndex;
+    
+    const isCorrectAnswer = index === correctAnswerIndex;
     setIsCorrect(isCorrectAnswer);
 
     // Open the dialog to show if the answer is correct
@@ -329,7 +330,7 @@ const GamePreview =({ Questions,settings}) =>{
           Game Preview
         </Typography>
  
-        <Box sx={{ width: '100%',display: 'flex', alignItems: 'center',backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)),url(${background})` 
+        <Box sx={{ width: '100%',display: 'flex', alignItems: 'center',backgroundImage: `linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)),url(${background})` 
                 ,backgroundSize: 'cover',  // Ensures the image covers the entire box
                 backgroundPosition: 'center', // Centers the image
                 padding: '50px',
@@ -372,7 +373,11 @@ const GamePreview =({ Questions,settings}) =>{
           width="300"
           height="300"
           style={{
-            WebkitTransition: `-webkit-transform ${easeOut}s ease-out`,
+            
+              transform: `rotate(${rotate}deg)`, // Add rotation transformation here
+              WebkitTransition: `-webkit-transform ${easeOut}s ease-out`,
+         
+  
           }}
         />
       </div>
@@ -396,7 +401,7 @@ const GamePreview =({ Questions,settings}) =>{
 
     {/*  //////scores / lives and questions on the right */}
     <Box sx={{ display: 'flex', flexDirection: 'column', width: '50%', textAlign: 'center' }}>
-    <Box sx={{ display: 'flex', flexDirection: 'row',height: '20%',background: `linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4))`, marginBottom: '20px'}}>
+    <Box sx={{ display: 'flex', flexDirection: 'row',height: '20%',background: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9))`,color:'FFFFFF',borderRadius: '10px', marginBottom: '20px'}}>
       <Box sx={{width:'40%',display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
         <Typography style={{marginLeft:'5%',fontSize:'24px',color:'#3B5D44'}}>Score: </Typography>
       <Typography style={{fontSize:'24px',color:'#EB8576'}}>100</Typography>
@@ -419,35 +424,51 @@ const GamePreview =({ Questions,settings}) =>{
       </Box>
 
     </Box>
-    <Box sx={{background: `linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4))`, float:'top'}}>
+    <Box sx={{background: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9))`,color:'FFFFFF',borderRadius: '10px', float:'top'}}>
     
       {selectedQuestion ? (
         <>
           <Typography variant="h5" gutterBottom>
             {'Q'+selectedQuestion.label+': ' + selectedQuestion.title}
           </Typography>
-          <RadioGroup
-            value={selectedAnswer}
-            onChange={(e) => setSelectedAnswer(e.target.value)}
-            sx={{ marginTop: '20px', marginLeft:'20px' }}
-          >
-            {selectedQuestion.answers.map((answer, index) => (
-              <FormControlLabel
-                key={index}
-                value={answer.text}
-                control={<Radio />}
-                label={answer.text}
-              />
-            ))}
-          </RadioGroup>
+          <Box
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: `repeat(${selectedQuestion.answers.length}, 1fr)`,
+          gap: '10px',
+          display: 'flex',
+      flexDirection: 'column', 
+          marginTop: '20px',
+          padding:'20px'
+        }}
+      >
+        {selectedQuestion.answers.map((answer, index) => (
           <Button
-            onClick={handleAnswerSubmit}
+            key={index}
             variant="contained"
-            color="primary"
-            sx={{ marginTop: '40px', marginBottom: '20px' }}
+            onClick={() => handleAnswerSubmit(index)}
+            sx={{
+              backgroundColor:
+                index === 0 ? '#ffb3b3' : index === 1 ? '#b3ffcc' : index === 2 ? '#ffffb3' : '#e6e6e6',
+              color: '#333',
+              padding: '10px',
+              fontWeight: 'bold',
+              fontSize: '18px',
+              borderRadius: '15px',
+              width: '100%',
+              boxShadow: '0px 3px 6px rgba(0,0,0,0.1)',
+              '&:hover': {
+                backgroundColor:
+                  index === 0 ? '#ff9999' : index === 1 ? '#99ff99' : index === 2 ? '#ffff99' : '#cccccc',
+              },
+            }}
           >
-            Submit Answer
+            {answer.text}
           </Button>
+        ))}
+      </Box>
+         
+         
         </>
       ) : (
         <Typography variant="h5" gutterBottom>
