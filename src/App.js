@@ -16,7 +16,8 @@ import Zoom from "./pages/GameWithZoom"
 import GamePage from "./pages/GamePage"
 import Dashboard from "./pages/Dashboard"
 import { useTranslation } from 'react-i18next';
-
+import AboutUs from "./pages/AboutUs";
+import ContactUs from "./pages/ContactUs";
 
 function App() {
   const { i18n } = useTranslation();
@@ -42,6 +43,8 @@ function App() {
     <Router>
       <Header/>
     <Route path="/" component={Home} />
+    <Route path="/about" component={AboutUs} />
+    <Route path="/contact" component={ContactUs} />
     <Route path="/zoom" component={Zoom} />
     <Route path="/#" component={Login} />
     <Route path="/#" component={Signup} />

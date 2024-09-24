@@ -5,9 +5,10 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import logo from '../Assets/logoF.png'
 import { useTranslation } from 'react-i18next';
+import { useLocation } from 'wouter';
 function Footer() {
   const {t, i18n} = useTranslation();
-
+  const [location, setLocation] = useLocation();
   const handleChange = (events) => {
     const selectedLanguage = events
     i18n.changeLanguage(selectedLanguage);
@@ -66,13 +67,13 @@ function Footer() {
             <Link href="#" color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>
             {t('Games')}
             </Link>
-            <Link href="#" color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>
+            <Link href="#" onClick={() => setLocation('/aboutus')} color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>
             {t('AboutUs')}
             </Link>
-            <Link href="#" color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>
+            <Link href="#" onClick={() => setLocation('/game')} color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>
             {t('Features')}
             </Link>
-            <Link href="#" color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>
+            <Link href="#" onClick={() => setLocation('/contact')} color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>
             {t('contact')}
             </Link>
             <Link href="#" color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>

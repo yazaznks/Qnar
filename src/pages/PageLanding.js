@@ -20,7 +20,6 @@ import emailPic from '../Assets/email.png'
 import location from '../Assets/location.png'
 import emailjs from 'emailjs-com';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { HolidayVillage, PictureAsPdfSharp,  } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import UseMediaQuery from '@mui/material/useMediaQuery';
 import { Close as CloseIcon } from '@mui/icons-material';
@@ -33,7 +32,7 @@ function PageLanding() {
   const emailAddress = 'contact@qnarweb.com'
   const Is900 = UseMediaQuery('(max-width:900px)');
   const Is1200 = UseMediaQuery('(max-width:1200px)');
-  const [email, setEmail] = useState('');
+
   const {t, i18n} = useTranslation();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [ButtonNo, setButtonNo] = useState(0);
