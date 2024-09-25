@@ -347,7 +347,7 @@ function PageLanding() {
 
         {/* new section */}
         <Box  sx={{
-      
+      padding: '20px',
         flex: 1,
         display: 'flex',
         flexDirection: 'column',
@@ -582,7 +582,7 @@ function PageLanding() {
         <DialogContent sx={{ textAlign: 'center' }}>
   {ButtonNo === 3 ? (
     <>
-    <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold', color: '#333' }}> {t('updates')}</Typography>
+    <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold', color: '#333' }}> {t('Email')}</Typography>
       <TextField  placeholder={t('Email')} onChange={(e) =>
     setFormData((prevData) => ({...prevData, // Spread previous state
       email: e.target.value, // Update the email field

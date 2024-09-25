@@ -46,8 +46,9 @@ function App() {
     <Route path="/about" component={AboutUs} />
     <Route path="/contact" component={ContactUs} />
     <Route path="/zoom" component={Zoom} />
-    <Route path="/#" component={Login} />
-    <Route path="/#" component={Signup} />
+    <Route path="/Games" component={Games} />
+    <Route path="/Login" component={Login} />
+    <Route path="/signup" component={Signup} />
     <Route path="/game" component={GamePage} />
     <Route path="/#" component={Dashboard} /> 
       <Footer/>

@@ -54,13 +54,13 @@
   object-fit: cover; /* Ensures the video covers the circle without distortion */
 }
 .story{ height: 40vh; width: auto;}
-.knar{   height: 30vh; width: auto;}
+.knar{   height: 40vw; width: auto;}
 
 /* Convert max-width queries to min-width queries */
 /* Styles for screens larger than 500px */
 @media (min-width: 500px) {
   .story { height: 60vh}
-  .knar{  height: 40vh,}
+
 }
 /* Styles for screens larger than 700px */
 @media (min-width: 700px) {
@@ -72,6 +72,7 @@
     object-fit: cover;     /* Ensure the image covers the container without stretching */
     max-height: 100vh;     /* Limit the height to the viewport height */
   }
+  .knar{  height: 20vw}
 }
 /* Styles for screens larger than 900px */
 @media (min-width: 900px) {
