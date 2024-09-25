@@ -67,10 +67,10 @@ function Footer() {
             <Link href="#" color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>
             {t('Games')}
             </Link>
-            <Link href="#" onClick={() => setLocation('/aboutus')} color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>
+            <Link href="#" onClick={() => setLocation('/about')} color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>
             {t('AboutUs')}
             </Link>
-            <Link href="#" onClick={() => setLocation('/game')} color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>
+            <Link href="#" onClick={() => setLocation('/')} color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>
             {t('Features')}
             </Link>
             <Link href="#" onClick={() => setLocation('/contact')} color="inherit" sx={{ display: 'block', marginBottom: '5px' }}>

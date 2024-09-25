@@ -49,7 +49,7 @@ function App() {
     <Route path="/Games" component={Games} />
     <Route path="/Login" component={Login} />
     <Route path="/signup" component={Signup} />
-    <Route path="/game" component={GamePage} />
+    <Route path="/#" component={GamePage} />
     <Route path="/#" component={Dashboard} /> 
       <Footer/>
     </Router>

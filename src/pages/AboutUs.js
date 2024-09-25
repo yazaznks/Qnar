@@ -127,7 +127,7 @@ function AboutUs() {
           sx={{
             flex: 1,
             padding: '20px',
-            textAlign: Is900?'center' : (i18n.language == 'ar'? 'right': 'left'),
+            textAlign: Is900?'center' : (i18n.language === 'ar'? 'right': 'left'),
             color: '#3B5D44'
           }}
         >
