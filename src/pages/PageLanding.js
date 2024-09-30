@@ -32,7 +32,7 @@ function PageLanding() {
   const emailAddress = 'contact@qnarweb.com'
   const Is900 = UseMediaQuery('(max-width:900px)');
   const Is1200 = UseMediaQuery('(max-width:1200px)');
-
+  const [Mailtext, setMailText] = useState('');
   const {t, i18n} = useTranslation();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [ButtonNo, setButtonNo] = useState(0);
@@ -155,6 +155,7 @@ function PageLanding() {
       // Responsive font size
       fontSize: '1vw',
       maxWidth: '100%',
+      
       overflowWrap: 'break-word',
       '@media (max-width: 700px)': { // 'sm' breakpoint
       fontSize: '5vw',
@@ -196,7 +197,7 @@ function PageLanding() {
         zIndex: 3,
         textAlign: 'center',
       }}>
-        <Typography style={{color: '#3B5D44'}} variant="h4" gutterBottom>
+        <Typography style={{color: '#3B5D44',fontWeight: 'bold',}} variant="h4" gutterBottom>
         {t('MissOut')}          </Typography>
           <Typography style={{color: '#3B5D44'}} variant="h6">
           {t('community')}           </Typography><br></br>
@@ -207,11 +208,21 @@ function PageLanding() {
         padding:'10px',
         
       }}>
-          <TextField  placeholder={t('Email')} onChange={(e) =>
-    setFormData((prevData) => ({...prevData, // Spread previous state
-      email: e.target.value, // Update the email field
-    }))
-  } style={{background: '#ffffff'}}></TextField>
+          <TextField value={Mailtext} placeholder={t('Email')} onChange={(e) => {
+    setFormData((prevData) => ({
+      ...prevData, // Spread previous state
+      email: e.target.value // Update the email field
+    }));
+    setMailText(''); // Clear Mailtext or reset
+  }} onKeyDown={(e) => {
+    if (e.key === 'Enter') {
+      setFormData((prevData) => ({
+        ...prevData, // Spread previous state
+        email: e.target.value // Update the email field
+      }));
+      setMailText(''); // Call your submit function here
+    }
+  }}style={{background: '#ffffff'}}></TextField>
           <Button onClick={() => {if (formData.email !== "") {handleClickOpen(0); sendEmailEmail();}}} variant="contained" sx={{ backgroundColor: '#4B7857', color: '#fff', margin:'5px'  }}>
           {t('Submit')}
                 </Button></Box>
@@ -242,6 +253,7 @@ function PageLanding() {
         variant="h2"
         gutterBottom
         sx={{
+          fontWeight: 'bold',
           textAlign: 'center',
           color: '#3B5D44',
           margin: '20px 0', // Adjust margin as needed
@@ -267,7 +279,7 @@ function PageLanding() {
 
         {/* Text Content */}
         <Box
-        dir="rtl"
+        dir= {i18n.language === 'ar'? "rtl":"ltr"}
           sx={{
             flex: 1,
             padding: '20px',
@@ -280,6 +292,7 @@ function PageLanding() {
         variant="h2"
         gutterBottom
         sx={{
+          fontWeight: 'bold',
           textAlign: 'center',
           color: '#3B5D44',
           margin: '20px 0', // Adjust margin as needed
@@ -308,7 +321,7 @@ function PageLanding() {
         }}
       >
         <Box
-        dir="rtl"
+        dir={i18n.language === 'ar'? "rtl":"ltr"}
           sx={{
             flex: 1,
             padding: '20px',
@@ -316,7 +329,7 @@ function PageLanding() {
             color: '#3B5D44'
           }}
         >
-          <Typography variant="h2" gutterBottom>
+          <Typography variant="h2" style={{fontWeight: 'bold',}} gutterBottom>
           {t('story')}
           </Typography>
           <Typography style={{color:'#C36759'}} variant="h4" gutterBottom>
@@ -361,7 +374,7 @@ function PageLanding() {
           textAlign: 'center'
           
       }}>
-        <Typography variant="h2" gutterBottom>
+        <Typography variant="h2" style={{fontWeight: 'bold',}} gutterBottom>
         {t('mission')}
           </Typography>
           <Typography style={{color:'#C36759'}} variant="h4" gutterBottom>
@@ -375,7 +388,7 @@ function PageLanding() {
           elevation={3}
           sx={{
             padding: '20px',      
-            maxWidth: Is900? '80%':'60%',   
+            maxWidth: Is1200? '60%':(Is900? '80%':'90%'),   
             display: 'flex',
             flexDirection: { xs: 'column', lg: 'row' }, 
             backgroundColor: '#F9F9ED',
@@ -439,7 +452,7 @@ function PageLanding() {
         
     }}>
       </Box>
-      <Box sx={{flex: 1,display: 'flex',alignItems: 'center', justifyContent: 'center',}}><Typography style={{color:'#3B5D44'}} variant='h2'>{t('contact')}</Typography></Box>
+      <Box sx={{flex: 1,display: 'flex',alignItems: 'center', justifyContent: 'center',}}><Typography style={{color:'#3B5D44', fontWeight:'bold'}} variant='h2'>{t('contact')}</Typography></Box>
       <Box sx={{flex: 1,display: 'flex',  flexDirection: 'row',alignItems: 'center', justifyContent: 'center'}}>
       <a style={{marginRight:'5vw'}} href={`tel:${phoneNumber}`}><img className="contactIMG" src={phone}alt="Background"/></a>
       <a style={{marginRight:'5vw'}} href={`mailto:${emailAddress}`}>< img  className="contactIMG" src={emailPic}alt="Background"/></a>
@@ -522,6 +535,11 @@ function PageLanding() {
             if (formData.name !== "" && formData.email !== "") {
               handleClickOpen(1);
             }}}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                handleClickOpen(1); // Call your submit function here
+              }
+            }}
         >
           {t('Submit')}  
         </Button>

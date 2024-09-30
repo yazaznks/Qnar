@@ -82,9 +82,9 @@
     }
 }
 /* Styles for screens larger than 1100px */
-@media (min-width: 1100px) {
+@media (min-width: 1200px) {
 
-   
+  
   /* Add styles specific to screens larger than 1100px if needed */
 }
 
@@ -94,6 +94,7 @@
     max-width: 30vw; /* Maximum width of the circle */
   max-height: 30vw; /* Maximum height of the circle */
     }
+    .knar{   height: 15vw}
   /* Add styles specific to screens larger than 1400px if needed */
 }
 
