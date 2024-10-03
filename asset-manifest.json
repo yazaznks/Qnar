@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.02830430.css",
-    "main.js": "/static/js/main.831d15bd.js",
+    "main.css": "/static/css/main.57ea1e1c.css",
+    "main.js": "/static/js/main.d9982909.js",
     "static/js/453.114dea8c.chunk.js": "/static/js/453.114dea8c.chunk.js",
     "static/media/boy.png": "/static/media/boy.5af81e1c0a0f08f38d70.png",
     "static/media/girl.png": "/static/media/girl.8d4d85d16ee4984f6b75.png",
@@ -30,12 +30,12 @@
     "static/media/quicksand-vietnamese-400-normal.woff": "/static/media/quicksand-vietnamese-400-normal.4cdf7327385e7acd7f51.woff",
     "static/media/quicksand-vietnamese-400-normal.woff2": "/static/media/quicksand-vietnamese-400-normal.cba54407c8810c1dc7c0.woff2",
     "index.html": "/index.html",
-    "main.02830430.css.map": "/static/css/main.02830430.css.map",
-    "main.831d15bd.js.map": "/static/js/main.831d15bd.js.map",
+    "main.57ea1e1c.css.map": "/static/css/main.57ea1e1c.css.map",
+    "main.d9982909.js.map": "/static/js/main.d9982909.js.map",
     "453.114dea8c.chunk.js.map": "/static/js/453.114dea8c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.02830430.css",
-    "static/js/main.831d15bd.js"
+    "static/css/main.57ea1e1c.css",
+    "static/js/main.d9982909.js"
   ]
 }
