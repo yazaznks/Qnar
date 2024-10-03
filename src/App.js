@@ -30,7 +30,18 @@ function App() {
     typography: {
       fontFamily: i18n.language === 'ar' ? 'tajawal': 'Quicksand',
       direction: i18n.language === 'ar' ? 'rtl' : 'ltr', // RTL for Arabic
-        // Set global font family
+
+      components: {
+        MuiCssBaseline: {
+          styleOverrides: `
+            html {
+              -webkit-text-size-adjust: 100%;
+              text-size-adjust: 100%;
+            }
+          `,
+        },
+      },
+   
     
     },
 
@@ -49,7 +60,7 @@ function App() {
     <Route path="/Games" component={Games} />
     <Route path="/Login" component={Login} />
     <Route path="/signup" component={Signup} />
-    <Route path="/#" component={GamePage} />
+    <Route path="/game" component={GamePage} />
     <Route path="/#" component={Dashboard} /> 
       <Footer/>
     </Router>

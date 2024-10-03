@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, ButtonGroup } from '@mui/material';
+import { borderColor } from '@mui/system';
 // import { borderColor } from '@mui/system';
 
 const GameNavBar = ({ currentStep, onStepChange }) => {
@@ -7,15 +8,14 @@ const GameNavBar = ({ currentStep, onStepChange }) => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#3B5D44',
+        backgroundColor: '#F4DADA',
         padding: '10px 20px'
     };
 
     const buttonStyle = {
         margin: '0 10px',
-        color: 'black',
         fontWeight: 'bold',
-        borderColor: 'black'
+        borderColor: 'white',
     };
 
     return (
@@ -24,8 +24,10 @@ const GameNavBar = ({ currentStep, onStepChange }) => {
                 <Button 
                     onClick={() => onStepChange(0)} 
                     disabled={currentStep === 0} 
-                    sx={{ backgroundColor: currentStep === 0 ? '#FFFFFF': '#3B5D44'}} // Background color          
                     style={buttonStyle}
+                    sx={{ backgroundColor: currentStep === 0 ? '#EB8576': 'white',...buttonStyle,
+                         color: currentStep === 0 ? 'white !important': '#4B7857'}} // Background color          
+                    
                 >
                     Content
                 </Button>
@@ -33,7 +35,7 @@ const GameNavBar = ({ currentStep, onStepChange }) => {
                     onClick={() => onStepChange(1)} 
                     disabled={currentStep === 1} 
                     style={buttonStyle}
-                    sx={{ backgroundColor: currentStep === 1 ? '#FFFFFF': '#3B5D44'}} // Background color 
+                    sx={{ backgroundColor: currentStep === 1 ? '#EB8576': 'white',...buttonStyle, color: currentStep === 1 ? 'white !important': '#4B7857'}} // Background color 
                 >
                     Settings
                 </Button>
@@ -41,7 +43,7 @@ const GameNavBar = ({ currentStep, onStepChange }) => {
                     onClick={() => onStepChange(2)} 
                     disabled={currentStep === 2} 
                     style={buttonStyle}
-                    sx={{ backgroundColor: currentStep === 2 ? '#FFFFFF': '#3B5D44'}} // Background color 
+                    sx={{ backgroundColor: currentStep === 2 ? '#EB8576': 'white', color: currentStep === 2 ? 'white !important': '#4B7857',...buttonStyle}} // Background color 
                 >
                     Preview
                 </Button>
@@ -49,7 +51,7 @@ const GameNavBar = ({ currentStep, onStepChange }) => {
                     onClick={() => onStepChange(3)} 
                     disabled={currentStep === 3} 
                     style={buttonStyle}
-                    sx={{ backgroundColor: currentStep === 3 ? '#FFFFFF': '#3B5D44'}} // Background color 
+                    sx={{ backgroundColor: currentStep === 3 ? '#EB8576': 'white', color: currentStep === 3 ? 'white !important': '#4B7857',...buttonStyle}} // Background color 
                 >
                     Share
                 </Button>

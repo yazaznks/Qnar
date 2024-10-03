@@ -96,7 +96,7 @@ function PageLanding() {
         <Paper
   elevation={3}
   sx={{
-  padding: '5vh',
+  padding: '1vh',
     width: '30vw',
     maxWidth: '80%',
     maxhHeight: '80%',
@@ -139,10 +139,11 @@ function PageLanding() {
       // Responsive font size
       maxWidth: '100%',
       fontWeight: 'bold',
-      fontSize: '2vw',
+      fontSize: '1.3rem',
       overflowWrap: 'break-word',
 '@media (max-width: 700px)': { // 'sm' breakpoint
-      fontSize: '6vw',
+      fontSize: '2rem',
+      fontWeight: 'bold',
     },
     }}
   >
@@ -153,12 +154,12 @@ function PageLanding() {
     variant="h6"
     sx={{
       // Responsive font size
-      fontSize: '1vw',
+      fontSize: '1rem',
       maxWidth: '100%',
       
       overflowWrap: 'break-word',
       '@media (max-width: 700px)': { // 'sm' breakpoint
-      fontSize: '5vw',
+      fontSize: '1.5rem',
     },
     }}
   >
@@ -388,7 +389,7 @@ function PageLanding() {
           elevation={3}
           sx={{
             padding: '20px',      
-            maxWidth: Is1200? '60%':(Is900? '80%':'90%'),   
+            maxWidth: Is900? '80': (Is1200? '60%':'80%'),   
             display: 'flex',
             flexDirection: { xs: 'column', lg: 'row' }, 
             backgroundColor: '#F9F9ED',

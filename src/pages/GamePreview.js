@@ -364,7 +364,7 @@ const GamePreview =({ Questions,settings}) =>{
               
              
       <div className="App">
-          <div className="wheel-container" style={{ position: 'relative', width: '300px', height: '300px' }}>
+          <div className="wheel-container" style={{ position: 'relative', width: '40vh', height: '40vh' }}>
           <span id="selector" style={{ position: 'absolute', top: '50%', left: '-15px', transform: 'translateY(-50%)' }}>
                <img src={arrow}/>
         </span>
@@ -424,7 +424,7 @@ const GamePreview =({ Questions,settings}) =>{
       </Box>
 
     </Box>
-    <Box sx={{background: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9))`,color:'FFFFFF',borderRadius: '10px', float:'top'}}>
+    <Box sx={{background: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9))`,color:'FFFFFF',borderRadius: '10px', height:'45vh',float:'top'}}>
     
       {selectedQuestion ? (
         <>
@@ -434,25 +434,28 @@ const GamePreview =({ Questions,settings}) =>{
           <Box
         sx={{
           display: 'grid',
-          gridTemplateColumns: `repeat(${selectedQuestion.answers.length}, 1fr)`,
+          //gridTemplateColumns: `repeat(${selectedQuestion.answers.length}, 1fr)`,
+          gridTemplateColumns: `repeat(${selectedQuestion.answers.some(answer => answer.image ) ? 2 : 1}, 1fr)`,
+          justifyContent: 'center', // Center horizontally
+
           gap: '10px',
-          display: 'flex',
-      flexDirection: 'column', 
-          marginTop: '20px',
+         
+          marginTop: '10px',
           padding:'20px'
         }}
       >
         {selectedQuestion.answers.map((answer, index) => (
-          <Button
-            key={index}
+          <Box key={index} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop:'-10px' }}>
+            <Button
             variant="contained"
             onClick={() => handleAnswerSubmit(index)}
             sx={{
               backgroundColor:
                 index === 0 ? '#ffb3b3' : index === 1 ? '#b3ffcc' : index === 2 ? '#ffffb3' : '#e6e6e6',
               color: '#333',
-              padding: '10px',
+              // padding: '10px',
               fontWeight: 'bold',
+              marginBottom: '10px',
               fontSize: '18px',
               borderRadius: '15px',
               width: '100%',
@@ -463,8 +466,17 @@ const GamePreview =({ Questions,settings}) =>{
               },
             }}
           >
-            {answer.text}
+            {answer.image ? ( // Check if image exists
+              <img
+                src={answer.image}
+                alt={`Answer ${index + 1}`}
+                style={{ width: '15vh', height: '15vh', borderRadius: '10px' }}
+              />
+            ) : answer.text}
+            
           </Button>
+            
+          </Box>
         ))}
       </Box>
          
