@@ -1,14 +1,27 @@
 {
   "files": {
-    "main.css": "/static/css/main.57ea1e1c.css",
-    "main.js": "/static/js/main.d9982909.js",
+    "main.css": "/static/css/main.64ed2e52.css",
+    "main.js": "/static/js/main.448a1e8b.js",
     "static/js/453.114dea8c.chunk.js": "/static/js/453.114dea8c.chunk.js",
+    "static/media/Camel.png": "/static/media/Camel.aecfd7fd627c08394617.png",
     "static/media/boy.png": "/static/media/boy.5af81e1c0a0f08f38d70.png",
+    "static/media/cactus.png": "/static/media/cactus.9b8562a6bf037e921768.png",
     "static/media/girl.png": "/static/media/girl.8d4d85d16ee4984f6b75.png",
+    "static/media/celebration.gif": "/static/media/celebration.5f54a2ab67f9ba9d14b9.gif",
     "static/media/sample.mp4": "/static/media/sample.36624c5974f9cf01977e.mp4",
+    "static/media/countdown.wav": "/static/media/countdown.f89c5fa1380233c226e7.wav",
     "static/media/backgroundM.png": "/static/media/backgroundM.2d1dbcfef0237c93d763.png",
     "static/media/sampleAr.mp4": "/static/media/sampleAr.704d64642d4d7624819f.mp4",
-    "static/media/dessert.png": "/static/media/dessert.c2a0269bad32fb258887.png",
+    "static/media/starter.wav": "/static/media/starter.d9f80208a6c23c85cca5.wav",
+    "static/media/output.webm": "/static/media/output.b8ca75a653619a4b3c72.webm",
+    "static/media/wheelSpin.wav": "/static/media/wheelSpin.59f869b5a72ce2b40c40.wav",
+    "static/media/celebration.wav": "/static/media/celebration.9b5b1a6223e1057f8898.wav",
+    "static/media/newQuestion.wav": "/static/media/newQuestion.1dc91647b2c5bfbacd4c.wav",
+    "static/media/correctAnswer.wav": "/static/media/correctAnswer.1936d44856522cdf9698.wav",
+    "static/media/Upper.png": "/static/media/Upper.dbc79c53f66742ebd545.png",
+    "static/media/dessert.png": "/static/media/dessert.4a716bc1a87ad0617a6f.png",
+    "static/media/wrongAnswer.wav": "/static/media/wrongAnswer.57b82f6f23b3142acf09.wav",
+    "static/media/lowerbg.png": "/static/media/lowerbg.b2b291b2cd04ec86056f.png",
     "static/media/Knar.png": "/static/media/Knar.a925a8702c1e14a36123.png",
     "static/media/story.png": "/static/media/story.59e448e5db4fc84522a2.png",
     "static/media/Logo2.png": "/static/media/Logo2.fe8244427be8a1386018.png",
@@ -30,12 +43,12 @@
     "static/media/quicksand-vietnamese-400-normal.woff": "/static/media/quicksand-vietnamese-400-normal.4cdf7327385e7acd7f51.woff",
     "static/media/quicksand-vietnamese-400-normal.woff2": "/static/media/quicksand-vietnamese-400-normal.cba54407c8810c1dc7c0.woff2",
     "index.html": "/index.html",
-    "main.57ea1e1c.css.map": "/static/css/main.57ea1e1c.css.map",
-    "main.d9982909.js.map": "/static/js/main.d9982909.js.map",
+    "main.64ed2e52.css.map": "/static/css/main.64ed2e52.css.map",
+    "main.448a1e8b.js.map": "/static/js/main.448a1e8b.js.map",
     "453.114dea8c.chunk.js.map": "/static/js/453.114dea8c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.57ea1e1c.css",
-    "static/js/main.d9982909.js"
+    "static/css/main.64ed2e52.css",
+    "static/js/main.448a1e8b.js"
   ]
 }
