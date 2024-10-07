@@ -18,7 +18,8 @@ import Dashboard from "./pages/Dashboard"
 import { useTranslation } from 'react-i18next';
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
-
+import GameChoose from "./pages/GameChoose";
+import PlayGame from "./pages/PlayGame";
 function App() {
   const { i18n } = useTranslation();
   useEffect(() => {
@@ -58,9 +59,11 @@ function App() {
     <Route path="/contact" component={ContactUs} />
     <Route path="/zoom" component={Zoom} />
     <Route path="/Games" component={Games} />
+    <Route path="/GameSelect" component={GameChoose} />
+    <Route path="/PlayGame" component={PlayGame} />
     <Route path="/Login" component={Login} />
     <Route path="/signup" component={Signup} />
-    <Route path="/game" component={GamePage} />
+    <Route path="/createGame" component={GamePage} />
     <Route path="/#" component={Dashboard} /> 
       <Footer/>
     </Router>

@@ -314,7 +314,6 @@ const GamePreview =({ Questions,settings}) =>{
   const handleNext = async () => {
     const gameId = await postGame(settings);
     for (const question of questions) {
-      console.log({ text: question.title, answers: question.answers,correctAnswerIndex : question.correctAnswerIndex })
       await postQuestion({ text: question.title, answers: question.answers,correctAnswerIndex : question.correctAnswerIndex }, gameId);
 
     }

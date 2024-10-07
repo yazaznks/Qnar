@@ -28,7 +28,7 @@
     "HeaderTop": "Engage Students Like Never Before with Fun and Educational Games Tailored to Your Curriculum",
     "buttonJoin": "Join us now!",
     "MissOut": "Don’t Miss Out!",
-    "community": "our community to receive exclusive updates and early access to our groundbreaking educational gaming platform.",
+    "community": "Join our community to receive exclusive updates and early access to our groundbreaking educational gaming platform.",
     "Email": "Enter your email",
     "Submit": "Submit",
     "HowTo": "How to Play!",
@@ -54,6 +54,28 @@
     "subscribed": "You will be updated with our latest educational games",
     "msg": "Thank you for your message, we will get back to you as soon as possible",
     "close":"close",
-    "updates":"Write your email so you can join us as soon as we are up and running"
+    "updates":"Write your email so you can join us as soon as we are up and running",
+
+
+    "comment3": "//////////////////////////////////   This is the Game Content  ////////////////////////////////////////////////////",
+    "SpinningH1": "Spinning wheel quiz",
+    "SpinningH2":"Create a spinning wheel with random multiple choice questions for your audience.",
+    "content": "Add Content",
+    "CTitle": "*Activity title",
+    "CDescription": "Description",
+    "CQuestion": "*Add questions",
+    "CAddTitle": "Add title",
+    "CAddDescription": "Add description",
+    "CAddQuestion": "Add question",
+    "CAddAnswer": "Add answer",
+    "CQ": "Q",
+    "addA": "Add more answers",
+    "addQ": "Add more questions",
+    "Next": "Next",
+    "warning": "Warning",
+    "least2": "Each question must have at least 2 answers. You cannot delete an answer if there are only two remaining.",
+    "max4": " Each question must have at most 4 answers. You cannot add more.",
+    "ok": "ok"
+
 
 }

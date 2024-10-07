@@ -89,7 +89,7 @@ function Header() {
                 <Button onClick={() => setLocation('/#')} sx={{ color: location === '/features' ? '#EB8576' : '#3B5D44' , fontWeight:'bold' }}>
                 {t('Features')} 
                 </Button>
-                <Button onClick={() => setLocation('/#')} sx={{ color: location === '/Games' ? '#EB8576' : '#3B5D44' , fontWeight:'bold' }}>
+                <Button onClick={() => setLocation('/games')} sx={{ color: location === '/Games' ? '#EB8576' : '#3B5D44' , fontWeight:'bold' }}>
                 {t('Games')}
                 </Button>
                 <IconButton

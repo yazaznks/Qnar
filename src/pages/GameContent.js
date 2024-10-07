@@ -1,23 +1,34 @@
 import React, { useState } from 'react';
-import { Paper, TextField, Button, IconButton, Radio, FormControlLabel, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
+import { Paper, TextField,FormControl, FormLabel, RadioGroup, Button, IconButton, Radio, Grid,FormControlLabel, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ImageIcon from '@mui/icons-material/Image';
-
+import mainIcon from '../Assets/spinIcon.png'
+import { useTranslation } from 'react-i18next';
 const GameContent = ({ Questions, SetQuestions,settings, setSettings, onNext }) => {
     const [questions, setQuestions] = useState([{ title: '', answers: [{ text: '', image: null }, { text: '', image: null }], correctAnswerIndex: 0 }]);
+
     const [deleteWarningOpen, setDeleteWarningOpen] = useState(false);
+    const [deleteAdd, setDeleteAdd]= useState(0)
     const [GameTitle, setGameTitle]= useState('')
-    
+    const [answerType, setAnswerType] = useState('word');
     const [description, setDescription] = useState('');
+    const {t, i18n} = useTranslation();
+
     const addQuestion = () => {
         setQuestions([...questions, { title: '', answers: [{ text: '', image: null }, { text: '', image: null }], correctAnswerIndex: 0 }]);
     };
 
     const addAnswer = (qIndex) => {
         const newQuestions = [...questions];
-        newQuestions[qIndex].answers.push({ text: '', image: null });
-        setQuestions(newQuestions);
+        if (newQuestions[qIndex].answers.length < 4) {
+            newQuestions[qIndex].answers.push({ text: '', image: null });
+            setQuestions(newQuestions);
+        } else {
+            setDeleteAdd(1);
+            setDeleteWarningOpen(true);
+        }
+        
     };
 
     const handleQuestionChange = (index, value) => {
@@ -48,6 +59,7 @@ const GameContent = ({ Questions, SetQuestions,settings, setSettings, onNext }) 
             }
             setQuestions(newQuestions);
         } else {
+            setDeleteAdd(0);
             setDeleteWarningOpen(true);
         }
     };
@@ -106,92 +118,163 @@ const GameContent = ({ Questions, SetQuestions,settings, setSettings, onNext }) 
         onNext();
     };
     return (
-        <div style={{ padding: '20px',marginTop: 4, marginLeft: 20, marginRight:20, }}>
+        <div style={{  backgroundColor: '#CFE7D5' ,color :'#4B7857' }}>
             {/* Game Icon and Description */}
             <div style={{ textAlign: 'center', marginBottom: '20px' }}>
-                <img src="/path/to/game-icon.png" alt="Game Icon" style={{ width: '100px' }} />
-                <p>Describe your game here...</p>
+                <img src={mainIcon} alt="Game Icon" style={{ width: '20vw', height: 'auto', marginTop:'20px' }} />
+                <Typography  variant="h3" style={{ fontWeight:'bold'}}gutterBottom>{t('SpinningH1')}</Typography>
+                <Typography variant="h6">{t('SpinningH2')}</Typography>
             </div>
 
             {/* Add Content Section */}
-            <Paper style={{ padding: '20px', marginBottom: '20px', marginLeft: 20, marginRight:20, }}>
-                <h2>Add Content</h2>
-
-                <TextField label="Activity Title" fullWidth margin="normal" value={GameTitle}
+            <Paper style={{ padding: '20px', marginBottom: '20px', marginLeft: 20, marginRight:20 ,color :'#4B7857', fontWeight:'bold'}}>
+              <Typography variant= "h2"style={{ textAlign: 'center',fontWeight:'bold' }} >{t('Content')}</Typography>
+            
+                <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: '-8px' }}>
+  {t('CTitle')} {/* Title text */}
+</Typography>
+                <TextField label={t('CAddTitle')} fullWidth margin="normal" value={GameTitle}
                 onChange={handleTitleChange}/>
-                <TextField label="Add Description" fullWidth margin="normal"  value={description}
+                <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: '-8px' }}>
+  {t('CDescription')} {/* Title text */}
+</Typography>
+                <TextField label={t('CAddDescription')} fullWidth margin="normal"  value={description}
                 onChange={(e) => setDescription(e.target.value)}/>
+<Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: '-8px' }}>
+  {t('CQuestion')} {/* Title text */}
+</Typography>
+{questions.map((question, qIndex) => (
+  <div key={question.id} style={{ marginBottom: '20px' }}>
+    <Grid container spacing={2}>
+      {/* Question Label (e.g., Q1) */}
+      <Grid item xs={"auto"}>
+        <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+          Q{qIndex + 1}
+        </Typography>
+      </Grid>
 
-                {questions.map((question, qIndex) => (
-                    <div key={question.id}>
-                        <TextField
-                            label={`Q${qIndex + 1}`}
-                            fullWidth
-                            margin="normal"
-                            value={question.title}
-                            onChange={(e) => handleQuestionChange(qIndex, e.target.value)}
-                        />
-                        {question.answers.map((answer, aIndex) => (
-                            <div key={aIndex} style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-                                <TextField
-                                    label={`Answer ${String.fromCharCode(65 + aIndex)}`}
-                                    fullWidth
-                                    margin="normal"
-                                    value={answer.text}
-                                    onChange={(e) => handleAnswerChange(qIndex, aIndex, e.target.value)}
-                                    style={{ marginRight: '10px' }}
-                                />
-                                <IconButton
-                                    color="primary"
-                                    component="label"
-                                    style={{ marginRight: '10px' }}
-                                >
-                                    <ImageIcon />
-                                    <input
-                                        type="file"
-                                        hidden
-                                        accept="image/*"
-                                        onChange={(e) => handleImageUpload(qIndex, aIndex, e)}
-                                    />
-                                </IconButton>
-                                {answer.image && <img src={answer.image} alt="Answer" style={{ width: '200px', height: '200px', marginRight: '10px' }} />}
-                                <FormControlLabel
-                                    control={
-                                        <Radio
-                                            checked={question.correctAnswerIndex === aIndex}
-                                            onChange={() => handleCorrectAnswerChange(qIndex, aIndex)}
-                                        />
-                                    }
-                                    label="Correct"
-                                />
-                                <IconButton
-                                    onClick={() => deleteAnswer(qIndex, aIndex)}
-                                    color="secondary"
-                                    aria-label="delete"
-                                >
-                                    <DeleteIcon />
-                                </IconButton>
-                            </div>
-                        ))}
-                        <Button
+      {/* Question TextField */}
+      <Grid item xs={11}>
+        <TextField
+          fullWidth
+          label={t('CAddQuestion')}
+          value={question.title}
+          onChange={(e) => handleQuestionChange(qIndex, e.target.value)}
+        />
+      </Grid>
+    </Grid>
+
+{/* Radio buttons to choose between Word and Picture answers */}
+<FormControl component="fieldset" style={{ marginLeft: '40px', marginTop: '20px' }}>
+  <FormLabel component="legend">Answer Type</FormLabel>
+  <RadioGroup
+    row
+    value={question.answerType} // Assume question has an 'answerType' field ('word' or 'picture')
+    onChange={(e) => setAnswerType(e.target.value)} // Handle answer type chang
+  >
+    <FormControlLabel value="word" control={<Radio />} label="Word Answers" />
+    <FormControlLabel value="picture" control={<Radio />} label="Picture Answers" />
+  </RadioGroup>
+</FormControl>
+
+{/* Answers for the Question */}
+<Grid container spacing={2} style={{ marginLeft: '40px', marginTop: '10px' }}>
+  {question.answers.map((answer, aIndex) => (
+    <Grid container key={aIndex} alignItems="center" spacing={2}>
+      
+      {/* Answer Label (A, B, C, etc.) */}
+      <Grid item xs={"auto"}>
+        <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
+          {String.fromCharCode(65 + aIndex)}.
+        </Typography>
+      </Grid>
+
+      {/* Conditional Rendering: Show text field for word answers or image upload for picture answers */}
+      {answerType === 'word' ? (
+        <Grid item xs={9}>
+          {/* Word Answer TextField */}
+          <TextField
+            fullWidth
+            margin="normal"
+            label={t('CAddAnswer')}
+            value={answer.text}
+            onChange={(e) => handleAnswerChange(qIndex, aIndex, e.target.value)}
+          />
+        </Grid>
+      ) : (
+        
+        <Grid item xs={"auto"}>
+          {/* Picture Answer Image Upload */}
+          <Grid item xs={"auto"}>
+          <IconButton color="primary" component="label">
+          <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+          Add Pictures
+        </Typography>
+            <ImageIcon />
+            <input
+              type="file"
+              hidden
+              accept="image/*"
+              onChange={(e) => handleImageUpload(qIndex, aIndex, e)}
+            />
+          </IconButton>
+          </Grid>
+          
+        </Grid>
+      )}
+{/* Display the uploaded image */}
+{answer.image && (
+            <Grid item xs={4}>
+                
+              <img
+                src={answer.image}
+                alt="Answer"
+                style={{ width: '100px', height: '100px', objectFit: 'fit', borderRadius: '8px' }}
+              />
+            </Grid>
+          )}
+      {/* Correct Answer Radio Button */}
+      <Grid item xs={"auto"}>
+        <FormControlLabel
+          control={
+            <Radio
+              checked={question.correctAnswerIndex === aIndex}
+              onChange={() => handleCorrectAnswerChange(qIndex, aIndex)}
+            />
+          }
+          label="Correct"
+        />
+      </Grid>
+
+      {/* Delete Answer Button */}
+      <Grid item xs={"auto"}>
+        <IconButton onClick={() => deleteAnswer(qIndex, aIndex)} color="secondary" aria-label="delete">
+          <DeleteIcon />
+        </IconButton>
+      </Grid>
+    </Grid>
+  ))}
+  <Button
                             startIcon={<AddCircleIcon />}
                             onClick={() => addAnswer(qIndex)}
-                            style={{ marginTop: '10px', marginBottom: '20px' }}
-                        >
-                            Add More Answers
+                            style={{ marginTop: '10px', marginBottom: '20px' }}>
+                            {t('addA')}
                         </Button>
-                    </div>
-                ))}
+</Grid>
+  </div>
+))}
+
+   
 
                 <Button startIcon={<AddCircleIcon />} onClick={addQuestion}>
-                    Add More Questions
+                {t('addQ')}
                 </Button>
             </Paper>
 
             {/* Next Button */}
             <div style={{ textAlign: 'right' }}>
                 <Button variant="contained" color="primary" onClick={handleNext}>
-                    Next
+                {t('Next')}
                 </Button>
             </div>
 
@@ -200,15 +283,21 @@ const GameContent = ({ Questions, SetQuestions,settings, setSettings, onNext }) 
                 open={deleteWarningOpen}
                 onClose={handleCloseDeleteWarning}
             >
-                <DialogTitle>Warning</DialogTitle>
+                <DialogTitle>{t('warning')}</DialogTitle>
                 <DialogContent>
+                {deleteAdd === 0?
                     <DialogContentText>
-                        Each question must have at least two answers. You cannot delete an answer if there are only two remaining.
-                    </DialogContentText>
+                        {t('least2')}
+                        
+                    </DialogContentText>:
+                    <DialogContentText>
+                        {t('max4')}
+                   
+                </DialogContentText>}
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleCloseDeleteWarning} color="primary">
-                        OK
+                    {t('ok')}
                     </Button>
                 </DialogActions>
             </Dialog>

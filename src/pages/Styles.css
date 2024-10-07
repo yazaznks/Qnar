@@ -1,3 +1,120 @@
+.correct {
+  border: 3px solid green; /* Green border for correct answer */
+  animation: zoom-in 0.5s forwards;
+}
+
+.incorrect {
+  border: 3px solid red; /* Red border for incorrect answer */
+  animation: shake-vertical 0.5s forwards;
+}
+
+@keyframes zoom-in {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+@keyframes shake-tilt {
+  0% {
+    transform: rotate(0deg); /* No rotation */
+  }
+  25% {
+    transform: rotate(-5deg); /* Tilt left */
+  }
+  50% {
+    transform: rotate(5deg); /* Tilt right */
+  }
+  75% {
+    transform: rotate(-5deg); /* Tilt left */
+  }
+  100% {
+    transform: rotate(0deg); /* Back to normal */
+  }
+}
+
+/* CSS for the main container */
+.main-container {
+  position: relative; /* For absolute positioning of child elements */
+  width: 100%; /* Full width */
+  height: 100vh; /* Full viewport height */
+  overflow: hidden; /* Hide overflowing parts of the background image */
+}
+
+/* CSS for the background image */
+.background-image {
+  /* background-image: url('your-background-image.jpg'); Your main background image */
+  background-size: cover; /* Cover the whole container */
+  background-position: center; /* Center the image */
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  transition: transform 2s ease; /* Smooth transition for scaling */
+}
+
+/* Class for zooming the background image */
+.background-image.zoom {
+  transform: scale(1.05); /* Adjust the scale as needed */
+  transform-origin: center; /* Zoom from the center */
+}
+
+.side-image {
+  position: absolute;
+  width: 30vw;
+  height: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: transform 2s, opacity 2s;
+}
+
+.left-image {
+  left: 0%;
+}
+
+.right-image {
+  top: 60%;
+  right: 0%;
+}
+
+.wheel-container {
+  opacity: 0; /* Initially hidden */
+  transform: scale(0.5); /* Initially zoomed out */
+  transition: opacity 2s ease, transform 2s ease; /* Animation for appearance */
+}
+
+/* CSS for the side images' movement and fade out */
+.side-image.animate {
+  transform: translate(0, 100vh) scale(1.2); /* Move down and zoom in */
+  opacity: 0; /* Fade out */
+  transition: transform 2s ease-in, opacity 2s ease-in;
+}
+
+/* CSS for the wheel to zoom in and fade into view */
+.wheel-container.show {
+  opacity: 1; /* Make it visible */
+  transform: scale(1); /* Zoom in from 0.5 to 1 */
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 2s ease-out; /* Adjust duration as needed */
+}
+
+
+
+
+
+
+
+
+
+
+
 .background-section {
   width: 100%;
   height: 100%; /* Adjusts the height to 33% of the viewport height */
