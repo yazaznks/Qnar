@@ -135,7 +135,7 @@ const PlayGame =() =>{
   const [animateImages, setAnimateImages] = useState(false); // Control the animation of images
 
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [showGif, setShowGif] = useState(true); // State to control GIF visibility
+
   const [start, setstart] = useState(false);
   const [finish, setFinish] = useState(false);
   const [videoVisible, setVideoVisible] = useState(false);
@@ -242,7 +242,7 @@ const containerRef = useRef(null);
 
         setAnimateImages(true); // Start animating side images
         setVideoVisible(false);
-        setShowGif(false);
+
       }, 5000);
 
     // Show the wheel after 4 seconds

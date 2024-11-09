@@ -8,6 +8,7 @@ import WarningIcon from '@mui/icons-material/Warning';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Doha from '../../Assets/Doha.jpg'
+import boat from '../../Assets/boat.png'
 import soundIcon from '../../Assets/sound.png'
 import menu from '../../Assets/menu.png'
 import timer from '../../Assets/timer.png'
@@ -120,12 +121,7 @@ function ClickPick() {
       });
     }
   };
-useEffect(() => {
-    if (isMobile) {
-      handleFullScreen();
-      //lockOrientation();
-    }
-  }, [isMobile]);
+
 
   ////////////////////////// timer /////////////////////////////
   useEffect(() => {
@@ -215,6 +211,25 @@ useEffect(() => {
     }
     setIsFullscreen(false);
   }};
+  const handleFullScreenMobile = () => {
+    const elem = document.documentElement; // Target the whole document for fullscreen
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.mozRequestFullScreen) { // Firefox
+      elem.mozRequestFullScreen();
+    } else if (elem.webkitRequestFullscreen) { // Safari
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { // IE/Edge
+      elem.msRequestFullscreen();
+    }
+  };
+
+  useEffect(() => {
+    const isMobile = /Mobi|Android/i.test(navigator.userAgent); // Detect mobile
+    if (isMobile) {
+      handleFullScreenMobile(); // Automatically call fullscreen if on mobile
+    }
+  }, []);
 
   return (
     
@@ -399,8 +414,8 @@ Ai generated
     }}>
         <Typography variant="h6" sx={{ fontWeight: 'bold'}}>Score: <span style={{ color: '#EB8576' }}>{score}</span></Typography>
         </Box>
-        {isMobile? <></>:
-        <img src={isFullscreen? min: max} alt="button" onClick={handleFullScreen}style={{ cursor: 'pointer', width:'3vw'}}/>}
+       
+        <img src={isFullscreen? min: max} alt="button" onClick={handleFullScreen}style={{ cursor: 'pointer', width:'3vw'}}/>
         </Box>
       </Box>
 
