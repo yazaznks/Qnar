@@ -113,9 +113,17 @@ function ClickPick() {
     
     // Start the timer
   };
+  const lockOrientation = () => {
+    if (window.screen.orientation && window.screen.orientation.lock) {
+      window.screen.orientation.lock('landscape').catch((error) => {
+        console.warn("Orientation lock not supported:", error);
+      });
+    }
+  };
 useEffect(() => {
     if (isMobile) {
       handleFullScreen();
+      lockOrientation();
     }
   }, [isMobile]);
 
@@ -300,8 +308,9 @@ Ai generated
   />
 
   {/* Maximize Icon - Positioned Bottom Right */}
+  
  <img
-    src={max}
+    src={isFullscreen? min : max}
     alt="Maximize"
     style={{
       position: 'absolute',
@@ -311,6 +320,7 @@ Ai generated
       height: '60px', // Adjust size as needed
       cursor: 'pointer',  // Optional: pointer cursor for interactivity
     }}
+    onClick={handleFullScreen}
   /> 
 
 
