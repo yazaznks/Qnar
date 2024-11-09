@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.2b529c0f.css",
-    "main.js": "/static/js/main.f8d84316.js",
+    "main.js": "/static/js/main.efe85ec7.js",
     "static/js/453.114dea8c.chunk.js": "/static/js/453.114dea8c.chunk.js",
     "static/media/Camel.png": "/static/media/Camel.aecfd7fd627c08394617.png",
     "static/media/boy.png": "/static/media/boy.5af81e1c0a0f08f38d70.png",
@@ -17,6 +17,7 @@
     "static/media/wheelSpin.wav": "/static/media/wheelSpin.59f869b5a72ce2b40c40.wav",
     "static/media/celebration.wav": "/static/media/celebration.9b5b1a6223e1057f8898.wav",
     "static/media/newQuestion.wav": "/static/media/newQuestion.1dc91647b2c5bfbacd4c.wav",
+    "static/media/boat.png": "/static/media/boat.6fba4c5bbef34a64bcd2.png",
     "static/media/correctAnswer.wav": "/static/media/correctAnswer.1936d44856522cdf9698.wav",
     "static/media/dessert.png": "/static/media/dessert.4a716bc1a87ad0617a6f.png",
     "static/media/Upper.png": "/static/media/Upper.4c4fead154335807b056.png",
@@ -46,11 +47,11 @@
     "static/media/quicksand-vietnamese-400-normal.woff2": "/static/media/quicksand-vietnamese-400-normal.cba54407c8810c1dc7c0.woff2",
     "index.html": "/index.html",
     "main.2b529c0f.css.map": "/static/css/main.2b529c0f.css.map",
-    "main.f8d84316.js.map": "/static/js/main.f8d84316.js.map",
+    "main.efe85ec7.js.map": "/static/js/main.efe85ec7.js.map",
     "453.114dea8c.chunk.js.map": "/static/js/453.114dea8c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.2b529c0f.css",
-    "static/js/main.f8d84316.js"
+    "static/js/main.efe85ec7.js"
   ]
 }
