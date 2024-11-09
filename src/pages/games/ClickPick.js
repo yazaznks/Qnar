@@ -123,7 +123,7 @@ function ClickPick() {
 useEffect(() => {
     if (isMobile) {
       handleFullScreen();
-      lockOrientation();
+      //lockOrientation();
     }
   }, [isMobile]);
 
@@ -220,7 +220,7 @@ useEffect(() => {
     
     <Box
       ref={containerRef}
-      className={isMobile? 'FSbg FSrotate': isFullscreen? "FSbg": ''}
+      className={isMobile? 'FSbg': isFullscreen? "FSbg": ''}
       sx={{
         
         
