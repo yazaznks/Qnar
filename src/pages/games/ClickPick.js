@@ -220,7 +220,7 @@ useEffect(() => {
     
     <Box
       ref={containerRef}
-      className={isMobile? 'FSBG FSrotate FSbg': isFullscreen? "FSbg": ''}
+      className={isMobile? 'FSbg FSrotate': isFullscreen? "FSbg": ''}
       sx={{
         
         
