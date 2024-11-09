@@ -20,6 +20,7 @@ import backBottom from '../../Assets/lowerbg.png'
 import settingsIcon from '../../Assets/settings.png'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import counting3 from '../../Assets/output.webm'
+import zIndex from '@mui/material/styles/zIndex';
 
 const questionsData = [
   {
@@ -76,6 +77,8 @@ function ClickPick() {
   const [finish, setFinish] = useState(false);
   const [showGame, setShowGame] = useState(false);
   const [videoVisible, setVideoVisible] = useState(false);
+  const [animateImages, setAnimateImages] = useState(false); // Control the animation of images
+
   const videoRef = useRef(null);
   const containerRef = useRef(null);
   ////////////////////////// start /////////////////////////////
@@ -91,22 +94,26 @@ function ClickPick() {
     if (videoRef.current) {
 
 
+      setTimeout(() => {
         videoRef.current.play();
-    }
+        //playSound(1);
+      }, 1000);}
+
+    
 
       //playSound(0);
-        setVideoVisible(true);
+      setVideoVisible(true);
 
    setTimeout(() => {
 
-       // setAnimateImages(true); // Start animating side images
+        setAnimateImages(true); // Start animating side images
         setVideoVisible(false);
-        setShowGame(true);
+        
       }, 4000);
 
     // Show the wheel after 4 seconds
     setTimeout(() => {
-      
+      setShowGame(true);
       setTime(10);
       setAnimationKey((prev) => prev + 1);
       setTimerActive(true);
@@ -224,12 +231,12 @@ function ClickPick() {
     }
   };
 
-  useEffect(() => {
-    const isMobile = /Mobi|Android/i.test(navigator.userAgent); // Detect mobile
-    if (isMobile) {
-      handleFullScreenMobile(); // Automatically call fullscreen if on mobile
-    }
-  }, []);
+  // useEffect(() => {
+  //   const isMobile = /Mobi|Android/i.test(navigator.userAgent); // Detect mobile
+  //   if (isMobile) {
+  //     handleFullScreenMobile(); // Automatically call fullscreen if on mobile
+  //   }
+  // }, []);
 
   return (
     
@@ -249,13 +256,15 @@ function ClickPick() {
         position: 'relative',
         bgcolor: '#f0f4f8',
         overflow: 'hidden',
-        backgroundImage: start ? `linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),url(${Doha})`: `url(${Doha})`,  // Adjust background image path
-        backgroundSize: 'cover',
+        
+        backgroundImage: showGame ? `linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),url(${Doha})`: `url(${Doha})`,  // Adjust background image path
+        backgroundSize: '115%', 
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
-      }}
+        transition: 'background-size 0.5s ease-in-out, background-image 0.5s ease-in-out',      }}
     >
       {/*///////////////////////////////////////////////////////////////////////////////////////////////////////////  */}
+      <img src={boat} className={`side-image-boat ${animateImages ? 'animateLeft' : ''}`} sx={{zIndex:98,}} alt="Right Image" />
       <Box
   
   sx={{
@@ -335,7 +344,7 @@ Ai generated
       height: '60px', // Adjust size as needed
       cursor: 'pointer',  // Optional: pointer cursor for interactivity
     }}
-    onClick={handleFullScreen}
+    onClick={isMobile? handleFullScreenMobile: handleFullScreen}
   /> 
 
 
