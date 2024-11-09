@@ -315,10 +315,7 @@ const GamePreview =({ Questions,settings}) =>{
     const gameId = await postGame(settings);
     for (const question of questions) {
       await postQuestion({ text: question.title, answers: question.answers,correctAnswerIndex : question.correctAnswerIndex }, gameId);
-
     }
-
-
   }
  
     return (<Box sx={{ display: 'flex', padding: '20px', justifyContent: 'center' }}>

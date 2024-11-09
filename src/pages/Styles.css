@@ -50,7 +50,7 @@
 /* CSS for the background image */
 .background-image {
   /* background-image: url('your-background-image.jpg'); Your main background image */
-  background-size: cover; /* Cover the whole container */
+  background-size: cover; /* Cover the whole dc */
   background-position: center; /* Center the image */
   width: 100%; /* Full width */
   height: 100%; /* Full height */
@@ -81,10 +81,11 @@
   right: 0%;
 }
 
-.wheel-container {
+.game-container {
   opacity: 0; /* Initially hidden */
   transform: scale(0.5); /* Initially zoomed out */
   transition: opacity 2s ease, transform 2s ease; /* Animation for appearance */
+  display: none;
 }
 
 /* CSS for the side images' movement and fade out */
@@ -95,7 +96,7 @@
 }
 
 /* CSS for the wheel to zoom in and fade into view */
-.wheel-container.show {
+.game-container.show {
   opacity: 1; /* Make it visible */
   transform: scale(1); /* Zoom in from 0.5 to 1 */
 }
@@ -104,11 +105,75 @@
   opacity: 0;
   transition: opacity 2s ease-out; /* Adjust duration as needed */
 }
+.FSrotate {
+  transform: rotate(90deg) translateY(-100%);
+  transform-origin:top left;
+}
+
+.FSbg {
+  
+  height: 100vw;
+  width: 100vh;
+}
+.FSMT{
+  margin-top: 3%;
+}
 
 
+/* clickpick timer */
+.green-to-white-wrapper {
+  flex-grow: 1;
+  
+  background-color: white; /* Base color */
+  position: relative;
+  overflow: hidden;
+  border: 3px solid #92590b; /* Green border */
+  border-radius: 10px; /* Rounded corners, if desired */
+  margin-right: 20px;
+ 
+}
+
+.green-to-white-overlay {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(
+    to right,
+    #66ff66, /* Darker green */
+    #99ff99 10%, /* Slightly lighter green */
+    #b3ffb3 20%, /* Medium light green */
+    #ccffcc 30%, /* Lighter green */
+    #e0ffe0 40%, /* Very light green */
+    #ccffcc 50%, /* Back to lighter green */
+    #b3ffb3 60%, /* Medium light green */
+    #99ff99 70%, /* Slightly lighter green */
+    #66ff66 80%, /* Darker green */
+    #99ff99 90%, /* Slightly lighter green */
+    #e0ffe0 100% /* Lightest green */
+    
+  );
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 7px; /* Inner border to match the outer one */
+  clip-path: inset(0 0 0 0);
+  animation: clipOverlay 10.5s linear forwards;
+  animation-play-state: running;
+}
 
 
+.green-to-white-overlay.paused {
+  animation-play-state: paused;
+}
 
+@keyframes clipOverlay {
+  0% {
+    clip-path: inset(0 0 0 0); /* Start full */
+  }
+  100% {
+    clip-path: inset(0 100% 0 0); /* End fully cut off from the right */
+  }
+}
 
 
 
@@ -319,8 +384,8 @@ left: 35vw;
 #selector {
 position: absolute;
 top: 43.4%;
-left: 0%;
-z-index: 3;
+left: 10%;
+z-index: 100;
 transform: rotate(0deg);
 }
 
@@ -359,38 +424,3 @@ border-bottom: 1px solid black;
 
 
 
-/* ///////////////////zoom page css ///////////// */
-
-.zoom-container {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: 100vh; /* Full height */
-}
-
-.background-video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  height: auto;
-  min-height: 100%; /* Ensures it covers the entire area */
-  min-width: 100%; /* Ensures it covers the entire area */
-  transform: translate(-50%, -50%);
-  object-fit: cover; /* Cover the container */
-  transition: transform 2s ease; /* Duration of the zoom effect */
-}
-
-.zoom-in {
-  transform: scale(2); /* Zoom effect */
-}
-
-.game-container {
-  position: relative;
-  opacity: 0; /* Initially hidden */
-  transition: opacity 1s ease; /* Fade in effect */
-}
-
-.game-container.visible {
-  opacity: 1; /* Fade in after zoom */
-}

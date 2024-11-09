@@ -3,6 +3,7 @@ import GameContent from './GameContent';
 import GameSettings from './GameSettings';
 import GamePreview from './GamePreview';
 import GameNavBar from './GameNavbar';
+
 // Import other sections when ready
 
 const GamePage = () => {

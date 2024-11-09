@@ -24,14 +24,16 @@ import wrongSound from '../Assets/sound/wrongAnswer.wav'
 import newQSound from '../Assets/sound/newQuestion.wav'
 import wheelSpinSound from '../Assets/sound/wheelSpin.wav'
 import starterSound from '../Assets/sound/starter.wav'
+
 import counting3 from '../Assets/output.webm'
+
 import Maximize  from "../Assets/maximize.png";
 import minimize from '../Assets/minimize.png'
 import backTop from '../Assets/Upper.png'
 import backBottom from '../Assets/lowerbg.png'
-import settingsIcon from '../Assets/sittings.png'
+import settingsIcon from '../Assets/settings.png'
 import celebrateBubbles from '../Assets/celebration.gif'
-
+import { useRoute } from 'wouter';
   // List of hardcoded questions with answers
 const PlayGame =() =>{
   const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(null);
@@ -40,6 +42,9 @@ const PlayGame =() =>{
   const [selectedQuestion, setSelectedQuestion] = useState(null);
 
   const [questions, setQuestions] = useState([{}]);
+  const [match, params] = useRoute('/PlayGame/:id'); // Use the same route pattern
+
+  const { id } = params; // Get the id from params
   const [questionsOG, setQuestionsOG] = useState([
     {
         "id": 6,
@@ -128,7 +133,7 @@ const PlayGame =() =>{
   const colors = ['#EB8576', '#4B7857', '#E6E444', '#81c3d7', '#4caf50'];
   const [showWheel, setShowWheel] = useState(false); // Control the appearance of the wheel
   const [animateImages, setAnimateImages] = useState(false); // Control the animation of images
-  const [showTimer, setShowTimer] = useState(true);
+
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showGif, setShowGif] = useState(true); // State to control GIF visibility
   const [start, setstart] = useState(false);
@@ -219,7 +224,7 @@ const containerRef = useRef(null);
     // Play video when the button is clicked
     setstart(true);
     setQuestions(questionsOG);
-    console.log(questionsOG)
+    console.log(questions)
     setFinish(false);
     setScore(0);
     setLives(5);
@@ -234,7 +239,7 @@ const containerRef = useRef(null);
         setVideoVisible(true);
 
    setTimeout(() => {
-        setShowTimer(false); // Hide the timer image after 3 seconds
+
         setAnimateImages(true); // Start animating side images
         setVideoVisible(false);
         setShowGif(false);
@@ -475,7 +480,7 @@ const containerRef = useRef(null);
       playSound(4);
       const newQuestions = questions.filter(q => q.title !== selectedQuestion.title);
       console.log(newQuestions);
-      setQuestions(newQuestions);
+      setQuestions(newQuestions)
       setScore(prevScore => prevScore  + (time * 100));
       await wait(2000);
       setSelectedAnswerIndex(null);
@@ -509,77 +514,78 @@ const containerRef = useRef(null);
 ////////////////////////////////////////////////////////////// API /////////////////////////////////////////////////////////////
 
 
-//   const GetGames = async () => {
-//     try {
-//       const response = await fetch('http://127.0.0.1:8000/api/games/{}', {
-//         method: 'GET',
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//       });
-//       const data = await response.json();
-//       console.log('Games:', data)
-//       return data; // Return the game ID for creating questions
-//     } catch (error) {
-//       console.error('Error posting game:', error);
-//     }
-//   };
+  const GetGame = async () => {
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/api/games/${id}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const data = await response.json();
+      console.log('Games:', data)
+      return data; // Return the game ID for creating questions
+    } catch (error) {
+      console.error('Error posting game:', error);
+    }
+  };
 
 
-//   const GetQuestions = async (gameId) => {
-//     try {
-//       const response = await fetch(`http://127.0.0.1:8000/api/questions/?game=${29}`, {
-//         method: 'GET',
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//       });
-//       const data = await response.json();
-//       console.log('Questions', data); // Use the data in your front-end logic
-//       return data;
-//     } catch (error) {
-//       console.error('Error fetching questions:', error);
-//     }
-//   };
+  const GetQuestions = async () => {
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/api/questions/?game=${id}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const data = await response.json();
+      console.log('Questions', data); // Use the data in your front-end logic
+      setQuestions(data)
+      return data;
+    } catch (error) {
+      console.error('Error fetching questions:', error);
+    }
+  };
 
-//   const deletequestions = async (gameId) => {
-//     try {
-//       const response = await fetch(`http://127.0.0.1:8000/api/questions/${9}/`, {
-//         method: 'DELETE',
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//       });
+  const deletequestions = async (gameId) => {
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/api/questions/${9}/`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
   
-//       if (response.ok) {
-//         console.log('Game deleted successfully');
-//       } else {
-//         console.error('Error deleting game');
-//       }
-//     } catch (error) {
-//       console.error('Error deleting game:', error);
-//     }
-//   };
-//   const updateQuestion = async (questionId, updatedFields) => {
-//     try {
-//       const response = await fetch(`http://127.0.0.1:8000/api/questions/${questionId}/`, {
-//         method: 'PATCH',  // or 'PUT' if you want a full update
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(updatedFields),  // Send the updated fields as JSON
-//       });
+      if (response.ok) {
+        console.log('Game deleted successfully');
+      } else {
+        console.error('Error deleting game');
+      }
+    } catch (error) {
+      console.error('Error deleting game:', error);
+    }
+  };
+  const updateQuestion = async (questionId, updatedFields) => {
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/api/questions/${questionId}/`, {
+        method: 'PATCH',  // or 'PUT' if you want a full update
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedFields),  // Send the updated fields as JSON
+      });
   
-//       if (response.ok) {
-//         const data = await response.json();
-//         console.log('Question updated successfully', data);
-//       } else {
-//         console.error('Error updating question', response.statusText);
-//       }
-//     } catch (error) {
-//       console.error('Error updating question:', error);
-//     }
-//   };
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Question updated successfully', data);
+      } else {
+        console.error('Error updating question', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error updating question:', error);
+    }
+  };
 
 
 
@@ -597,13 +603,15 @@ const containerRef = useRef(null);
 
   }
  
-    return (<Box ref={containerRef} sx={{ display: 'flex', padding: '20px', justifyContent: 'center', direction: 'ltr' }}>
+    return (
+    <Box ref={containerRef} sx={{ display: 'flex', padding: '20px', justifyContent: 'center', direction: 'ltr' }}>
        
       
       <Box sx={{width:'70%', textAlign: 'center' }}>
         
         
         <div className="main-container">
+          <p>{id}</p>
         <Box
   
   sx={{
@@ -620,7 +628,7 @@ const containerRef = useRef(null);
   }}
 >
 <Typography variant="h2" gutterBottom color={'white'}sx={{ whiteSpace: 'pre-line', marginTop: '10pxx'}}>
-مراجعة الخصائص الجسمية{"\n"}للكائنات الحية
+Ai generated
         </Typography>
 </Box>
 <Box
@@ -633,7 +641,7 @@ const containerRef = useRef(null);
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     opacity: start ? 0 : 1,
-    transform: start ? 'translateY(200%)' : 'translateY(100%)', // Move up off the screen
+    transform: start ? 'translateY(300%)' : 'translateY(100%)', // Move up off the screen
     transition: 'opacity 1s ease, transform 1s ease', 
     zIndex: 99 // Fade effect duration
   }}
@@ -742,7 +750,7 @@ const containerRef = useRef(null);
   />
     {/* Optional: Any content you want to add inside the overlay */}
   </Box>}
-          <Box  className={`wheel-container ${showWheel ? 'show' : ''}`} sx={{ position: 'relative', marginRight: '20px', width:'50%'}}>
+          <Box  className={`game-container ${showWheel ? 'show' : ''}`} sx={{ position: 'relative', marginRight: '20px', width:'50%'}}>
             
           <img src={sound} alt="button"
             //onClick={handleSound}
@@ -779,36 +787,53 @@ const containerRef = useRef(null);
             
       {questions.length > 0 &&(
               
-             
-      <div className="App">
-          <div  style={{ position: 'relative', width: '40vh', height: '40vh' }}>
-          <span id="selector" style={{ position: 'absolute', top: '50%', left: '-15px', transform: 'translateY(-50%)' }}>
-               <img src={arrow}/>
-        </span>
-        <canvas
-          id="wheel"
-          width="300"
-          height="300"
-          style={{
-              zIndex: 90,
-              transform: `rotate(${rotate}deg)`, // Add rotation transformation here
-              WebkitTransition: `-webkit-transform ${easeOut}s ease-out`,
-         
-  
-          }}
-        />
-      </div>
-       </div>
+              <Box
+              className="show"
+              sx={{
+                width: { xs: '60vw', sm: '40vw', md: '30vw' },
+                height: { xs: '60vw', sm: '40vw', md: '30vw' },
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                position: 'relative',
+              }}
+            >
+              <Box
+              id="selector"
+              sx={{
+                position: 'absolute',
+                top: '0%',
+                left: '0%', // Adjusts arrow position for responsiveness
+                transform: 'translateY(-70%)',
+                zIndex: 100,
+                width: { xs: '5vw', md: '3vw' }, // Adjusts arrow size for responsiveness
+              }}
+            >
+              <img src={arrow} alt="selector arrow" style={{ width: '70%', height: 'auto' }} />
+            </Box>
+          
+            {/* Canvas for the Wheel */}
+            <canvas
+              id="wheel"
+              width="300"
+              height="300"
+              style={{
+                width: '70%', // Makes canvas responsive to container
+                height: '70%',
+                zIndex: 90,
+                transform: `rotate(${rotate}deg)`,
+                transition: `transform ${easeOut}s ease-out`,
+              }}
+            />
+          </Box>
+        
               //////////////////////// end of wheel ///////////////////////
       )} 
       <Box sx={{ display: 'flex', justifyContent: 'center', padding: '20px' }}>
-      
-    </Box>
-
-    <Button
+      <Button
        onClick={() => {playSound(2);spin();}}
         variant="contained"
-        sx={{ zIndex: 1, marginBottom: '20px', backgroundColor: '#F3F27A', color: '#4B7857', float:'left', fontWeight:'bold' }}
+        sx={{ marginBottom: '20px', backgroundColor: '#F3F27A', color: '#4B7857', float:'left', fontWeight:'bold', zIndex: 10001}}
         disabled={isSpinning || questions.length === 0 || selectedQuestion != null }
         //
       >
@@ -816,17 +841,24 @@ const containerRef = useRef(null);
       </Button>
     </Box>
 
+    
+    </Box>
+
     {/*  //////scores / lives and questions on the right */}
-    <Box className={`wheel-container ${showWheel ? 'show' : ''}`}  sx={{ display: 'flex', flexDirection: 'column', width: '50%', textAlign: 'center' }}>
+    <Box className={`game-container ${showWheel ? 'show' : ''}`}  sx={{ display: 'flex', flexDirection: 'column', width: '50%', textAlign: 'center' }}>
     <img src={Maximize} onClick={handleFullscreen} style={{position:'absolute', cursor: 'pointer',right:'10px',top:'-70px', border: 'none',padding: '0',background: 'none', width:'3vw'}} />
 
-    <Box sx={{ display: 'flex', flexDirection: 'row',height: '20%',background: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9))`,color:'FFFFFF',borderRadius: '10px', marginBottom: '20px'}}>
+    <Box sx={{ display: 'flex', flexDirection: 'row',height: '20%',background: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9))`,color:'FFFFFF',borderRadius: '10px', marginBottom: '20px',
+      padding: { xs: '10px', sm: '20px' },
+      fontSize: { xs: '1rem', sm: '1.5rem', md: '2rem' }
+    }}>
       <Box sx={{width:'40%',display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-        <Typography style={{marginLeft:'5%',fontSize:'24px',color:'#3B5D44'}}>Score: </Typography>
-      <Typography style={{fontSize:'24px',color:'#EB8576'}}>{score}</Typography>
+        <Typography variant="h5" sx={{marginLeft:'5%',fontSize: { xs: '1rem', sm: '1rem', md: '1.4rem',lg: '2rem' },color:'#3B5D44'}}>Score: </Typography>
+      <Typography variant="h5" sx={{marginLeft:'5%',fontSize: { xs: '1rem', sm: '1rem', md: '1.4rem',lg: '2rem'  },color:'#EB8576'}}>{score}</Typography>
+      
       </Box>
       <Box sx={{width:'60%',display: 'flex', flexDirection: 'row',alignItems: 'center'}}>
-      <Typography style={{fontSize:'24px',color:'#3B5D44'}}>Lives:</Typography>
+      <Typography variant="h5" sx={{marginLeft:'5%',fontSize: { xs: '1rem', sm: '1rem', md: '1.4rem',lg: '2rem'  },color:'#3B5D44'}}>Lives:</Typography>
       {[...Array(5)].map((_, index) => (
           <img
             key={index}
@@ -847,16 +879,19 @@ const containerRef = useRef(null);
     
       {selectedQuestion ? (
         <>
-          <Typography variant="h5" gutterBottom>
+          <Typography variant="h5" gutterBottom sx={{fontSize: { xs: '1rem', sm: '1rem', md: '1.4rem',lg: '2rem'  }}}>
             {'Q'+selectedQuestion.label+': ' + selectedQuestion.title}
           </Typography>
           <Box
         sx={{
           display: 'grid',
           //gridTemplateColumns: `repeat(${selectedQuestion.answers.length}, 1fr)`,
-          gridTemplateColumns: `repeat(${selectedQuestion.answers.some(answer => answer.image ) ? 2 : 1}, 1fr)`,
-          justifyContent: 'center', // Center horizontally
-
+          gridTemplateColumns: {
+            xs: '1fr',
+            sm: selectedQuestion.answers.some(answer => answer.image) ? 'repeat(2, 1fr)' : '1fr',
+            md: selectedQuestion.answers.some(answer => answer.image) ? 'repeat(3, 1fr)' : '1fr'
+          },           justifyContent: 'center', // Center horizontally
+          fontSize: { xs: '1rem', sm: '1rem', md: '1.4rem',lg: '2rem'  },
           gap: '10px',
          
           marginTop: '10px',
@@ -876,14 +911,15 @@ const containerRef = useRef(null);
               // padding: '10px',
               fontWeight: 'bold',
               marginBottom: '10px',
-              fontSize: '18px',
+              
               borderRadius: '15px',
+              fontSize: { xs: '0.8rem', sm: '1rem', md: '1.2rem' },
+              padding: { xs: '8px', sm: '10px', md: '10px 20px' },
               width: '100%',
               direction: 'rtl',
               display: 'flex', // Use flex to align items inside the button
               alignItems: 'center', // Center items vertically
               justifyContent: 'space-between', // Spread items to the edges
-              padding: '10px 20px', // Add padding for better spacing
               boxShadow: '0px 3px 6px rgba(0,0,0,0.1)',
               transition: 'transform 0.2s', // For zoom effect
               border: selectedAnswerIndex === index ? (isCorrect ? '3px solid green' : '3px solid red') : 'none',
@@ -921,7 +957,7 @@ const containerRef = useRef(null);
          
         </>
       ) : (
-        <Typography variant="h5" gutterBottom>
+        <Typography variant="h5" gutterBottom sx={{fontSize: { xs: '1rem', sm: '1rem', md: '1.4rem',lg: '2rem'  }}}>
           Spin the wheel to get a question
         </Typography>
       )}

@@ -20,6 +20,8 @@ import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
 import GameChoose from "./pages/GameChoose";
 import PlayGame from "./pages/PlayGame";
+import PlayGameTesting from "./pages/PlayGameTesting";
+import ClickPick from "./pages/games/ClickPick";
 function App() {
   const { i18n } = useTranslation();
   useEffect(() => {
@@ -57,10 +59,16 @@ function App() {
     <Route path="/" component={Home} />
     <Route path="/about" component={AboutUs} />
     <Route path="/contact" component={ContactUs} />
-    <Route path="/zoom" component={Zoom} />
+    <Route path="/ai" component={Zoom} />
     <Route path="/Games" component={Games} />
     <Route path="/GameSelect" component={GameChoose} />
-    <Route path="/PlayGame" component={PlayGame} />
+
+    <Route path="/PlayGame/:id" component={PlayGame} />
+    <Route path="/PlayGame" component={PlayGameTesting} />
+    <Route path="/ClickPick" component={ClickPick} />
+
+
+
     <Route path="/Login" component={Login} />
     <Route path="/signup" component={Signup} />
     <Route path="/createGame" component={GamePage} />
