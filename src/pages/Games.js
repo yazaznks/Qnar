@@ -4,6 +4,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import EditIcon from '@mui/icons-material/Edit';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import wheel from '../Assets/spinIcon.png'
+import ClikcPick from '../Assets/ClickPick.png'
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'wouter';
 import GameChoose from './GameChoose';
@@ -19,10 +20,17 @@ function Games() {
     ]);
     useEffect(() => {
       setGames([
-        { 
+        {
+          id: 1,
           title: 'Spinning Wheel', 
           description: t('SpinningH2'), 
           image: wheel 
+        },
+        { 
+          id: 2,
+          title: 'Click & Pick', 
+          description: t('SpinningH2'), 
+          image: ClikcPick 
         },
         // Add more games as needed
       ]);
@@ -73,7 +81,7 @@ function Games() {
           alignItems: 'center',
           cursor: 'pointer',
         }}
-        onClick={() => setLocation('/GameSelect')}
+        onClick={() => setLocation(item.id === 1?'/GameSelect': '/ClickPick')}
       >
         <Box
           sx={{
@@ -109,6 +117,7 @@ function Games() {
           </Typography>
         </Box>
       </Paper>
+      <Paper></Paper>
     </Grid>
   ))}
 </Grid>
