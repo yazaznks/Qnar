@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.64ed2e52.css",
-    "main.js": "/static/js/main.448a1e8b.js",
+    "main.css": "/static/css/main.2b529c0f.css",
+    "main.js": "/static/js/main.5d3d14f0.js",
     "static/js/453.114dea8c.chunk.js": "/static/js/453.114dea8c.chunk.js",
     "static/media/Camel.png": "/static/media/Camel.aecfd7fd627c08394617.png",
     "static/media/boy.png": "/static/media/boy.5af81e1c0a0f08f38d70.png",
@@ -18,14 +18,15 @@
     "static/media/celebration.wav": "/static/media/celebration.9b5b1a6223e1057f8898.wav",
     "static/media/newQuestion.wav": "/static/media/newQuestion.1dc91647b2c5bfbacd4c.wav",
     "static/media/correctAnswer.wav": "/static/media/correctAnswer.1936d44856522cdf9698.wav",
-    "static/media/Upper.png": "/static/media/Upper.dbc79c53f66742ebd545.png",
     "static/media/dessert.png": "/static/media/dessert.4a716bc1a87ad0617a6f.png",
+    "static/media/Upper.png": "/static/media/Upper.4c4fead154335807b056.png",
     "static/media/wrongAnswer.wav": "/static/media/wrongAnswer.57b82f6f23b3142acf09.wav",
-    "static/media/lowerbg.png": "/static/media/lowerbg.b2b291b2cd04ec86056f.png",
     "static/media/Knar.png": "/static/media/Knar.a925a8702c1e14a36123.png",
+    "static/media/lowerbg.png": "/static/media/lowerbg.aa9013a2742bf7b366fb.png",
     "static/media/story.png": "/static/media/story.59e448e5db4fc84522a2.png",
     "static/media/Logo2.png": "/static/media/Logo2.fe8244427be8a1386018.png",
     "static/media/logoF.png": "/static/media/logoF.857971add065fd28dacc.png",
+    "static/media/Doha.jpg": "/static/media/Doha.9296f9f4ffb840069a0d.jpg",
     "static/media/show2.jpg": "/static/media/show2.5e87b7f895225a490a1f.jpg",
     "static/media/HowToBG.png": "/static/media/HowToBG.2225aad7039ae2270d07.png",
     "static/media/show.jpg": "/static/media/show.259a6da48a7415184191.jpg",
@@ -43,12 +44,12 @@
     "static/media/quicksand-vietnamese-400-normal.woff": "/static/media/quicksand-vietnamese-400-normal.4cdf7327385e7acd7f51.woff",
     "static/media/quicksand-vietnamese-400-normal.woff2": "/static/media/quicksand-vietnamese-400-normal.cba54407c8810c1dc7c0.woff2",
     "index.html": "/index.html",
-    "main.64ed2e52.css.map": "/static/css/main.64ed2e52.css.map",
-    "main.448a1e8b.js.map": "/static/js/main.448a1e8b.js.map",
+    "main.2b529c0f.css.map": "/static/css/main.2b529c0f.css.map",
+    "main.5d3d14f0.js.map": "/static/js/main.5d3d14f0.js.map",
     "453.114dea8c.chunk.js.map": "/static/js/453.114dea8c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.64ed2e52.css",
-    "static/js/main.448a1e8b.js"
+    "static/css/main.2b529c0f.css",
+    "static/js/main.5d3d14f0.js"
   ]
 }
