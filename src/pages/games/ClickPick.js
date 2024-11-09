@@ -78,6 +78,7 @@ function ClickPick() {
   const videoRef = useRef(null);
   const containerRef = useRef(null);
   ////////////////////////// start /////////////////////////////
+
   const handleStart = () => {
     // Play video when the button is clicked
     setstart(true);
@@ -112,7 +113,11 @@ function ClickPick() {
     
     // Start the timer
   };
-
+useEffect(() => {
+    if (isMobile) {
+      handleFullScreen();
+    }
+  }, [isMobile]);
 
   ////////////////////////// timer /////////////////////////////
   useEffect(() => {
@@ -176,7 +181,8 @@ function ClickPick() {
   };}
 
   const handleSound = () =>{if (sound){setSound(false);}else{setSound(true);}};
-  const handleFullScreen = () =>{if (!isFullscreen) {
+  const handleFullScreen = () =>
+    {if (!isFullscreen) {
     // Enter fullscreen
     if (containerRef.current.requestFullscreen) {
       containerRef.current.requestFullscreen();
@@ -206,7 +212,7 @@ function ClickPick() {
     
     <Box
       ref={containerRef}
-      className={isMobile? 'FSBG FSrotate': isFullscreen? "FSbg": ''}
+      className={isMobile? 'FSBG FSrotate FSbg': isFullscreen? "FSbg": ''}
       sx={{
         
         
@@ -390,7 +396,7 @@ Ai generated
 
       {/* /////////////////////////////////// end of navbar/////////////////////////////////////////////////////// */}
       <Box className={`game-container ${showGame ? (isFullscreen? 'show FSMT': 'show') : ''}`} 
-      sx={{display: showGame ? 'block' : 'none', mb: 2, background: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9))`,color:'FFFFFF',borderRadius: '10px',
+      sx={{display: 'flex',justifyContent:'center', mb: 2, background: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9))`,color:'FFFFFF',borderRadius: '10px',
       borderColor: '#4B7857',borderWidth: '3px',borderStyle: 'solid',
       padding: { xs: '5px', sm: '10px' },
       fontSize: { xs: '1rem', sm: '1.5rem', md: '2rem',
