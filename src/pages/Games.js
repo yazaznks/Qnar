@@ -8,6 +8,7 @@ import ClikcPick from '../Assets/ClickPick.png'
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'wouter';
 import GameChoose from './GameChoose';
+
 function Games() {
   const {t, i18n} = useTranslation();
   const [location, setLocation] = useLocation();

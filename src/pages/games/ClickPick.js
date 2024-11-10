@@ -60,6 +60,7 @@ const questionsData = [
   // Add more questions if needed
 ];
 function ClickPick() {
+  
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState([]);
   const [score, setScore] = useState(0);
@@ -243,7 +244,7 @@ function ClickPick() {
     
     <Box
       ref={containerRef}
-      className={isMobile? 'FSbg': isFullscreen? "FSbg": ''}
+      className={isFullscreen? "FSbg": ''}
       sx={{
         
         
@@ -292,6 +293,7 @@ function ClickPick() {
 <Typography variant="h2" gutterBottom color={'white'}sx={{ position: 'absolute' ,top: 70,whiteSpace: 'pre-line', marginTop: '10pxx'}}>
 Ai generated
         </Typography>
+        
 </Box>
 <Box
   
@@ -333,27 +335,7 @@ Ai generated
     }}
     onClick={handle.enter}
   />
-<FullScreen handle={handle}>
-        <div
-          style={{
-            background: "#233",
-            padding: 20,
-            marginTop: 20,
-            color: "#fff"
-          }}
-        >
-          {handle.active && (
-            <button onClick={handle.exit}>
-              EXIT
-            </button>
-          )}
-          <h1>Hello React Full Screen Example</h1>
-          <h2>
-            Just click on expand button to make full screen
-            <br />
-          </h2>
-        </div>
-      </FullScreen>
+
   {/* Maximize Icon - Positioned Bottom Right */}
   
  <img
