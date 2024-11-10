@@ -22,6 +22,8 @@ import settingsIcon from '../../Assets/settings.png'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import counting3 from '../../Assets/output.webm'
 import zIndex from '@mui/material/styles/zIndex';
+import screenfull from 'screenfull';
+
 
 const questionsData = [
   {
@@ -84,7 +86,13 @@ function ClickPick() {
   const videoRef = useRef(null);
   const containerRef = useRef(null);
   ////////////////////////// start /////////////////////////////
-
+  const handleToggleFullscreen = () => {
+    if (screenfull.isEnabled) {
+        screenfull.toggle();
+    } else {
+        console.log("Fullscreen is not supported on this browser.");
+    }
+};
   const handleStart = () => {
     // Play video when the button is clicked
     setstart(true);
@@ -333,7 +341,7 @@ Ai generated
       height: '60px', // Adjust size as needed
       cursor: 'pointer',  // Optional: pointer cursor for interactivity
     }}
-    onClick={handle.enter}
+    onClick={handleToggleFullscreen}
   />
 
   {/* Maximize Icon - Positioned Bottom Right */}
