@@ -328,7 +328,7 @@ Ai generated
 >
  <Button variant="contained" sx={{backgroundColor: '#fff', transform: 'translateY(130%)',color: '#4B7857', fontSize: '2rem' ,'&:hover': {
       backgroundColor: 'grey',  // Hover color
-    }}} onClick={handleStart}>ابدأ اللعب<PlayArrowIcon /></Button>
+    }}} onClick={handleToggleFullscreen}>ابدأ اللعب<PlayArrowIcon /></Button>
      {/* Settings Icon - Positioned Bottom Left */}
  <img
     src={settingsIcon}
