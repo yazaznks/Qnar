@@ -1,6 +1,7 @@
 import '../Styles.css'
 import React, { useState, useEffect, useRef } from 'react';
 import { Box, Button, Typography, IconButton } from '@mui/material';
+import { FullScreen, useFullScreenHandle } from "react-full-screen";
 import {isMobile} from 'react-device-detect';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
@@ -78,7 +79,7 @@ function ClickPick() {
   const [showGame, setShowGame] = useState(false);
   const [videoVisible, setVideoVisible] = useState(false);
   const [animateImages, setAnimateImages] = useState(false); // Control the animation of images
-
+  const handle = useFullScreenHandle()
   const videoRef = useRef(null);
   const containerRef = useRef(null);
   ////////////////////////// start /////////////////////////////
@@ -264,6 +265,7 @@ function ClickPick() {
         transition: 'background-size 0.5s ease-in-out, background-image 0.5s ease-in-out',      }}
     >
       {/*///////////////////////////////////////////////////////////////////////////////////////////////////////////  */}
+      <Button onClick={handle.enter}>WHERE IS THIS!!</Button>
       <img src={boat} className={`side-image-boat ${animateImages ? 'animateLeft' : ''}`} sx={{zIndex:98,}} alt="Right Image" />
       <Box
   
@@ -329,8 +331,29 @@ Ai generated
       height: '60px', // Adjust size as needed
       cursor: 'pointer',  // Optional: pointer cursor for interactivity
     }}
+    onClick={handle.enter}
   />
-
+<FullScreen handle={handle}>
+        <div
+          style={{
+            background: "#233",
+            padding: 20,
+            marginTop: 20,
+            color: "#fff"
+          }}
+        >
+          {handle.active && (
+            <button onClick={handle.exit}>
+              EXIT
+            </button>
+          )}
+          <h1>Hello React Full Screen Example</h1>
+          <h2>
+            Just click on expand button to make full screen
+            <br />
+          </h2>
+        </div>
+      </FullScreen>
   {/* Maximize Icon - Positioned Bottom Right */}
   
  <img
@@ -487,8 +510,8 @@ Ai generated
           alignItems: 'center',
           fontSize: { xs: '1rem', sm: '1.5rem', md: '2rem' },
           gap: 3,
-          width: isFullscreen? '200px':{ xs: '50px', sm: '100px', md: '100px', lg: '150px'},
-          height: isFullscreen? '200px':{ xs: '50px', sm: '100px', md: '100px', lg: '150px'},
+          width: { xs: '50px', sm: '100px', md: '100px', lg: '150px'},
+          height: { xs: '50px', sm: '100px', md: '100px', lg: '150px'},
           borderRadius: '10px',
           '&:hover': {
             bgcolor: 'lightblue',

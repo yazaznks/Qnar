@@ -96,7 +96,7 @@
   transition: transform 2s ease-in, opacity 2s ease-in;
 }
 .side-image-boat {
-  bottom:0%;
+  bottom:-10%;
   right: 0%;
   position: absolute;
   width: 30vw;
@@ -110,7 +110,7 @@
   transform: translateX(-100vw); /* Move to the left and zoom in */
   transform-origin: center; /* Keep scaling from the center */
   opacity: 0; /* Fade out */
-  transition: transform 1s ease-in, opacity 1s ease-in;
+  transition: transform 2s ease-in, opacity 2s ease-in;
 }
 /* CSS for the wheel to zoom in and fade into view */
 .game-container.show {
