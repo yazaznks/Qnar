@@ -211,7 +211,11 @@ function ClickPick() {
       containerRef.current.mozRequestFullScreen();
     } else if (containerRef.current.webkitRequestFullscreen) {
       containerRef.current.webkitRequestFullscreen();
-    } else if (containerRef.current.msRequestFullscreen) {
+    } 
+    else if (containerRef.current.webkitEnterFullscreen) {
+      containerRef.current.webkitEnterFullscreen();
+    }
+    else if (containerRef.current.msRequestFullscreen) {
       containerRef.current.msRequestFullscreen();
     }
     setIsFullscreen(true);
@@ -328,7 +332,7 @@ Ai generated
 >
  <Button variant="contained" sx={{backgroundColor: '#fff', transform: 'translateY(130%)',color: '#4B7857', fontSize: '2rem' ,'&:hover': {
       backgroundColor: 'grey',  // Hover color
-    }}} onClick={handleToggleFullscreen}>ابدأ اللعب<PlayArrowIcon /></Button>
+    }}} onClick={handleFullScreen}>ابدأ اللعب<PlayArrowIcon /></Button>
      {/* Settings Icon - Positioned Bottom Left */}
  <img
     src={settingsIcon}
@@ -341,7 +345,7 @@ Ai generated
       height: '60px', // Adjust size as needed
       cursor: 'pointer',  // Optional: pointer cursor for interactivity
     }}
-    onClick={handleToggleFullscreen}
+    onClick={handleFullScreen}
   />
 
   {/* Maximize Icon - Positioned Bottom Right */}
