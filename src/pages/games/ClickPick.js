@@ -205,31 +205,31 @@ function ClickPick() {
   const handleFullScreen = () =>
     {if (!isFullscreen) {
     // Enter fullscreen
-    if (containerRef.current.requestFullscreen) {
-      containerRef.current.requestFullscreen();
-    } else if (containerRef.current.mozRequestFullScreen) {
-      containerRef.current.mozRequestFullScreen();
-    } else if (containerRef.current.webkitRequestFullscreen) {
-      containerRef.current.webkitRequestFullscreen();
-    } 
-    else if (containerRef.current.webkitEnterFullscreen) {
-      containerRef.current.webkitEnterFullscreen();
-    }
-    else if (containerRef.current.msRequestFullscreen) {
-      containerRef.current.msRequestFullscreen();
-    }
+    // if (containerRef.current.requestFullscreen) {
+    //   containerRef.current.requestFullscreen();
+    // } else if (containerRef.current.mozRequestFullScreen) {
+    //   containerRef.current.mozRequestFullScreen();
+    // } else if (containerRef.current.webkitRequestFullscreen) {
+    //   containerRef.current.webkitRequestFullscreen();
+    // } 
+    // else if (containerRef.current.webkitEnterFullscreen) {
+    //   containerRef.current.webkitEnterFullscreen();
+    // }
+    // else if (containerRef.current.msRequestFullscreen) {
+    //   containerRef.current.msRequestFullscreen();
+    // }
     setIsFullscreen(true);
   } else {
     // Exit fullscreen
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.mozCancelFullScreen) {
-      document.mozCancelFullScreen();
-    } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) {
-      document.msExitFullscreen();
-    }
+    // if (document.exitFullscreen) {
+    //   document.exitFullscreen();
+    // } else if (document.mozCancelFullScreen) {
+    //   document.mozCancelFullScreen();
+    // } else if (document.webkitExitFullscreen) {
+    //   document.webkitExitFullscreen();
+    // } else if (document.msExitFullscreen) {
+    //   document.msExitFullscreen();
+    // }
     setIsFullscreen(false);
   }};
   const handleFullScreenMobile = () => {
@@ -256,18 +256,18 @@ function ClickPick() {
     
     <Box
       ref={containerRef}
-      className={isFullscreen? "FSbg": ''}
+      className={'FSMB'}
       sx={{
         
         
-        p: 3,
+        //p: 3,
         borderRadius: 2,
         boxShadow: 3,
-        maxWidth: '80%',
-        height: 'auto',//'40vw',
-        margin: '20px auto',
+        //maxWidth: '80%',
+       // height: 'auto',//'40vw',
+ //       margin: '20px auto',
         textAlign: 'center',
-        position: 'relative',
+       // position: 'relative',
         bgcolor: '#f0f4f8',
         overflow: 'hidden',
         
@@ -275,10 +275,11 @@ function ClickPick() {
         backgroundSize: '115%', 
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
-        transition: 'background-size 0.5s ease-in-out, background-image 0.5s ease-in-out',      }}
+       // transition: 'background-size 0.5s ease-in-out, background-image 0.5s ease-in-out',      
+       }}
     >
       {/*///////////////////////////////////////////////////////////////////////////////////////////////////////////  */}
-      <Button onClick={handle.enter}>WHERE IS THIS!!</Button>
+    
       <img src={boat} className={`side-image-boat ${animateImages ? 'animateLeft' : ''}`} sx={{zIndex:98,}} alt="Right Image" />
       <Box
   
