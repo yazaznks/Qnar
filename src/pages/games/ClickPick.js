@@ -86,13 +86,29 @@ function ClickPick() {
   const videoRef = useRef(null);
   const containerRef = useRef(null);
   ////////////////////////// start /////////////////////////////
-  const handleToggleFullscreen = () => {
-    if (screenfull.isEnabled) {
-        screenfull.toggle();
-    } else {
-        console.log("Fullscreen is not supported on this browser.");
-    }
-};
+
+useEffect(() => {
+  // Lock orientation to landscape on component mount
+  const lockOrientation = async () => {
+      if (window.screen.orientation && window.screen.orientation.lock) {
+          try {
+              await window.screen.orientation.lock("landscape");
+          } catch (error) {
+              console.warn("Orientation lock not supported on this device.");
+          }
+      }
+  };
+
+  lockOrientation();
+
+  // Unlock orientation on component unmount
+  return () => {
+      if (window.screen.orientation && window.screen.orientation.unlock) {
+        window.screen.orientation.unlock();
+      }
+  };
+}, []);
+
   const handleStart = () => {
     // Play video when the button is clicked
     setstart(true);
@@ -204,32 +220,32 @@ function ClickPick() {
   const handleSound = () =>{if (sound){setSound(false);}else{setSound(true);}};
   const handleFullScreen = () =>
     {if (!isFullscreen) {
-    // Enter fullscreen
-    // if (containerRef.current.requestFullscreen) {
-    //   containerRef.current.requestFullscreen();
-    // } else if (containerRef.current.mozRequestFullScreen) {
-    //   containerRef.current.mozRequestFullScreen();
-    // } else if (containerRef.current.webkitRequestFullscreen) {
-    //   containerRef.current.webkitRequestFullscreen();
-    // } 
-    // else if (containerRef.current.webkitEnterFullscreen) {
-    //   containerRef.current.webkitEnterFullscreen();
-    // }
-    // else if (containerRef.current.msRequestFullscreen) {
-    //   containerRef.current.msRequestFullscreen();
-    // }
+   // Enter fullscreen
+    if (containerRef.current.requestFullscreen) {
+      containerRef.current.requestFullscreen();
+    } else if (containerRef.current.mozRequestFullScreen) {
+      containerRef.current.mozRequestFullScreen();
+    } else if (containerRef.current.webkitRequestFullscreen) {
+      containerRef.current.webkitRequestFullscreen();
+    } 
+    else if (containerRef.current.webkitEnterFullscreen) {
+      containerRef.current.webkitEnterFullscreen();
+    }
+    else if (containerRef.current.msRequestFullscreen) {
+      containerRef.current.msRequestFullscreen();
+    }
     setIsFullscreen(true);
   } else {
-    // Exit fullscreen
-    // if (document.exitFullscreen) {
-    //   document.exitFullscreen();
-    // } else if (document.mozCancelFullScreen) {
-    //   document.mozCancelFullScreen();
-    // } else if (document.webkitExitFullscreen) {
-    //   document.webkitExitFullscreen();
-    // } else if (document.msExitFullscreen) {
-    //   document.msExitFullscreen();
-    // }
+    //Exit fullscreen
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+      document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) {
+      document.msExitFullscreen();
+    }
     setIsFullscreen(false);
   }};
   const handleFullScreenMobile = () => {
@@ -245,12 +261,6 @@ function ClickPick() {
     }
   };
 
-  // useEffect(() => {
-  //   const isMobile = /Mobi|Android/i.test(navigator.userAgent); // Detect mobile
-  //   if (isMobile) {
-  //     handleFullScreenMobile(); // Automatically call fullscreen if on mobile
-  //   }
-  // }, []);
 
   return (
     
