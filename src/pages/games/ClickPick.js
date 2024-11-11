@@ -87,27 +87,7 @@ function ClickPick() {
   const containerRef = useRef(null);
   ////////////////////////// start /////////////////////////////
 
-useEffect(() => {
-  // Lock orientation to landscape on component mount
-  const lockOrientation = async () => {
-      if (window.screen.orientation && window.screen.orientation.lock) {
-          try {
-              await window.screen.orientation.lock("landscape");
-          } catch (error) {
-              console.warn("Orientation lock not supported on this device.");
-          }
-      }
-  };
 
-  lockOrientation();
-
-  // Unlock orientation on component unmount
-  return () => {
-      if (window.screen.orientation && window.screen.orientation.unlock) {
-        window.screen.orientation.unlock();
-      }
-  };
-}, []);
 
   const handleStart = () => {
     // Play video when the button is clicked
@@ -146,13 +126,6 @@ useEffect(() => {
     }, 5000);
     
     // Start the timer
-  };
-  const lockOrientation = () => {
-    if (window.screen.orientation && window.screen.orientation.lock) {
-      window.screen.orientation.lock('landscape').catch((error) => {
-        console.warn("Orientation lock not supported:", error);
-      });
-    }
   };
 
 
