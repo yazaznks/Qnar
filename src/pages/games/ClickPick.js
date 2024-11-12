@@ -320,7 +320,7 @@ useEffect(() => {
   }}
 >
 <Typography variant="h6" gutterBottom color={'white'}sx={{ position: 'absolute' ,top: 70,whiteSpace: 'pre-line', marginTop: '10pxx'}}>
-Ai generated {phone}
+{phone}
         </Typography>
         
 </Box>
