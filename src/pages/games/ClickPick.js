@@ -75,7 +75,7 @@ function ClickPick() {
   const [isTimerActive, setTimerActive] = useState(false); // Timer is active
   const [animationKey, setAnimationKey] = useState(0);
   const currentQuestion = questionsData[currentQuestionIndex];
-
+  const [phone, setPhone]= useState("other")
 
   const [start, setstart] = useState(false);
   const [finish, setFinish] = useState(false);
@@ -109,10 +109,13 @@ useEffect(() => {
   const deviceType = getDeviceType();
 
   if (deviceType === "iOS") {
+    setPhone("This is an iOS device");
       console.log("This is an iOS device");
   } else if (deviceType === "Samsung") {
+    setPhone("This is a Samsung device");
       console.log("This is a Samsung device");
   } else if (deviceType === "Android") {
+    setPhone("This is another type of Android device");
       console.log("This is another type of Android device");
   } else {
       console.log("Unknown or other device");
@@ -316,8 +319,8 @@ useEffect(() => {
     alignItems: 'center', // Center content vertically
   }}
 >
-<Typography variant="h2" gutterBottom color={'white'}sx={{ position: 'absolute' ,top: 70,whiteSpace: 'pre-line', marginTop: '10pxx'}}>
-Ai generated
+<Typography variant="h6" gutterBottom color={'white'}sx={{ position: 'absolute' ,top: 70,whiteSpace: 'pre-line', marginTop: '10pxx'}}>
+Ai generated {phone}
         </Typography>
         
 </Box>
@@ -410,6 +413,7 @@ Ai generated
         <Box sx={{ display: 'flex', gap: 1 }}>
         <img src={soundIcon} alt="button" onClick={handleSound}style={{ cursor: 'pointer', width:'3vw', height:'auto'}}/>
         <img src={menu} alt="button" onClick={handleSound}style={{ cursor: 'pointer', width:'3vw'}}/>
+        
         <div
   style={{
     display: 'flex',
