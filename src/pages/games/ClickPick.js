@@ -87,7 +87,37 @@ function ClickPick() {
   const containerRef = useRef(null);
   ////////////////////////// start /////////////////////////////
 
+  const getDeviceType = () => {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
+    // Detect iOS
+    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        return "iOS";
+    }
+
+    // Detect Samsung (and other Android devices)
+    if (/android/i.test(userAgent)) {
+        if (/Samsung/i.test(userAgent)) {
+            return "Samsung";
+        }
+        return "Android";
+    }
+
+    return "Other";
+};
+useEffect(() => {
+  const deviceType = getDeviceType();
+
+  if (deviceType === "iOS") {
+      console.log("This is an iOS device");
+  } else if (deviceType === "Samsung") {
+      console.log("This is a Samsung device");
+  } else if (deviceType === "Android") {
+      console.log("This is another type of Android device");
+  } else {
+      console.log("Unknown or other device");
+  }
+}, []);
 
   const handleStart = () => {
     // Play video when the button is clicked
@@ -239,18 +269,18 @@ function ClickPick() {
     
     <Box
       ref={containerRef}
-      className={'FSMB'}
+      //className={'FSMB'}
       sx={{
         
         
-        //p: 3,
+        p: 3,
         borderRadius: 2,
         boxShadow: 3,
-        //maxWidth: '80%',
-       // height: 'auto',//'40vw',
- //       margin: '20px auto',
+        maxWidth: '80%',
+        height: 'auto',//'40vw',
+        margin: '20px auto',
         textAlign: 'center',
-       // position: 'relative',
+        position: 'relative',
         bgcolor: '#f0f4f8',
         overflow: 'hidden',
         
