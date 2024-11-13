@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.4265ee5d.css",
-    "main.js": "/static/js/main.f861cb8a.js",
+    "main.css": "/static/css/main.37ecc2b7.css",
+    "main.js": "/static/js/main.59815c44.js",
     "static/js/453.114dea8c.chunk.js": "/static/js/453.114dea8c.chunk.js",
     "static/media/Camel.png": "/static/media/Camel.aecfd7fd627c08394617.png",
     "static/media/boy.png": "/static/media/boy.5af81e1c0a0f08f38d70.png",
@@ -46,12 +46,12 @@
     "static/media/quicksand-vietnamese-400-normal.woff": "/static/media/quicksand-vietnamese-400-normal.4cdf7327385e7acd7f51.woff",
     "static/media/quicksand-vietnamese-400-normal.woff2": "/static/media/quicksand-vietnamese-400-normal.cba54407c8810c1dc7c0.woff2",
     "index.html": "/index.html",
-    "main.4265ee5d.css.map": "/static/css/main.4265ee5d.css.map",
-    "main.f861cb8a.js.map": "/static/js/main.f861cb8a.js.map",
+    "main.37ecc2b7.css.map": "/static/css/main.37ecc2b7.css.map",
+    "main.59815c44.js.map": "/static/js/main.59815c44.js.map",
     "453.114dea8c.chunk.js.map": "/static/js/453.114dea8c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4265ee5d.css",
-    "static/js/main.f861cb8a.js"
+    "static/css/main.37ecc2b7.css",
+    "static/js/main.59815c44.js"
   ]
 }
