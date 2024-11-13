@@ -140,7 +140,7 @@ function Header() {
                 onClick={handleOpenNavMenu}
                 color="inherit"
                 
-                sx={{  zIndex: 1400 ,marginLeft: i18n.language === 'en' ? 'auto' : 0,  // Align to the left for English
+                sx={{  zIndex: 70 ,marginLeft: i18n.language === 'en' ? 'auto' : 0,  // Align to the left for English
                   marginRight: i18n.language === 'ar' ? 'auto' : 0   // Align to the right for Arabic
                 }}
               >

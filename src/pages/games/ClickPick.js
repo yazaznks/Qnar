@@ -272,17 +272,19 @@ return () => {
     
     <Box
       ref={containerRef}
-      className={isIphone? 'FSMB': isFullscreen? 'FSbg':'normalDT'}
+      className ={'FSMB'}
+      //className={isIphone? 'FSMB': isFullscreen? 'FSbg':'normalDT'}
       sx={{
         
         
         display: 'flex', flexDirection: 'column',flexWrap: 'wrap',
         borderRadius: 2,
         boxShadow: 3,
-        height: '80vh',
-        width: ' 70vw',
+        //height: '80vh',
+        //width: ' 70vw',
         textAlign: 'center', 
         bgcolor: '#f0f4f8',
+        zIndex: 100,
         overflow: 'hidden',    
         backgroundImage: showGame ? `linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),url(${Doha})`: `url(${Doha})`,  // Adjust background image path
         backgroundSize: 'cover', 
@@ -303,7 +305,7 @@ return () => {
     top: 0,
     left: 0,
     width: '100%',
-    height: '55%',// Set height as needed
+    height: '100%',// Set height as needed
     backgroundImage: `url(${backTop})`,
     backgroundSize: 'contain',
     backgroundRepeat: 'no-repeat',
@@ -330,7 +332,7 @@ return () => {
     bottom: 0,
     left: 0,
     width: '100%',
-    height: '70%', // Adjust this as needed
+    height: '100%', // Adjust this as needed
     backgroundImage: `url(${backBottom})`,
     backgroundSize: 'contain',
     backgroundRepeat: 'no-repeat',
@@ -445,42 +447,50 @@ return () => {
 
 
       
-      <Box  className={`game-container ${showGame ? (isFullscreen? 'show FSMT':'show') : ''}`} sx={{display: 'flex', justifyContent: 'space-between', mb: 2,height: '7vh' }}>
+      <Box  className={`game-container ${showGame ? (isFullscreen? 'show FSMT':'show FSMT') : ''}`} sx={{display: 'flex', justifyContent: 'space-between', mb: 2,height: '6vh' }}>
         <Box sx={{ display: 'flex', gap: 1 }}>
-        <img src={soundIcon} alt="button" onClick={handleSound}style={{ cursor: 'pointer', width:'3vw', height:'auto'}}/>
-        <img src={menu} alt="button" onClick={handleSound}style={{ cursor: 'pointer', width:'3vw'}}/>
+        <img src={soundIcon} alt="button" onClick={handleSound}style={{ cursor: 'pointer', width: isMobile ? '15vw' : '3vw', height:'auto'}}/>
+        <img src={menu} alt="button" onClick={handleSound}style={{ cursor: 'pointer', width: isMobile ? '15vw' : '3vw'}}/>
         
-        <div
-  style={{
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '10vw',  // Adjust the width as needed
-    height: 'auto',
-    maxWidth: '100px', // Optional: Set a max width for responsiveness
-    cursor: 'pointer',
-    marginLeft: '15%',
-    transform: 'translateX(-50%)', // Center the container
-    position: 'relative',
-  }}
-  onClick={handleSound}
->
-  <img src={timer} alt="button" style={{ width: '4vw', height: 'auto' }} />
-  <span
-    style={{
-      position: 'absolute',
-      color:'#3B5D44',
-      fontSize: { xs: '1rem', sm: '1.5rem', md: '3rem' },
-      fontWeight: 'bold',
-    }}
-  >
-    <Typography variant="h6">{time}</Typography>
-    
-  </span>
-</div>
+        <Box
+      onClick={handleSound}
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: { xs: '20vw', sm: '15vw', md: '10vw' }, // Width changes for mobile, tablet, and desktop
+        height: 'auto',
+        maxWidth: '100px', // Maximum width for large screens
+        cursor: 'pointer',
+        marginLeft: '5vw', // Center-align horizontally
+        position: 'relative',
+      }}
+    >
+      <Box
+        component="img"
+        src={timer}
+        alt="button"
+        sx={{
+          width: { xs: '20vw', sm: '6vw', md: '4vw' }, // Image size responsive to screen size
+          height: 'auto',
+          maxWidth: '50px', // Limit max image width
+        }}
+      />
+      <Typography
+        variant="h6"
+        sx={{
+          position: 'absolute',
+          color: '#3B5D44',
+          fontWeight: 'bold',
+          fontSize: { xs: '1.2rem', sm: '1.5rem', md: '2rem', lg: '3rem' }, // Font size adjusts across breakpoints
+        }}
+      >
+        {time}
+      </Typography>
+    </Box>
 
         </Box>
-        <div className="green-to-white-wrapper" key={animationKey}>
+        <div className={isMobile? 'hide':"green-to-white-wrapper"} style={{marginright: '20px'}} key={animationKey}>
         
     <div className={`green-to-white-overlay ${isTimerActive ? '' : 'paused'}`}></div>
   </div>
@@ -495,12 +505,15 @@ return () => {
         <Typography variant="h6" sx={{ fontWeight: 'bold'}}>Score: <span style={{ color: '#EB8576' }}>{score}</span></Typography>
         </Box>
        
-        <img src={isFullscreen? min: max} alt="button" onClick={handleFullScreen}style={{ cursor: 'pointer', width:'3vw'}}/>
+        <img src={isFullscreen? min: max} alt="button" onClick={handleFullScreen}style={{ cursor: 'pointer', width: isMobile ? '15vw' : '3vw'}}/>
         </Box>
       </Box>
-
+      <div className={isMobile? 'green-to-white-wrapper FSMT':"hide"} style={{height: '6vh'}} key={animationKey}>
+        
+        <div className={`green-to-white-overlay ${isTimerActive ? '' : 'paused'}`}></div>
+      </div>
       {/* /////////////////////////////////// end of navbar/////////////////////////////////////////////////////// */}
-      <Box className={`game-container ${showGame ? (isFullscreen? 'show FSMT': 'show') : ''}`} 
+      <Box className={`game-container ${showGame ?isMobile? 'show FSMTM': (isFullscreen? 'show FSMT': 'show') : ''}`} 
       sx={{display: 'flex',justifyContent:'center', mb: 2, background: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9))`,color:'FFFFFF',borderRadius: '10px',
       borderColor: '#4B7857',borderWidth: '3px',borderStyle: 'solid',
       padding: { xs: '5px', sm: '10px' },
@@ -508,7 +521,7 @@ return () => {
       fontWeight: "bold",
       color:'#3B5D44'
       }}}>{currentQuestion.question}</Box>
-      <Box className={`game-container ${showGame ?  (isFullscreen? 'show FSMT': 'show') : ''}`}
+      <Box className={`game-container ${showGame ? isMobile? 'show FSMTM': (isFullscreen? 'show FSMT': 'show') : ''}`}
         sx={{
           display: 'flex',
           flexWrap: 'wrap', // Allows wrapping for multiple rows
@@ -558,8 +571,8 @@ return () => {
           alignItems: 'center',
           fontSize: { xs: '1rem', sm: '1.5rem', md: '2rem' },
           gap: 3,
-          width: { xs: '50px', sm: '100px', md: '100px', lg: '150px'},
-          height: { xs: '50px', sm: '100px', md: '100px', lg: '150px'},
+          width: { xs: '100px', sm: '100px', md: '100px', lg: '150px'},
+          height: { xs: '100px', sm: '100px', md: '100px', lg: '150px'},
           borderRadius: '10px',
           '&:hover': {
             bgcolor: 'lightblue',
@@ -575,7 +588,7 @@ return () => {
   
 </Box>
 
-<Button className={`game-container ${showGame ?(isFullscreen? 'show FSMT': 'show'): ''}`}
+<Button className={`game-container ${showGame ? isMobile? 'show FSMTM':(isFullscreen? 'show FSMT': 'show'): ''}`}
         variant="contained"
         color="secondary"
         onClick={handleSubmit}

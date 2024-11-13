@@ -117,7 +117,9 @@
   opacity: 1; /* Make it visible */
   transform: scale(1); /* Zoom in from 0.5 to 1 */
 }
-
+.hide{
+  display: none;
+}
 .fade-out {
   opacity: 0;
   transition: opacity 2s ease-out; /* Adjust duration as needed */
@@ -158,18 +160,20 @@
 .FSMT{
   margin-top: 3%;
 }
-
+.FSMTM{
+  margin-top: 10%;
+}
 
 /* clickpick timer */
 .green-to-white-wrapper {
-  flex-grow: 1;
+  /* /flex-grow: 1; */
   
   background-color: white; /* Base color */
   position: relative;
   overflow: hidden;
   border: 3px solid #92590b; /* Green border */
   border-radius: 10px; /* Rounded corners, if desired */
-  margin-right: 20px;
+ 
  
 }
 
