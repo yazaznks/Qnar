@@ -1,6 +1,6 @@
 import '../Styles.css'
 import React, { useState, useEffect, useRef } from 'react';
-import { Box, Button, Typography, IconButton } from '@mui/material';
+import { Box, Button, Typography, IconButton, Grid, useTheme} from '@mui/material';
 import { FullScreen, useFullScreenHandle } from "react-full-screen";
 import {isMobile} from 'react-device-detect';
 import CheckIcon from '@mui/icons-material/Check';
@@ -62,7 +62,7 @@ const questionsData = [
   // Add more questions if needed
 ];
 function ClickPick() {
-  
+  const theme = useTheme(); // Get the theme object
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState([]);
   const [score, setScore] = useState(0);
@@ -75,7 +75,7 @@ function ClickPick() {
   const [isTimerActive, setTimerActive] = useState(false); // Timer is active
   const [animationKey, setAnimationKey] = useState(0);
   const currentQuestion = questionsData[currentQuestionIndex];
-  const [phone, setPhone]= useState("other")
+  const [isIphone, setIPhone]= useState(false)
 
   const [start, setstart] = useState(false);
   const [finish, setFinish] = useState(false);
@@ -95,13 +95,13 @@ function ClickPick() {
         return "iOS";
     }
 
-    // Detect Samsung (and other Android devices)
-    if (/android/i.test(userAgent)) {
-        if (/Samsung/i.test(userAgent)) {
-            return "Samsung";
-        }
-        return "Android";
-    }
+    // // Detect Samsung (and other Android devices)
+    // if (/android/i.test(userAgent)) {
+    //     if (/Samsung/i.test(userAgent)) {
+    //         return "Samsung";
+    //     }
+    //     return "Android";
+    // }
 
     return "Other";
 };
@@ -109,17 +109,28 @@ useEffect(() => {
   const deviceType = getDeviceType();
 
   if (deviceType === "iOS") {
-    setPhone("This is an iOS device");
-      console.log("This is an iOS device");
-  } else if (deviceType === "Samsung") {
-    setPhone("This is a Samsung device");
-      console.log("This is a Samsung device");
-  } else if (deviceType === "Android") {
-    setPhone("This is another type of Android device");
-      console.log("This is another type of Android device");
-  } else {
-      console.log("Unknown or other device");
-  }
+    setIPhone(true);
+  // } else if (deviceType === "Samsung") {
+  //   setPhone("This is a Samsung device");
+  //     console.log("This is a Samsung device");
+  // } else if (deviceType === "Android") {
+  //   setPhone("This is another type of Android device");
+  //     console.log("This is another type of Android device");
+  // } else {
+  //     console.log("Unknown or other device");
+   }
+  const onFullScreenChange = () => {
+    if (!document.fullscreenElement) {
+      setIsFullscreen(false); // Call handleFullScreen when exiting fullscreen
+    }
+};
+
+document.addEventListener('fullscreenchange', onFullScreenChange);
+
+return () => {
+    document.removeEventListener('fullscreenchange', onFullScreenChange);
+};
+  
 }, []);
 
   const handleStart = () => {
@@ -254,49 +265,35 @@ useEffect(() => {
     }
     setIsFullscreen(false);
   }};
-  const handleFullScreenMobile = () => {
-    const elem = document.documentElement; // Target the whole document for fullscreen
-    if (elem.requestFullscreen) {
-      elem.requestFullscreen();
-    } else if (elem.mozRequestFullScreen) { // Firefox
-      elem.mozRequestFullScreen();
-    } else if (elem.webkitRequestFullscreen) { // Safari
-      elem.webkitRequestFullscreen();
-    } else if (elem.msRequestFullscreen) { // IE/Edge
-      elem.msRequestFullscreen();
-    }
-  };
+
 
 
   return (
     
     <Box
       ref={containerRef}
-      //className={'FSMB'}
+      className={isIphone? 'FSMB': isFullscreen? 'FSbg':'normalDT'}
       sx={{
         
         
-        p: 3,
+        display: 'flex', flexDirection: 'column',flexWrap: 'wrap',
         borderRadius: 2,
         boxShadow: 3,
-        maxWidth: '80%',
-        height: 'auto',//'40vw',
-        margin: '20px auto',
-        textAlign: 'center',
-        position: 'relative',
+        height: '80vh',
+        width: ' 70vw',
+        textAlign: 'center', 
         bgcolor: '#f0f4f8',
-        overflow: 'hidden',
-        
+        overflow: 'hidden',    
         backgroundImage: showGame ? `linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),url(${Doha})`: `url(${Doha})`,  // Adjust background image path
-        backgroundSize: '115%', 
+        backgroundSize: 'cover', 
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
-       // transition: 'background-size 0.5s ease-in-out, background-image 0.5s ease-in-out',      
+        transition: 'background-size 0.5s ease-in-out, background-image 0.5s ease-in-out',      
        }}
     >
       {/*///////////////////////////////////////////////////////////////////////////////////////////////////////////  */}
     
-      <img src={boat} className={`side-image-boat ${animateImages ? 'animateLeft' : ''}`} sx={{zIndex:98,}} alt="Right Image" />
+      <img src={boat} className={`side-image-boat ${animateImages ? 'animateLeft' : ''}`} sx={{zIndex:97,}} alt="Right Image" />
       <Box
   
   sx={{
@@ -306,7 +303,7 @@ useEffect(() => {
     top: 0,
     left: 0,
     width: '100%',
-    height: '55%', // Set height as needed
+    height: '55%',// Set height as needed
     backgroundImage: `url(${backTop})`,
     backgroundSize: 'contain',
     backgroundRepeat: 'no-repeat',
@@ -320,69 +317,108 @@ useEffect(() => {
   }}
 >
 <Typography variant="h6" gutterBottom color={'white'}sx={{ position: 'absolute' ,top: 70,whiteSpace: 'pre-line', marginTop: '10pxx'}}>
-{phone}
+{isIphone}
         </Typography>
         
 </Box>
+
 <Box
-  
   sx={{
     p: 3,
     borderRadius: 2,
     position: 'absolute',
     bottom: 0,
-    left:0,
+    left: 0,
     width: '100%',
-    height: '55%', // Set height as needed
-    
+    height: '70%', // Adjust this as needed
     backgroundImage: `url(${backBottom})`,
-    backgroundSize: 'cover',
+    backgroundSize: 'contain',
     backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'bottom', // Aligns image to the bottom
     opacity: start ? 0 : 1,
-    transform: start ? 'translateY(300%)' : '', // Move up off the screen
-    transition: 'opacity 1s ease, transform 1s ease', 
-    zIndex: 98, // Fade effect duration
-    display: showGame ?'none': 'flex',
-    justifyContent: 'center', // Center content horizontally
-    alignItems: 'center', // Center content vertically
+    transition: 'opacity 1s ease',
+    zIndex: 99,
+    display: showGame ? 'none' : 'flex',
+    justifyContent: 'center', // Adjust to center the content container horizontally
+    alignItems: 'center', // Adjust to vertically align content
   }}
 >
- <Button variant="contained" sx={{backgroundColor: '#fff', transform: 'translateY(130%)',color: '#4B7857', fontSize: '2rem' ,'&:hover': {
-      backgroundColor: 'grey',  // Hover color
-    }}} onClick={handleFullScreen}>ابدأ اللعب<PlayArrowIcon /></Button>
-     {/* Settings Icon - Positioned Bottom Left */}
- <img
-    src={settingsIcon}
-    alt="Settings"
-    style={{
+  {/* Inner container for buttons on top of the image */}
+  <Box
+    sx={{
       position: 'absolute',
-      bottom: '70px',
-      left: '60px',
-      width: '60px',  // Adjust size as needed
-      height: '60px', // Adjust size as needed
-      cursor: 'pointer',  // Optional: pointer cursor for interactivity
+      bottom: 0, // Position at the bottom of the image
+      width: '100%',
+      display: 'flex',
+      marginBottom: '50px',
+      justifyContent: 'space-between', // Space buttons evenly
+      alignItems: 'center',
+      p: 2, // Padding for spacing within the box
+      [theme.breakpoints.down('md')]: {
+        marginBottom: '0px',
+      },
     }}
-    onClick={handleFullScreen}
-  />
+  >
+    {/* Left-aligned button */}
+    
 
-  {/* Maximize Icon - Positioned Bottom Right */}
-  
- <img
-    src={isFullscreen? min : max}
-    alt="Maximize"
-    style={{
-      position: 'absolute',
-      bottom: '70px',
-      right: '60px',
-      width: '60px',  // Adjust size as needed
-      height: '60px', // Adjust size as needed
-      cursor: 'pointer',  // Optional: pointer cursor for interactivity
-    }}
-    onClick={isMobile? handleFullScreenMobile: handleFullScreen}
-  /> 
-
-
-    </Box>
+    {/* Settings icon in the center */}
+    <img
+      src={settingsIcon}
+      alt="Settings"
+      style={{
+        maxWidth: '60px', // Keep original size
+        maxHeight: '60px', // Keep original size
+        width: '8vw', // Responsive width
+        height: '8vw', // Responsive height
+        cursor: 'pointer',
+        [theme.breakpoints.down('sm')]: {
+          width: '12vw', // Adjust for small screens
+          height: '12vw', // Adjust for small screens
+        },
+      }}
+    />
+<Button
+      variant="contained"
+      sx={{
+        backgroundColor: '#fff',
+        color: '#4B7857',
+        fontSize: '1.5rem',
+        padding: '10px 20px', // Responsive padding
+        [theme.breakpoints.down('sm')]: {
+          fontSize: '1.2rem', // Smaller font size for small screens
+          padding: '8px 16px', // Adjust padding on smaller screens
+        },
+        [theme.breakpoints.down('xs')]: {
+          fontSize: '0.5rem', // Smaller font size for small screens
+          padding: '0px 0px', // Adjust padding on smaller screens
+        },
+        '&:hover': { backgroundColor: 'grey' },
+      }}
+      onClick={handleStart}
+    >
+      ابدأ اللعب <PlayArrowIcon />
+    </Button>
+    {/* Fullscreen icon on the right */}
+    <img
+      src={isFullscreen ? min : max}
+      alt="Maximize"
+      
+      style={{
+        maxWidth: '60px', // Keep original size
+        maxHeight: '60px', // Keep original size
+        width: '8vw', // Responsive width
+        height: '8vw', // Responsive height
+        cursor: 'pointer',
+        [theme.breakpoints.down('sm')]: {
+          width: '12vw', // Adjust for small screens
+          height: '12vw', // Adjust for small screens
+        },
+      }}
+      onClick={handleFullScreen}
+    />
+  </Box>
+</Box>
 
     <Box
           sx={{
