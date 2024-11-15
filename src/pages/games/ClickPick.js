@@ -344,7 +344,7 @@ return () => {
     p: 3,
     borderRadius: 2,
     position: 'absolute',
-    bottom: 0,
+    bottom: 50,
     left: 0,
     width: '100%',
     height: '100%', // Adjust this as needed
