@@ -85,8 +85,22 @@ function ClickPick() {
   const handle = useFullScreenHandle()
   const videoRef = useRef(null);
   const containerRef = useRef(null);
+  const [isPortrait, setIsPortrait] = useState(window.matchMedia('(orientation: portrait)').matches);
   ////////////////////////// start /////////////////////////////
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(orientation: portrait)');
+    
+    const handleOrientationChange = (e) => {
+      setIsPortrait(e.matches); // Update state based on orientation
+    };
 
+    mediaQuery.addEventListener('change', handleOrientationChange);
+
+    // Cleanup listener on component unmount
+    return () => {
+      mediaQuery.removeEventListener('change', handleOrientationChange);
+    };
+  }, []);
   const getDeviceType = () => {
     const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
@@ -293,6 +307,7 @@ return () => {
         transition: 'background-size 0.5s ease-in-out, background-image 0.5s ease-in-out',      
        }}
     >
+      <h1>{isPortrait ? 'Portrait' : 'Landscape'}</h1>
       {/*///////////////////////////////////////////////////////////////////////////////////////////////////////////  */}
     
       <img src={boat} className={`side-image-boat ${animateImages ? 'animateLeft' : ''}`} sx={{zIndex:97,}} alt="Right Image" />
@@ -508,7 +523,7 @@ return () => {
         <img src={isFullscreen? min: max} alt="button" onClick={handleFullScreen}style={{ cursor: 'pointer', width: isMobile ? '15vw' : '3vw'}}/>
         </Box>
       </Box>
-      <div className={isMobile? 'green-to-white-wrapper FSMT':"hide"} style={{height: '6vh'}} key={animationKey}>
+      <div className={`game-container ${showGame? isMobile? 'show green-to-white-wrapper FSMT':"hide":''}`} style={{height: '6vh'}} key={animationKey}>
         
         <div className={`green-to-white-overlay ${isTimerActive ? '' : 'paused'}`}></div>
       </div>

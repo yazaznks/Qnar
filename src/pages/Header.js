@@ -215,10 +215,10 @@ function Header() {
               },
             }}
           >
-            <MenuItem sx={{ color: '#3B5D44' }} onClick={() => setLocation('/')}>{t('Home')}</MenuItem>
-            <MenuItem sx={{ color: '#3B5D44' }} onClick={() => setLocation('/about')}>{t('AboutUs')}</MenuItem>
-            <MenuItem sx={{ color: '#3B5D44' }} onClick={() => setLocation('/#')}>{t('Features')}</MenuItem>
-            <MenuItem sx={{ color: '#3B5D44' }} onClick={() => setLocation('/games')}>{t('Games')}</MenuItem>
+            <MenuItem sx={{ color: '#3B5D44' }} onClick={() => {setLocation('/'); handleCloseNavMenu();}}>{t('Home')}</MenuItem>
+            <MenuItem sx={{ color: '#3B5D44' }} onClick={() => {setLocation('/about'); handleCloseNavMenu();}}>{t('AboutUs')}</MenuItem>
+            <MenuItem sx={{ color: '#3B5D44' }} onClick={() => {setLocation('/#'); handleCloseNavMenu();}}>{t('Features')}</MenuItem>
+            <MenuItem sx={{ color: '#3B5D44' }} onClick={() => {setLocation('/games'); handleCloseNavMenu(); }}>{t('Games')}</MenuItem>
             <MenuItem>
                 <IconButton size="large" aria-label="language"  aria-controls="menu-appbar" aria-haspopup="true" onClick={handleOpenLangMenu} 
       style={{ backgroundColor: '#fff', borderRadius: '50%' }} > <LanguageIcon /></IconButton>
