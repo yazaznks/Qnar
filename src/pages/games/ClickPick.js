@@ -307,7 +307,7 @@ return () => {
         transition: 'background-size 0.5s ease-in-out, background-image 0.5s ease-in-out',      
        }}
     >
-      <h1>{isPortrait ? 'Portrait' : 'Landscape'}</h1>
+      
       {/*///////////////////////////////////////////////////////////////////////////////////////////////////////////  */}
     
       <img src={boat} className={`side-image-boat ${animateImages ? 'animateLeft' : ''}`} sx={{zIndex:97,}} alt="Right Image" />
@@ -336,7 +336,7 @@ return () => {
 <Typography variant="h6" gutterBottom color={'white'}sx={{ position: 'absolute' ,top: 70,whiteSpace: 'pre-line', marginTop: '10pxx'}}>
 {isIphone}
         </Typography>
-        
+        <h1>{isPortrait ? 'Portrait' : 'Landscape'}</h1>
 </Box>
 
 <Box
